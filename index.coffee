@@ -8,14 +8,14 @@ typePersonnage = [                  #Mage
 
 # if Mage, une partie 12
 maisons = [
-  nom: "Bjornaer"
+  name: "Bjornaer"
   avantage: [
     vertus: "Animal de coeur"
     competence: "Animal de coeur"
     niveau: 1
   ]
 ,
-  nom: "Bonisagus"
+  name: "Bonisagus"
   avantage: [
     vertus: "Talent"
     speciality: "Théorie de la magie"
@@ -24,21 +24,21 @@ maisons = [
     speciality: "Intrigue"
   ]
 ,
-  nom: "Criamon"
+  name: "Criamon"
   avantage: [
     vertus: "Énigme"
     competence: "Sagesse énigmatique"
     niveau: 1
   ]
 ,
-  nom: "ExMiscellanea"
+  name: "ExMiscellanea"
   avantage: ["""
     vertus mineur hermétique +
     vertus majeur non-hermétique +
     vis majeur hermétique
   """]
 ,
-  nom: "Flambeau"
+  name: "Flambeau"
   avantage: [
     vertus: "Talent"
     speciality: "Perdo"
@@ -47,17 +47,17 @@ maisons = [
     speciality: "Ignem"
   ]
 ,
-  nom: "Guernicus"
+  name: "Guernicus"
   avantage: [
     vertus: "Prestige hermétique"
   ]
 ,
-  nom: "Jerbiton"
+  name: "Jerbiton"
   avantage: [
     "Vertus mineure lié à l'hérudition, aux arts ou aux intéractions vulgaire"
   ]
 ,
-  nom: "Mercere"
+  name: "Mercere"
   avantage: [
     vertus: "Talent"
     speciality: "Creo"
@@ -66,23 +66,23 @@ maisons = [
     speciality: "Muto"
   ]
 ,
-  nom: "Merinita"
+  name: "Merinita"
   avantage: [
     vertus: "Magie féerique"
     requis: "Un vis ou une vertus lié a la Féerie"
   ]
 ,
-  nom: "Tremere"
+  name: "Tremere"
   avantage: [
     vertus: "Expertise magique mineure"
   ]
 ,
-  nom: "Tytalus"
+  name: "Tytalus"
   avantage: [
     vertus: "Confiance en soi"
   ]
 ,
-  nom: "Verditius"
+  name: "Verditius"
   avantage: [
     vertus: "Magie de Verditius"
   ]

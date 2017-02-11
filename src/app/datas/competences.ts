@@ -73,9 +73,9 @@ let data = {
 let liste = [];
 
 for(let ctype in data) {
-  for(let nom of data[ctype]) {
+  for(let name of data[ctype]) {
     liste.push(new Competence(
-      nom,
+      name,
       CompetenceType[<string>ctype]
     ));
   }

@@ -11,7 +11,7 @@ export enum PersonnageType {
 }
 
 export class Personnage {
-  nom: string;
+  name: string;
   concept: string;
   type: PersonnageType;
   maison: Maison;

@@ -24,9 +24,9 @@ export enum NatureValeur {
   Gratuite = 0
 }
 
-export class Nature implements Pattern<Nature>, Specifiable<Art | Competence | string> {
+export class Nature implements Named, Selectable<any, any> {
   constructor(
-    public nom: string = null,
+    public name: string = null,
     public type: NatureType = null,
     public category: NatureCategory = null,
     public valeur: NatureValeur = null,
@@ -68,23 +68,23 @@ export class Nature implements Pattern<Nature>, Specifiable<Art | Competence | s
   }
 
   clone() {
-    return new Nature(this.nom, this.type, this.category, this.valeur);
+    return new Nature(this.name, this.type, this.category, this.valeur);
   }
 
   toString() {
-    return `${this.nom} : ${NatureType[this.type]}, ${NatureCategory[this.category]}, ${NatureValeur[this.valeur]}`;
+    return this.name;//`${this.name} : ${NatureType[this.type]}, ${NatureCategory[this.category]}, ${NatureValeur[this.valeur]}`;
   }
 }
 
 export class NatureSpecialite extends Nature {
   constructor(
-    public nom: string = null,
+    public name: string = null,
     public type: NatureType = null,
     public category: NatureCategory = null,
     public valeur: NatureValeur = null,
     public speciality: Art | Competence | string = null,
   ){
-    super(nom, type, category, valeur);
+    super(name, type, category, valeur);
   }
 
   isPattern(){
@@ -105,14 +105,14 @@ export class NatureSpecialite extends Nature {
   }
 
   clone() {
-    return new NatureSpecialite(this.nom, this.type, this.category, this.valeur, this.speciality);
+    return new NatureSpecialite(this.name, this.type, this.category, this.valeur, this.speciality);
   }
 
   toString() {
-    let nom = this.nom;
+    let name = this.name;
     if(this.speciality !== null) {
-      nom = nom.replace(/\(.*\)/, this.speciality.toString());
+      name = name.replace(/\(.*\)/, this.speciality.toString());
     }
-    return `${nom} : ${NatureType[this.type]}, ${NatureCategory[this.category]}, ${NatureValeur[this.valeur]}`;
+    return name;//`${name} : ${NatureType[this.type]}, ${NatureCategory[this.category]}, ${NatureValeur[this.valeur]}`;
   }
 }

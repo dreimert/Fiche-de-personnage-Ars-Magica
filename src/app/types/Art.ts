@@ -27,8 +27,12 @@ export enum ArtType {
   Forme
 }
 
-export class ArtDescription {
+export class ArtDescription implements Named {
   constructor(public name: string, public type: ArtType) {}
+
+  toString() {
+    return this.name;
+  }
 }
 
 export class Art extends Xpliable implements Named {

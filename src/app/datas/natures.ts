@@ -378,26 +378,26 @@ for(let ntype in data) {
   for(let ncat in data[ntype]) {
     for(let nval in data[ntype][ncat]) {
       if(nval === "majeurOuMineur") {
-        for(let nom of data[ntype][ncat][nval]) {
+        for(let name of data[ntype][ncat][nval]) {
           liste.push(new Nature(
-            nom,
+            name,
             NatureType[<string>ntype],
             NatureCategory[<string>ncat],
             null
           ));
         }
       } else {
-        for(let nom of data[ntype][ncat][nval]) {
-          if(nom.match(/.*\(.*\)/)) {
+        for(let name of data[ntype][ncat][nval]) {
+          if(name.match(/.*\(.*\)/)) {
             liste.push(new NatureSpecialite(
-              nom,
+              name,
               NatureType[<string>ntype],
               NatureCategory[<string>ncat],
               NatureValeur[<string>nval]
             ));
           } else {
             liste.push(new Nature(
-              nom,
+              name,
               NatureType[<string>ntype],
               NatureCategory[<string>ncat],
               NatureValeur[<string>nval]
@@ -412,7 +412,7 @@ for(let ntype in data) {
 const dictionnaire = {};
 
 liste.forEach(function(nature){
-  dictionnaire[nature.nom] = nature;
+  dictionnaire[nature.name] = nature;
 });
 
 export const natures : Nature[] = liste;
