@@ -7,10 +7,16 @@ import 'hammerjs';
 import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { SelectMaisonComponent } from './select-maison/select-maison.component';
+import { CompetenceXpRowComponent } from './competence-xp-row/competence-xp-row.component';
+import { CaracteristiquesComponent } from './caracteristiques/caracteristiques.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SelectMaisonComponent,
+    CompetenceXpRowComponent,
+    CaracteristiquesComponent
   ],
   imports: [
     MaterialModule.forRoot(),

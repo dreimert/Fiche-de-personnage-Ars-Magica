@@ -1,3 +1,63 @@
-<h1>
-  {{title}}
-</h1>
+
+<!-- <md-input-container>
+  <label>Concept</label>
+  <md-input placeholder="First name" value="Toto"></md-input>
+<md-input-container>
+<br/> -->
+<!-- <md-card>
+  <button md-button>FLAT</button>
+  <button md-raised-button md-tooltip="This is a tooltip!">RAISED</button>
+  <button md-raised-button color="primary">PRIMARY RAISED</button>
+  <button md-raised-button color="accent">ACCENT RAISED</button>
+</md-card> -->
+
+<section>
+  <h3>Votre concept</h3>
+  <md-input-container class="full-width">
+    <input md-input placeholder="Concept du personnage" [(ngModel)]="personnage.concept">
+  </md-input-container>
+</section>
+
+<section>
+  <h3>Type de personnage</h3>
+  <md-radio-group [(ngModel)]="typeModel">
+    <md-radio-button *ngFor="let type of types.liste; let i = index" value="{{i}}">{{type}}</md-radio-button>
+  </md-radio-group>
+</section>
+
+<section *ngIf="personnage.type == types.names.Mage">
+  <h3>Votre maison</h3>
+  <select-maison [(maison)]="personnage.maison" [(avantages)]="personnage.maisonAvantages"></select-maison>
+</section>
+
+<section>
+  <h3>Vos vertus et vis</h3>
+  <md-chip-list>
+    <md-chip [color]="natureColor(vertus)" *ngFor="let vertus of personnage.vertus" (click)="deleteVertus(vertus)">{{vertus.toString()}}</md-chip>
+  </md-chip-list>
+  <md-chip-list>
+    <md-chip [color]="natureColor(vis)" *ngFor="let vis of personnage.vis" (click)="deleteVis(vertus)">{{vis}}</md-chip>
+  </md-chip-list>
+  <md-select placeholder="Vertus et Vis" [(ngModel)]="natureSelected">
+    <md-option
+      *ngFor="let nature of natures"
+      [value]="nature"
+    >
+      {{ nature.nom }}
+    </md-option>
+  </md-select>
+  <!-- auto-complete -->
+</section>
+
+<section>
+  <h3>Caractèristiques</h3>
+  <caracteristiques [caracterisques]="personnage.caracterisques"></caracteristiques>
+</section>
+
+<section>
+  <h3>Compétences</h3>
+  <competence-xp-row
+    [competences]="personnage.competences"
+    [etapes]="['Enfance', 'Avant', 'Apprentissage', 'Après']"
+  ></competence-xp-row>
+</section>
