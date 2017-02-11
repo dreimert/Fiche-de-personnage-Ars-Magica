@@ -18,10 +18,10 @@ maisons = [
   nom: "Bonisagus"
   avantage: [
     vertus: "Talent"
-    specialite: "Théorie de la magie"
+    speciality: "Théorie de la magie"
   ,
     vertus: "Talent"
-    specialite: "Intrigue"
+    speciality: "Intrigue"
   ]
 ,
   nom: "Criamon"
@@ -41,10 +41,10 @@ maisons = [
   nom: "Flambeau"
   avantage: [
     vertus: "Talent"
-    specialite: "Perdo"
+    speciality: "Perdo"
   ,
     vertus: "Talent"
-    specialite: "Ignem"
+    speciality: "Ignem"
   ]
 ,
   nom: "Guernicus"
@@ -60,10 +60,10 @@ maisons = [
   nom: "Mercere"
   avantage: [
     vertus: "Talent"
-    specialite: "Creo"
+    speciality: "Creo"
   ,
     vertus: "Talent"
-    specialite: "Muto"
+    speciality: "Muto"
   ]
 ,
   nom: "Merinita"

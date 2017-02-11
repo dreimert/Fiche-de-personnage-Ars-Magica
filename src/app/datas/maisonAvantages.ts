@@ -7,22 +7,22 @@ import { naturesEnum } from './natures';
 
 let talentPourTM = naturesEnum["Talent pour (Compétences)"].clone()
 console.log("competencesEnum['Théorie de la magie']", competencesEnum["Théorie de la magie"])
-talentPourTM.specialite = competencesEnum["Théorie de la magie"];
+talentPourTM.speciality = competencesEnum["Théorie de la magie"];
 
 let talentPourIntrigue = naturesEnum["Talent pour (Compétences)"].clone()
-talentPourIntrigue.specialite = competencesEnum["Intrigue"];
+talentPourIntrigue.speciality = competencesEnum["Intrigue"];
 
 let talentEnPerdo = naturesEnum["Talent en (Art)"].clone()
-talentEnPerdo.specialite = new Art(Art.Perdo);
+talentEnPerdo.speciality = new Art(Art.Perdo);
 
 let talentEnIgnem = naturesEnum["Talent en (Art)"].clone()
-talentEnIgnem.specialite = new Art(Art.Ignem);
+talentEnIgnem.speciality = new Art(Art.Ignem);
 
 let talentEnCreo = naturesEnum["Talent en (Art)"].clone()
-talentEnCreo.specialite = new Art(Art.Creo);
+talentEnCreo.speciality = new Art(Art.Creo);
 
 let talentEnMuto = naturesEnum["Talent en (Art)"].clone()
-talentEnMuto.specialite = new Art(Art.Muto);
+talentEnMuto.speciality = new Art(Art.Muto);
 
 export const exMiscellaneaNature = {
   mineur: new Nature(
