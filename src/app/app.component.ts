@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { PersonnageType, Personnage } from './types/Personnage';
 import { Maison } from './types/Maison';
 import { NatureType, NatureCategory, NatureValeur, Nature, NatureSpecialite} from './types/Nature';
-import { Caracterisque } from './types/Caracterisque';
+import { Caracteristique } from './types/Caracteristique';
 import { Xpliable } from './types/Xpliable';
 import { Competence } from './types/Competence';
 import { Art } from './types/Art';
@@ -61,14 +61,14 @@ export class AppComponent {
       naturesEnum["Magie étrange"],
     ],
     caracterisques: [
-      new Caracterisque("Intelligence", 3),
-      new Caracterisque("Perception", 2),
-      new Caracterisque("Force", -3),
-      new Caracterisque("Énergie", 2),
-      new Caracterisque("Présence", 2),
-      new Caracterisque("Communication", 1),
-      new Caracterisque("Dextérité", 0),
-      new Caracterisque("Vivacité", -2),
+      new Caracteristique("Intelligence", 3),
+      new Caracteristique("Perception", 2),
+      new Caracteristique("Force", -3),
+      new Caracteristique("Énergie", 2),
+      new Caracteristique("Présence", 2),
+      new Caracteristique("Communication", 1),
+      new Caracteristique("Dextérité", 0),
+      new Caracteristique("Vivacité", -2),
     ],
     competences: competences
   };

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Caracterisque } from '../types/Caracterisque';
+import { Caracteristique } from '../types/Caracteristique';
 
 @Component({
   selector: 'caracteristiques',
@@ -9,9 +9,9 @@ import { Caracterisque } from '../types/Caracterisque';
 export class CaracteristiquesComponent implements OnInit {
 
   @Input()
-  public caracterisques: Caracterisque[];
+  public caracterisques: Caracteristique[];
 
-  @Output() caracterisquesChange: EventEmitter<Caracterisque[]> = new EventEmitter();
+  @Output() caracterisquesChange: EventEmitter<Caracteristique[]> = new EventEmitter();
 
   constructor() { }
 

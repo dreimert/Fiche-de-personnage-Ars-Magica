@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { PersonnageType, Personnage } from './Personnage';
 import { Maison } from './Maison';
 import { NatureType, NatureCategory, NatureValeur, Nature, NatureSpecialite} from './Nature';
-import { Caracterisque } from './Caracterisque';
+import { Caracteristique } from './Caracteristique';
 import { Xpliable } from './Xpliable';
 import { Competence } from './Competence';
 import { Art } from './Art';

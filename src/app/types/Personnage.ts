@@ -1,5 +1,5 @@
 import { NatureType, NatureCategory, NatureValeur, Nature, NatureSpecialite} from './Nature';
-import { Caracterisque } from './Caracterisque';
+import { Caracteristique } from './Caracteristique';
 import { Maison } from './Maison';
 import { Art } from './Art';
 import { Competence } from './Competence';
@@ -18,7 +18,7 @@ export class Personnage {
   maisonAvantage: string;
   vertus: Nature[];
   vis: Nature[];
-  caracterisque: Caracterisque[];
+  caracterisque: Caracteristique[];
   competences: Competence[];
   art: Art[];
 }

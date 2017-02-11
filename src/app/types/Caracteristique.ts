@@ -1,6 +1,6 @@
 import { Named } from './Named';
 
-export class Caracterisque implements Named {
+export class Caracteristique implements Named {
   static Intelligence: string = "Intelligence";
   static Perception: string = "Perception";
   static Force: string = "Force";
@@ -9,6 +9,17 @@ export class Caracterisque implements Named {
   static Communication: string = "Communication";
   static Dexterite: string = "Dextérité";
   static Vivacite: string = "Vivacité";
+
+  static liste: string[] = [
+    Caracteristique.Intelligence,
+    Caracteristique.Perception,
+    Caracteristique.Force,
+    Caracteristique.Energie,
+    Caracteristique.Presence,
+    Caracteristique.Communication,
+    Caracteristique.Dexterite,
+    Caracteristique.Vivacite,
+  ];
 
   private _cout: number = 0;
   private _valeur: number = 0;
