@@ -270,7 +270,6 @@ let data = {
         "Tempérance",
         "Travesti",
         "Voeu"
-        ""
       ]
     },
     [NatureCategory[NatureCategory.Histoire]]: {
