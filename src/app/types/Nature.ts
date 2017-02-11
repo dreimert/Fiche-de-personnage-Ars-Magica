@@ -1,7 +1,10 @@
 import {Art} from './Art';
 import {Competence} from './Competence';
-import {Pattern} from './Pattern';
-import {Specifiable} from './Specifiable';
+import {Named} from './Named';
+import {Caracteristique} from './Caracteristique';
+import {Selectable} from './Selectable';
+
+import {competences} from '../datas/competences';
 
 export enum NatureType {
   Vertus,
@@ -42,6 +45,10 @@ export class Nature implements Named, Selectable<any, any> {
     return false;
   }
 
+  isSpecified() {
+    return true;
+  }
+
   choices() : any {
     return false;
   }
@@ -51,6 +58,9 @@ export class Nature implements Named, Selectable<any, any> {
   }
 
   include(other){
+    if(this.name !== null && this.name !== other.name) {
+      return false;
+    }
     if(this.type !== null && this.type !== other.type) {
       return false;
     }
@@ -77,14 +87,31 @@ export class Nature implements Named, Selectable<any, any> {
 }
 
 export class NatureSpecialite extends Nature {
+  private _typeSpeciality = "string";
   constructor(
     public name: string = null,
     public type: NatureType = null,
     public category: NatureCategory = null,
     public valeur: NatureValeur = null,
-    public speciality: Art | Competence | string = null,
+    public speciality: Named | string = null
   ){
     super(name, type, category, valeur);
+
+    let typeSpeciality = name.match(/.*\[(.*)\]/);
+    // specilité : Art, Compétence, Caractèristique
+    // autres : terrain, Pj, Dimension, PNJ
+    if(!typeSpeciality) {
+      throw new Error("Name mutch have [type]");
+    } else {
+      switch (typeSpeciality[1]) {
+        case "Art": this._typeSpeciality = "art"; break;
+        case "Compétence": this._typeSpeciality =  "competence"; break;
+        case "Caractèristique": this._typeSpeciality =  "caracteristique"; break;
+      };
+    }
+
+    console.log("this._typeSpeciality", this._typeSpeciality);
+
   }
 
   isPattern(){
@@ -95,8 +122,17 @@ export class NatureSpecialite extends Nature {
     return true;
   }
 
-  choices() {
-    return "";
+  isSpecified() {
+    return this.speciality !== null;
+  }
+
+  choices(): any {
+    switch (this._typeSpeciality) {
+      case "art": return Art.liste;
+      case "competence": return competences;
+      case "caracteristique": return Caracteristique.liste;
+      default: return "";
+    };
   }
 
   setSpeciality(value) {
