@@ -1,0 +1,34 @@
+<table>
+  <thead>
+  <tr>
+    <th>Nom</th>
+    <th>Valeur</th>
+    <th>Coût</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let caracterisque of caracterisques">
+      <td>{{caracterisque.name}}</td>
+      <td class="valeur">
+        <md-slider
+            [max]="3"
+            [min]="-3"
+            [step]="1"
+            [thumb-label]="true"
+            [tick-interval]="1"
+            [(ngModel)]="caracterisque.valeur"
+        >
+        </md-slider>
+        <span>{{caracterisque.valeur}}</span>
+      </td>
+      <td class="cout"><span>{{caracterisque.cout}}</span></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Total</th>
+      <th>{{ sumField(caracterisques, "valeur") }}</th>
+      <th>{{ sumField(caracterisques, "cout") }}</th>
+    </tr>
+  </tfoot>
+</table>
