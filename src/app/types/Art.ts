@@ -53,6 +53,24 @@ export class Art extends Xpliable implements Named {
   static Terram: ArtDescription = new ArtDescription("Terram", ArtType.Forme);
   static Vim: ArtDescription = new ArtDescription("Vim", ArtType.Forme);
 
+  static liste: ArtDescription[] = [
+    Art.Creo,
+    Art.Intelligo,
+    Art.Muto,
+    Art.Perdo,
+    Art.Rego,
+    Art.Animal,
+    Art.Aquam,
+    Art.Auram,
+    Art.Corpus,
+    Art.Herbam,
+    Art.Ignem,
+    Art.Imaginem,
+    Art.Mentem,
+    Art.Terram,
+    Art.Vim,
+  ];
+
   constructor(public art: ArtDescription) {
     super();
   }
