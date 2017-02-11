@@ -23,7 +23,7 @@ let data = {
         "Sang mythique",
       ],
       [NatureValeur[NatureValeur.Mineure]]: [
-        "Affinité pour (Art)",
+        "Affinité pour [Art]",
         "Animal de coeur",
         "Bonus aux études",
         "Circonstances spéciales",
@@ -51,7 +51,7 @@ let data = {
         "Prudence en sorcellerie",
         "Renforcement vital",
         "Source de vis personnelle",
-        "Talent en (Art)",
+        "Talent en [Art]",
       ]
     },
     [NatureCategory[NatureCategory.Surnaturelle]]: {
@@ -105,7 +105,7 @@ let data = {
     [NatureCategory[NatureCategory.Générale]]: {
       [NatureValeur[NatureValeur.Majeure]]: [
         "Ange gardien",
-        "Connaissance du (terrain)",
+        "Connaissance du [terrain]",
         "Fantôme protecteur",
         "Foi exaltée",
         "Prophétie de mort",
@@ -113,8 +113,8 @@ let data = {
         "Sang de géant",
       ],
       [NatureValeur[NatureValeur.Mineure]]: [
-        "Affinité pour (Compétence)",
-        "Amour véritable (Pj)",
+        "Affinité pour [Compétence]",
+        "Amour véritable [Pj]",
         "Aptitude magique latente",
         "Bénédiction de Vénus",
         "Bon sens",
@@ -135,11 +135,11 @@ let data = {
         "Éducation classique",
         "Éducation privilégiée",
         "Endurance",
-        "Erreurs profitable en (Compétences)",
-        "Étudiant (Dimension)",
+        "Erreurs profitable en [Compétence]",
+        "Étudiant [Dimension]",
         "Étudiant attentif",
         "Exaltation",
-        "Excellente (Caractèristique)",
+        "Excellente [Caractèristique]",
         "Frénésie berserk",
         "Grand voyageur",
         "Indépendance",
@@ -150,7 +150,7 @@ let data = {
         "Ouïe fine",
         "Pédagogue",
         "Protecteur",
-        "Prudence pour (Compétences)",
+        "Prudence pour [Compétence]",
         "Ragots",
         "Réflexes éclair",
         "Regard perçant",
@@ -158,7 +158,7 @@ let data = {
         "Réserves de force",
         "Sang féerique",
         "Sens de l'équilibre",
-        "Talent pour (Compétences)",
+        "Talent pour [Compétence]",
         "Verdeur",
         "Vigeur",
         "Vision acérée",
@@ -274,7 +274,7 @@ let data = {
     },
     [NatureCategory[NatureCategory.Histoire]]: {
       [NatureValeur[NatureValeur.Majeure]]: [
-        "Amour véritable (PNJ)",
+        "Amour véritable [PNJ]",
         "Brebis galeuse",
         "Ennemis",
         "Erreur sur la personne",
@@ -362,7 +362,7 @@ let data = {
         "Oeil manquant",
         "Oreille manquante",
         "Petite carrure",
-        "Piètre (Caractèrisque)",
+        "Piètre [Caractèristique]",
         "Souillure maléfique",
         "Tremblote",
         "Tristement célébre",
@@ -388,7 +388,7 @@ for(let ntype in data) {
         }
       } else {
         for(let name of data[ntype][ncat][nval]) {
-          if(name.match(/.*\(.*\)/)) {
+          if(name.match(/.*\[.*\]/)) {
             liste.push(new NatureSpecialite(
               name,
               NatureType[<string>ntype],

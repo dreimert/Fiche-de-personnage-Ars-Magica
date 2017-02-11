@@ -111,7 +111,9 @@ export class NatureSpecialite extends Nature {
   toString() {
     let name = this.name;
     if(this.speciality !== null) {
-      name = name.replace(/\(.*\)/, this.speciality.toString());
+      name = name.replace(/\[.*\]/, this.speciality.toString());
+    } else {
+      name = name.replace(/\[/, '(').replace(/\]/, ')');
     }
     return name;//`${name} : ${NatureType[this.type]}, ${NatureCategory[this.category]}, ${NatureValeur[this.valeur]}`;
   }

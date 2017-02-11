@@ -5,23 +5,23 @@ import { competencesEnum } from './competences';
 
 import { naturesEnum } from './natures';
 
-let talentPourTM = naturesEnum["Talent pour (Compétences)"].clone()
+let talentPourTM = naturesEnum["Talent pour [Compétence]"].clone()
 console.log("competencesEnum['Théorie de la magie']", competencesEnum["Théorie de la magie"])
 talentPourTM.speciality = competencesEnum["Théorie de la magie"];
 
-let talentPourIntrigue = naturesEnum["Talent pour (Compétences)"].clone()
+let talentPourIntrigue = naturesEnum["Talent pour [Compétence]"].clone()
 talentPourIntrigue.speciality = competencesEnum["Intrigue"];
 
-let talentEnPerdo = naturesEnum["Talent en (Art)"].clone()
+let talentEnPerdo = naturesEnum["Talent en [Art]"].clone()
 talentEnPerdo.speciality = new Art(Art.Perdo);
 
-let talentEnIgnem = naturesEnum["Talent en (Art)"].clone()
+let talentEnIgnem = naturesEnum["Talent en [Art]"].clone()
 talentEnIgnem.speciality = new Art(Art.Ignem);
 
-let talentEnCreo = naturesEnum["Talent en (Art)"].clone()
+let talentEnCreo = naturesEnum["Talent en [Art]"].clone()
 talentEnCreo.speciality = new Art(Art.Creo);
 
-let talentEnMuto = naturesEnum["Talent en (Art)"].clone()
+let talentEnMuto = naturesEnum["Talent en [Art]"].clone()
 talentEnMuto.speciality = new Art(Art.Muto);
 
 export const exMiscellaneaNature = {
