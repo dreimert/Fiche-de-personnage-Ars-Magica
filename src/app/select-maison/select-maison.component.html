@@ -1,0 +1,49 @@
+<md-select placeholder="Votre maison"  [(ngModel)]="maison">
+  <md-option *ngFor="let maison of maisons" [value]="maison">
+    {{ maison }}
+  </md-option>
+</md-select>
+
+<!-- Choix dans une liste -->
+<md-select *ngIf="maison && avantages[maison].length > 1" placeholder="Votre bonus" [(ngModel)]="avantagesSelected">
+  <md-option
+    *ngFor="let avantage of avantages[maison]"
+    [value]="avantage.vertus"
+  >
+    {{ avantage.vertus }}
+  </md-option>
+</md-select>
+
+<!-- Un seul choix -->
+<span *ngIf="maison && avantages[maison].length === 1">{{avantages[maison][0].vertus.toString()}}</span>
+
+<!-- Choix complexe -->
+<!-- ExMiscellanea -->
+<span *ngIf="maison && maison === 'ExMiscellanea'">
+  <md-select placeholder="Vertus hermétique mineure" [(ngModel)]="avantagesSelected">
+    <md-option
+      *ngFor="let nature of listVhm"
+      [value]="nature"
+    >
+      {{ nature.nom }}
+    </md-option>
+  </md-select>
+  <md-select placeholder="Vertus non-hermétique majeur" [(ngModel)]="exMajeur">
+    <md-option
+      *ngFor="let nature of listVnhm"
+      [value]="nature"
+    >
+      {{ nature.nom }}
+    </md-option>
+  </md-select>
+  <md-select placeholder="Vis hermétique majeur" [(ngModel)]="exVis">
+    <md-option
+      *ngFor="let nature of listVihm"
+      [value]="nature"
+    >
+      {{ nature.nom }}
+    </md-option>
+  </md-select>
+</span>
+<!-- Jerbiton -->
+<span *ngIf="maison && maison === 'Jerbiton'">Jerbiton</span>
