@@ -1,0 +1,34 @@
+<table>
+  <thead>
+  <tr>
+    <th>Nom</th>
+    <th *ngFor="let etape of etapes">{{etape}}</th>
+    <th>Total</th>
+    <th>Niveau</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let competence of proxies">
+      <td>{{competence.name}}</td>
+      <td *ngFor="let etape of etapes">
+        <md-input-container>
+          <input md-input type="number" min="0" [(ngModel)]="competence[etape]"/>
+        </md-input-container>
+      </td>
+      <td class="xp">
+        {{competence.xp}}
+      </td>
+      <td class="niveau">
+        {{competence.niveau}}
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Total</th>
+      <th *ngFor="let etape of etapes">{{ sumField(proxies, etape) }}</th>
+      <th>{{ sumField(proxies, "xp") }}</th>
+      <th>{{ sumField(proxies, "niveau") }}</th>
+    </tr>
+  </tfoot>
+</table>
