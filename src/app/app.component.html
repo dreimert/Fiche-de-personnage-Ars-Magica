@@ -27,7 +27,7 @@
 
 <section *ngIf="personnage.type == types.names.Mage">
   <h3>Votre maison</h3>
-  <select-maison [(maison)]="personnage.maison" [(avantages)]="personnage.maisonAvantages"></select-maison>
+  <select-maison [(maison)]="personnage.maison" [(avantages)]="natureSelected"></select-maison>
 </section>
 
 <section>
@@ -38,14 +38,7 @@
   <md-chip-list>
     <md-chip [color]="natureColor(vis)" *ngFor="let vis of personnage.vis" (click)="deleteVis(vertus)">{{vis}}</md-chip>
   </md-chip-list>
-  <md-select placeholder="Vertus et Vis" [(ngModel)]="natureSelected">
-    <md-option
-      *ngFor="let nature of natures"
-      [value]="nature"
-    >
-      {{ nature.nom }}
-    </md-option>
-  </md-select>
+  <select-pattern-specifiable [liste]="natures" [(selected)]="natureSelected"></select-pattern-specifiable>
   <!-- auto-complete -->
 </section>
 

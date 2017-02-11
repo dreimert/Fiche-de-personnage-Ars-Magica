@@ -20,30 +20,9 @@
 <!-- Choix complexe -->
 <!-- ExMiscellanea -->
 <span *ngIf="maison && maison === 'ExMiscellanea'">
-  <md-select placeholder="Vertus hermétique mineure" [(ngModel)]="avantagesSelected">
-    <md-option
-      *ngFor="let nature of listVhm"
-      [value]="nature"
-    >
-      {{ nature.nom }}
-    </md-option>
-  </md-select>
-  <md-select placeholder="Vertus non-hermétique majeur" [(ngModel)]="exMajeur">
-    <md-option
-      *ngFor="let nature of listVnhm"
-      [value]="nature"
-    >
-      {{ nature.nom }}
-    </md-option>
-  </md-select>
-  <md-select placeholder="Vis hermétique majeur" [(ngModel)]="exVis">
-    <md-option
-      *ngFor="let nature of listVihm"
-      [value]="nature"
-    >
-      {{ nature.nom }}
-    </md-option>
-  </md-select>
+  <select-pattern-specifiable [liste]="listVhm" [(selected)]="avantagesSelected"></select-pattern-specifiable>
+  <select-pattern-specifiable [liste]="listVnhm" [(selected)]="exMajeur"></select-pattern-specifiable>
+  <select-pattern-specifiable [liste]="listVihm" [(selected)]="exVis"></select-pattern-specifiable>
 </span>
 <!-- Jerbiton -->
 <span *ngIf="maison && maison === 'Jerbiton'">

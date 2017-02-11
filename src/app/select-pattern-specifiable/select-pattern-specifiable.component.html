@@ -1,0 +1,19 @@
+<md-select placeholder="Choisissez un élément" [(ngModel)]="firstLvl">
+  <md-option
+    *ngFor="let elem of liste"
+    [value]="elem"
+  >
+    {{ elem }}
+  </md-option>
+</md-select>
+<md-select *ngIf="showSpecifySelect && specialityLvlListe !== ''" placeholder="Spécilité" [(ngModel)]="specialityLvl">
+  <md-option
+    *ngFor="let speciality of specialityLvlListe"
+    [value]="speciality"
+  >
+    {{ speciality }}
+  </md-option>
+</md-select>
+<md-input-container *ngIf="showSpecifySelect && specialityLvlListe === ''">
+  <input md-input placeholder="Spécilité" [(ngModel)]="specialityLvl"/>
+</md-input-container>

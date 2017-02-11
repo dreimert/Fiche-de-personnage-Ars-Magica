@@ -53,7 +53,7 @@ export class SelectMaisonComponent implements OnInit {
     if(avantages[this._maison].length === 1) {
       this.avantagesSelected = this.avantages[this.maison][0].vertus;
     } else {
-      this.avantagesSelected = null;
+      this.avantagesSelected = [];
     }
   }
 
@@ -64,8 +64,9 @@ export class SelectMaisonComponent implements OnInit {
   set avantagesSelected(value) {
     if(value === null) {
       this._avantagesSelected = [];
-      this.avantagesChange.emit([value]);
+      this.avantagesChange.emit([]);
     } else {
+
       this._avantagesSelected[0] = value;
       this.avantagesChange.emit([value]);
     }
@@ -73,11 +74,11 @@ export class SelectMaisonComponent implements OnInit {
 
   @Input('avantages')
   set avantagesInput(value) {
-    if(value === null) {
-      value = []
+    if(value) {
+      this._avantagesSelected = value;
+    } else {
+      this._avantagesSelected = [];
     }
-
-    this._avantagesSelected = value;
   }
 
   get exMajeur() {
