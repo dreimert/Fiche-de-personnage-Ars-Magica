@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Maison } from '../types/Maison';
 
 import { natures } from '../datas/natures';
-import { maisonAvantages as avantages, exMiscellaneaNature } from '../datas/maisonAvantages';
+import { maisonAvantages as avantages, exMiscellaneaNature, jerbitonNature } from '../datas/maisonAvantages';
 
 import { enumToListe } from '../utiles/enumToListe';
 
@@ -27,6 +27,8 @@ export class SelectMaisonComponent implements OnInit {
                              .filter(exMiscellaneaNature.majeur.est.include, exMiscellaneaNature.majeur.est)
                              .filter(exMiscellaneaNature.majeur.nestpas.exclude, exMiscellaneaNature.majeur.nestpas);
   public readonly listVihm = natures.filter(exMiscellaneaNature.vis.include, exMiscellaneaNature.vis);
+
+  public readonly listVm = natures.filter(jerbitonNature.vertus.include, jerbitonNature.vertus);
 
   constructor() {
   }

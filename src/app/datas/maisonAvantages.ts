@@ -53,7 +53,15 @@ export const exMiscellaneaNature = {
   ),
 }
 
-export const jerbitonNature = "Vertus mineure lié à l'hérudition, aux arts ou aux intéractions vulgaire";
+export const jerbitonNature = {
+  vertus: new Nature(
+    null,
+    NatureType.Vertus,
+    null,
+    NatureValeur.Mineure
+  ),
+  message: "Vertus mineure lié à l'hérudition, aux arts ou aux intéractions vulgaire"
+}
 
 export const maisonAvantages = {
   "Bjornaer": [

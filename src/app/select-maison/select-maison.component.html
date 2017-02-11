@@ -46,4 +46,13 @@
   </md-select>
 </span>
 <!-- Jerbiton -->
-<span *ngIf="maison && maison === 'Jerbiton'">Jerbiton</span>
+<span *ngIf="maison && maison === 'Jerbiton'">
+  <md-select placeholder="Vertus mineure lié à l'hérudition, aux arts ou aux intéractions vulgaire" [(ngModel)]="avantagesSelected">
+    <md-option
+      *ngFor="let nature of listVm"
+      [value]="nature"
+    >
+      {{ nature.nom }}
+    </md-option>
+  </md-select>
+</span>
