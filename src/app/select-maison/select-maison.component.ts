@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Maison } from '../types/Maison';
+import { Nature } from '../types/Nature';
 
-import { natures } from '../datas/natures';
 import { maisonAvantages as avantages, exMiscellaneaNature, jerbitonNature } from '../datas/maisonAvantages';
 
 import { enumToListe } from '../utiles/enumToListe';
@@ -22,13 +22,13 @@ export class SelectMaisonComponent implements OnInit {
   public readonly maisons = enumToListe(Maison);
   public readonly avantages = avantages;
 
-  public readonly listVhm = natures.filter(exMiscellaneaNature.mineur.include, exMiscellaneaNature.mineur);
-  public readonly listVnhm = natures
+  public readonly listVhm = Nature.liste.filter(exMiscellaneaNature.mineur.include, exMiscellaneaNature.mineur);
+  public readonly listVnhm = Nature.liste
                              .filter(exMiscellaneaNature.majeur.est.include, exMiscellaneaNature.majeur.est)
                              .filter(exMiscellaneaNature.majeur.nestpas.exclude, exMiscellaneaNature.majeur.nestpas);
-  public readonly listVihm = natures.filter(exMiscellaneaNature.vis.include, exMiscellaneaNature.vis);
+  public readonly listVihm = Nature.liste.filter(exMiscellaneaNature.vis.include, exMiscellaneaNature.vis);
 
-  public readonly listVm = natures.filter(jerbitonNature.vertus.include, jerbitonNature.vertus);
+  public readonly listVm = Nature.liste.filter(jerbitonNature.vertus.include, jerbitonNature.vertus);
 
   constructor() {
   }

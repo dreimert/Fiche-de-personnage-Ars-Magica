@@ -2,16 +2,16 @@ import { Named } from './Named';
 
 // Même pattern que Art, Competence et Nature ?
 export class Caracteristique implements Named {
-  static Intelligence: Caracteristique = new Caracteristique("Intelligence");
-  static Perception: Caracteristique = new Caracteristique("Perception");
-  static Force: Caracteristique = new Caracteristique("Force");
-  static Energie: Caracteristique = new Caracteristique("Énergie");
-  static Presence: Caracteristique = new Caracteristique("Présence");
-  static Communication: Caracteristique = new Caracteristique("Communication");
-  static Dexterite: Caracteristique = new Caracteristique("Dextérité");
-  static Vivacite: Caracteristique = new Caracteristique("Vivacité");
+  public static readonly Intelligence: Caracteristique = new Caracteristique("Intelligence");
+  public static readonly Perception: Caracteristique = new Caracteristique("Perception");
+  public static readonly Force: Caracteristique = new Caracteristique("Force");
+  public static readonly Energie: Caracteristique = new Caracteristique("Énergie");
+  public static readonly Presence: Caracteristique = new Caracteristique("Présence");
+  public static readonly Communication: Caracteristique = new Caracteristique("Communication");
+  public static readonly Dexterite: Caracteristique = new Caracteristique("Dextérité");
+  public static readonly Vivacite: Caracteristique = new Caracteristique("Vivacité");
 
-  static liste: Caracteristique[] = [
+  public static readonly liste: Caracteristique[] = [
     Caracteristique.Intelligence,
     Caracteristique.Perception,
     Caracteristique.Force,

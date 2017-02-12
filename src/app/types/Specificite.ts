@@ -2,14 +2,12 @@ import {Art} from './Art';
 import {Competence} from './Competence';
 import {Named} from './Named';
 import {Caracteristique} from './Caracteristique';
-//
-// import {competences} from '../datas/competences';
+import {Specifiable, Choices} from './Specifiable';
 
 export class Specificite {
-  public speciality: Named | string = null;
   private _typeSpeciality: string = null;
 
-  constructor(public name: string) {
+  constructor(public readonly name: string, public readonly speciality: Named | string = null) {
     if(name) {
       let typeSpeciality = name.match(/.*\[(.*)\]/);
       // specilité : Art, Compétence, Caractèristique
@@ -21,7 +19,7 @@ export class Specificite {
           case "Art": this._typeSpeciality = "art"; break;
           case "Compétence": this._typeSpeciality =  "competence"; break;
           case "Caractèristique": this._typeSpeciality =  "caracteristique"; break;
-          default: this._typeSpeciality =  "string";
+          default: this._typeSpeciality =  typeSpeciality[1];
         };
       }
     } else {
@@ -31,34 +29,22 @@ export class Specificite {
   }
 
   isSpecifiable() {
-    return this._typeSpeciality !== null;
+    return this.name === null || (this._typeSpeciality !== null && this.speciality === null);
   }
 
   isSpecified() {
-    return this.speciality !== null || !this.isSpecifiable();
+    return !this.isSpecifiable();
   }
 
-  choices(): any {
-    switch (this._typeSpeciality) {
-      case "art": return Art.liste;
-      // case "competence": return competences;
-      case "caracteristique": return Caracteristique.liste;
-      default: return "";
-    };
-  }
-
-  setSpeciality(value) {
-    this.speciality = value;
-    return true;
+  get type() {
+    return this._typeSpeciality;
   }
 
   toString() {
     if(this.speciality !== null) {
       return this.name.replace(/\[.*\]/, this.speciality.toString());
-    } else if(this.isSpecifiable()) {
-      return this.name.replace(/\[/, '(').replace(/\]/, ')');
     } else {
-      return this.name;
+      return this.name.replace(/\[/, '(').replace(/\]/, ')');
     }
   }
 }

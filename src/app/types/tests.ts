@@ -8,11 +8,11 @@ import { Xpliable } from './Xpliable';
 import { Competence, CompetenceType } from './Competence';
 import { Art } from './Art';
 
-let creo = new Art(Art.Perdo);
+let creo = Art.Creo.convertToXpliable();
 creo.xp = 20;
 console.log(`${creo}`);
 
-let survie = new Competence("Survie", CompetenceType.Générale);
+let survie = Competence.enum["Survie"].convertToXpliable();
 survie.xp = 20;
 console.log(`${survie}`);
 survie.xp = 5;
@@ -20,27 +20,24 @@ console.log(`${survie}`);
 survie.xp = 5;
 console.log(`${survie}`);
 
-let leDon : Nature = new Nature(
-    "Le Don",
-    NatureType.Vertus,
-    NatureCategory.Spéciale,
-    NatureValeur.Gratuite
-);
+let leDon : Nature = Nature.enum["Le Don"];
 
 let special : Nature = new Nature(
     null,
-    null,
     NatureCategory.Spéciale,
-    NatureValeur.Gratuite
+    NatureValeur.Gratuite,
+    null
 );
 
 let hermetique : Nature = new Nature(
   null,
-  null,
   NatureCategory.Hermétique,
+  null,
   null
 )
 
 console.log(special.include(leDon), special.isPattern());
 console.log(hermetique.include(leDon), hermetique.isPattern());
 console.log(leDon.isPattern());
+
+export const tests = "test";

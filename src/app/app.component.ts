@@ -8,9 +8,6 @@ import { Xpliable } from './types/Xpliable';
 import { Competence } from './types/Competence';
 import { Art } from './types/Art';
 
-import { naturesEnum, natures } from './datas/natures';
-import { competencesEnum, competences } from './datas/competences';
-
 import { enumToListe } from './utiles/enumToListe';
 
 @Component({
@@ -26,7 +23,7 @@ export class AppComponent {
     names: PersonnageType
   }
 
-  natures = natures;
+  natures = Nature.liste;
 
   // personnage = {
   //   maison: null,
@@ -40,25 +37,25 @@ export class AppComponent {
     maison: "Merinita",
     maisonAvantage: null,
     vertus: [
-      naturesEnum["Le Don"],
-      naturesEnum["Mage hermétique"],
-      naturesEnum["Magie féerique"],
-      naturesEnum["Magie de Diedne"],
-      naturesEnum["Sang féerique saillant"],
-      naturesEnum["Double vue"],
-      naturesEnum["Verdeur"],
-      // naturesEnum["Affinité pour Rego"],
-      // naturesEnum["Talent pour Rego"],
-      // naturesEnum["Expertise magique mineur : Maintient de sorts"],
+      Nature.enum["Le Don"],
+      Nature.enum["Mage hermétique"],
+      Nature.enum["Magie féerique"],
+      Nature.enum["Magie de Diedne"],
+      Nature.enum["Sang féerique saillant"],
+      Nature.enum["Double vue"],
+      Nature.enum["Verdeur"],
+      // Nature.enum["Affinité pour Rego"],
+      // Nature.enum["Talent pour Rego"],
+      // Nature.enum["Expertise magique mineur : Maintient de sorts"],
     ],
     vis: [
-      naturesEnum["Sombre secret"],
-      // naturesEnum["Technique déficiente : Perdo"],
-      naturesEnum["Optimisme"],
-      naturesEnum["Ami féerique"],
-      naturesEnum["Visions" ],
-      naturesEnum["Petite carrure"],
-      naturesEnum["Magie étrange"],
+      Nature.enum["Sombre secret"],
+      // Nature.enum["Technique déficiente : Perdo"],
+      Nature.enum["Optimisme"],
+      Nature.enum["Ami féerique"],
+      Nature.enum["Visions" ],
+      Nature.enum["Petite carrure"],
+      Nature.enum["Magie étrange"],
     ],
     caracterisques: [
       new Caracteristique("Intelligence", 3),
@@ -70,7 +67,7 @@ export class AppComponent {
       new Caracteristique("Dextérité", 0),
       new Caracteristique("Vivacité", -2),
     ],
-    competences: competences
+    competences: Competence.liste
   };
 
   constructor() {
@@ -102,13 +99,13 @@ export class AppComponent {
 
   set natureSelected(nature) {
     console.log("nature", nature);
-    if(nature === null) {
-      return;
-    } else if(nature.type === NatureType.Vertus) {
-      this.personnage.vertus.push(nature);
-    } else {
-      this.personnage.vis.push(nature);
-    }
+    // if(nature === null) {
+    //   return;
+    // } else if(nature.type === NatureType.Vertus) {
+    //   this.personnage.vertus.push(nature);
+    // } else {
+    //   this.personnage.vis.push(nature);
+    // }
   }
 
   natureColor(nature) {
