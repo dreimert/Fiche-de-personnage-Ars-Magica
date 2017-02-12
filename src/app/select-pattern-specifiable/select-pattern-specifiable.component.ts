@@ -11,13 +11,13 @@ import {Specifiable} from '../types/Specifiable';
 export class SelectPatternSpecifiableComponent implements OnInit {
 
   @Input()
-  public liste : Specifiable<any>[];
+  public liste : Specifiable<any, any>[];
 
-  @Output() selectedChange: EventEmitter<Specifiable<any>> = new EventEmitter();
+  @Output() selectedChange: EventEmitter<Specifiable<any, any>> = new EventEmitter();
 
-  private _selected : Specifiable<any>;
-  private _firstLvl : Specifiable<any>;
-  private _specialityLvl : Specifiable<any>;
+  private _selected : Specifiable<any, any>;
+  private _firstLvl : Specifiable<any, any>;
+  private _specialityLvl : Specifiable<any, any>;
   public specialityLvlListe : any[];
 
   public showSpecifySelect = false;

@@ -1,6 +1,6 @@
 import {Xpliable} from './Xpliable';
 import {Named} from './Named';
-import {Selectable} from './Selectable';
+import {Specifiable} from './Specifiable';
 import {Specificite} from './Specificite';
 
 export enum CompetenceType {
@@ -12,7 +12,7 @@ export enum CompetenceType {
   Sort
 }
 
-export class Competence extends Xpliable implements Named, Selectable<any, any> {
+export class Competence extends Xpliable implements Named, Specifiable<any, any> {
   private _typeSpeciality: Specificite;
   constructor(public name: string, public type: CompetenceType) {
     super(5);

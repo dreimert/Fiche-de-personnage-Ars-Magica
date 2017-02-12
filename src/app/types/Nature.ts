@@ -2,7 +2,7 @@ import {Art} from './Art';
 import {Competence} from './Competence';
 import {Named} from './Named';
 import {Caracteristique} from './Caracteristique';
-import {Selectable} from './Selectable';
+import {Specifiable} from './Specifiable';
 import {Specificite} from './Specificite';
 
 import {competences} from '../datas/competences';
@@ -28,7 +28,7 @@ export enum NatureValeur {
   Gratuite = 0
 }
 
-export class Nature implements Named, Selectable<any, any> {
+export class Nature implements Named, Specifiable<any, any> {
   private _typeSpeciality: Specificite;
   constructor(
     public name: string = null,
