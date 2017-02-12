@@ -1,16 +1,17 @@
 import { Named } from './Named';
 
+// Même pattern que Art, Competence et Nature ?
 export class Caracteristique implements Named {
-  static Intelligence: string = "Intelligence";
-  static Perception: string = "Perception";
-  static Force: string = "Force";
-  static Energie: string = "Énergie";
-  static Presence: string = "Présence";
-  static Communication: string = "Communication";
-  static Dexterite: string = "Dextérité";
-  static Vivacite: string = "Vivacité";
+  static Intelligence: Caracteristique = new Caracteristique("Intelligence");
+  static Perception: Caracteristique = new Caracteristique("Perception");
+  static Force: Caracteristique = new Caracteristique("Force");
+  static Energie: Caracteristique = new Caracteristique("Énergie");
+  static Presence: Caracteristique = new Caracteristique("Présence");
+  static Communication: Caracteristique = new Caracteristique("Communication");
+  static Dexterite: Caracteristique = new Caracteristique("Dextérité");
+  static Vivacite: Caracteristique = new Caracteristique("Vivacité");
 
-  static liste: string[] = [
+  static liste: Caracteristique[] = [
     Caracteristique.Intelligence,
     Caracteristique.Perception,
     Caracteristique.Force,
@@ -24,7 +25,7 @@ export class Caracteristique implements Named {
   private _cout: number = 0;
   private _valeur: number = 0;
 
-  constructor(public name: string, valeur: number = 0) {
+  constructor(public readonly name: string, valeur: number = 0) {
     this.valeur = valeur;
   }
 
@@ -45,9 +46,9 @@ export class Caracteristique implements Named {
     };
   }
 
-  getName() {
+  get cout() {return this._cout;}
+
+  toStrign() {
     return this.name;
   }
-
-  get cout() {return this._cout;}
 }

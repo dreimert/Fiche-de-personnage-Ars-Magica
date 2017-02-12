@@ -1,4 +1,4 @@
-import {Xpliable} from './Xpliable';
+import {Xpliable, XpliableImplemantation, ConvertToXpliable} from './Xpliable';
 import {Named} from './Named';
 
 export enum Technique {
@@ -27,33 +27,25 @@ export enum ArtType {
   Forme
 }
 
-export class ArtDescription implements Named {
-  constructor(public name: string, public type: ArtType) {}
+export class Art implements Named, ConvertToXpliable {
+  public static readonly Creo: Art = new Art("Creo", ArtType.Technique);
+  public static readonly Intelligo: Art = new Art("Intelligo", ArtType.Technique);
+  public static readonly Muto: Art = new Art("Muto", ArtType.Technique);
+  public static readonly Perdo: Art = new Art("Perdo", ArtType.Technique);
+  public static readonly Rego: Art = new Art("Rego", ArtType.Technique);
 
-  toString() {
-    return this.name;
-  }
-}
+  public static readonly Animal: Art = new Art("Animal", ArtType.Forme);
+  public static readonly Aquam: Art = new Art("Aquam", ArtType.Forme);
+  public static readonly Auram: Art = new Art("Auram", ArtType.Forme);
+  public static readonly Corpus: Art = new Art("Corpus", ArtType.Forme);
+  public static readonly Herbam: Art = new Art("Herbam", ArtType.Forme);
+  public static readonly Ignem: Art = new Art("Ignem", ArtType.Forme);
+  public static readonly Imaginem: Art = new Art("Imaginem", ArtType.Forme);
+  public static readonly Mentem: Art = new Art("Mentem", ArtType.Forme);
+  public static readonly Terram: Art = new Art("Terram", ArtType.Forme);
+  public static readonly Vim: Art = new Art("Vim", ArtType.Forme);
 
-export class Art extends Xpliable implements Named {
-  static Creo: ArtDescription = new ArtDescription("Creo", ArtType.Technique);
-  static Intelligo: ArtDescription = new ArtDescription("Intelligo", ArtType.Technique);
-  static Muto: ArtDescription = new ArtDescription("Muto", ArtType.Technique);
-  static Perdo: ArtDescription = new ArtDescription("Perdo", ArtType.Technique);
-  static Rego: ArtDescription = new ArtDescription("Rego", ArtType.Technique);
-
-  static Animal: ArtDescription = new ArtDescription("Animal", ArtType.Forme);
-  static Aquam: ArtDescription = new ArtDescription("Aquam", ArtType.Forme);
-  static Auram: ArtDescription = new ArtDescription("Auram", ArtType.Forme);
-  static Corpus: ArtDescription = new ArtDescription("Corpus", ArtType.Forme);
-  static Herbam: ArtDescription = new ArtDescription("Herbam", ArtType.Forme);
-  static Ignem: ArtDescription = new ArtDescription("Ignem", ArtType.Forme);
-  static Imaginem: ArtDescription = new ArtDescription("Imaginem", ArtType.Forme);
-  static Mentem: ArtDescription = new ArtDescription("Mentem", ArtType.Forme);
-  static Terram: ArtDescription = new ArtDescription("Terram", ArtType.Forme);
-  static Vim: ArtDescription = new ArtDescription("Vim", ArtType.Forme);
-
-  static liste: ArtDescription[] = [
+  public static readonly liste: Art[] = [
     Art.Creo,
     Art.Intelligo,
     Art.Muto,
@@ -71,19 +63,33 @@ export class Art extends Xpliable implements Named {
     Art.Vim,
   ];
 
-  constructor(public art: ArtDescription) {
-    super();
-  }
+  constructor(readonly name: string, readonly type: ArtType) {}
 
-  get name() {
-    return this.art.name;
-  }
-
-  getName() {
-    return this.name;
+  convertToXpliable() {
+    return new ArtXpliable(this);
   }
 
   toString() {
-    return this.art.name;
+    return this.name;
+  }
+}
+
+export class ArtXpliable extends Art implements Xpliable {
+  private _xp : XpliableImplemantation;
+  constructor(public readonly art: Art, xp: number = 0) {
+    super(art.name, art.type);
+    this._xp = new XpliableImplemantation(1, xp);
+  }
+
+  set xp(xp: number) {
+    this._xp.xp = xp;
+  };
+
+  get xp(): number {
+    return this._xp.xp;
+  }
+
+  get lvl() : number {
+    return this._xp.lvl;
   }
 }

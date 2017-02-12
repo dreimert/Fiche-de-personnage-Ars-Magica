@@ -1,4 +1,4 @@
-import {Xpliable} from './Xpliable';
+import {Xpliable, XpliableImplemantation, ConvertToXpliable} from './Xpliable';
 import {Named} from './Named';
 import {Specifiable} from './Specifiable';
 import {Specificite} from './Specificite';
@@ -12,11 +12,9 @@ export enum CompetenceType {
   Sort
 }
 
-export class Competence extends Xpliable implements Named, Specifiable<any, any> {
+export class Competence implements Named, ConvertToXpliable, Specifiable<any, any> {
   private _typeSpeciality: Specificite;
-  constructor(public name: string, public type: CompetenceType) {
-    super(5);
-
+  constructor(readonly name: string, readonly type: CompetenceType) {
     this._typeSpeciality = new Specificite(name);
   }
 
@@ -54,11 +52,35 @@ export class Competence extends Xpliable implements Named, Specifiable<any, any>
     return this._typeSpeciality.setSpeciality(value);
   }
 
+  convertToXpliable() {
+    return new CompetenceXpliable(this);
+  }
+
   clone() {
     return new Competence(this.name, this.type);
   }
 
   toString() {
     return this._typeSpeciality.toString();
+  }
+}
+
+export class CompetenceXpliable extends Competence implements Xpliable {
+  private _xp : XpliableImplemantation;
+  constructor(public readonly competence: Competence, xp: number = 0) {
+    super(competence.name, competence.type);
+    this._xp = new XpliableImplemantation(1, xp);
+  }
+
+  set xp(xp: number) {
+    this._xp.xp = xp;
+  };
+
+  get xp(): number {
+    return this._xp.xp;
+  }
+
+  get lvl() : number {
+    return this._xp.lvl;
   }
 }

@@ -1,19 +1,29 @@
-export class Xpliable {
-  private _xp: number = 0
-  private _niveau: number = 0;
-  private _nextPalier: number = 5;
+export interface Xpliable {
+  xp : number;
+  readonly lvl : number;
+}
 
-  constructor(private multiplicateur: number = 1) {}
+export interface ConvertToXpliable {
+  convertToXpliable() : Xpliable;
+}
+
+export class XpliableImplemantation implements Xpliable {
+  private _xp: number = 0
+  private _lvl: number = 0;
+
+  constructor(readonly multiplicateur: number = 1, xp: number = 0) {
+    this.xp = xp;
+  }
 
   set xp(xp: number) {
     this._xp = xp;
 
-    this._niveau = 0;
-    this._nextPalier = 5;
+    this._lvl = 0;
+    let nextPalier = 5;
 
-    while(this._xp >= this._nextPalier) {
-      this._niveau += 1;
-      this._nextPalier += (this._niveau + 1) * this.multiplicateur;
+    while(this._xp >= nextPalier) {
+      this._lvl += 1;
+      nextPalier += (this._lvl + 1) * this.multiplicateur;
     }
   };
 
@@ -21,7 +31,7 @@ export class Xpliable {
     return this._xp;
   }
 
-  get niveau() : number {
-    return this._niveau;
+  get lvl() : number {
+    return this._lvl;
   }
 }
