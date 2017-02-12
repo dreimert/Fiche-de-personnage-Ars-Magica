@@ -1,4 +1,4 @@
-import { NatureType, NatureCategory, NatureValeur, Nature, NatureSpecialite} from '../types/Nature';
+import { NatureType, NatureCategory, NatureValeur, Nature} from '../types/Nature';
 import { Competence } from '../types/Competence';
 import { Art } from '../types/Art';
 import { competencesEnum } from './competences';

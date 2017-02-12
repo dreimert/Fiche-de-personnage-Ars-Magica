@@ -1,4 +1,4 @@
-import { NatureType, NatureCategory, NatureValeur, Nature, NatureSpecialite} from './Nature';
+import { NatureType, NatureCategory, NatureValeur, Nature} from './Nature';
 import { Caracteristique } from './Caracteristique';
 import { Maison } from './Maison';
 import { Art } from './Art';

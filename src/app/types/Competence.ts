@@ -1,6 +1,7 @@
 import {Xpliable} from './Xpliable';
 import {Named} from './Named';
 import {Selectable} from './Selectable';
+import {Specificite} from './Specificite';
 
 export enum CompetenceType {
   Générale,
@@ -12,8 +13,11 @@ export enum CompetenceType {
 }
 
 export class Competence extends Xpliable implements Named, Selectable<any, any> {
+  private _typeSpeciality: Specificite;
   constructor(public name: string, public type: CompetenceType) {
     super(5);
+
+    this._typeSpeciality = new Specificite(name);
   }
 
   isPattern() : boolean {
@@ -35,19 +39,19 @@ export class Competence extends Xpliable implements Named, Selectable<any, any> 
   }
 
   isSpecifiable() {
-    return false;
+    return this._typeSpeciality.isSpecifiable();
   }
 
   isSpecified() {
-    return true;
+    return this._typeSpeciality.isSpecified();
   }
 
-  choices() : any {
-    return false;
+  choices(): any {
+    return this._typeSpeciality.choices();
   }
 
   setSpeciality(value) {
-    return false;
+    return this._typeSpeciality.setSpeciality(value);
   }
 
   clone() {
@@ -55,6 +59,6 @@ export class Competence extends Xpliable implements Named, Selectable<any, any> 
   }
 
   toString() {
-    return this.name;
+    return this._typeSpeciality.toString();
   }
 }

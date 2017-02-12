@@ -2,17 +2,17 @@ import { Component } from '@angular/core';
 
 import { PersonnageType, Personnage } from './Personnage';
 import { Maison } from './Maison';
-import { NatureType, NatureCategory, NatureValeur, Nature, NatureSpecialite} from './Nature';
+import { NatureType, NatureCategory, NatureValeur, Nature} from './Nature';
 import { Caracteristique } from './Caracteristique';
 import { Xpliable } from './Xpliable';
-import { Competence } from './Competence';
+import { Competence, CompetenceType } from './Competence';
 import { Art } from './Art';
 
 let creo = new Art(Art.Perdo);
 creo.xp = 20;
 console.log(`${creo}`);
 
-let survie = new Competence("Survie");
+let survie = new Competence("Survie", CompetenceType.Générale);
 survie.xp = 20;
 console.log(`${survie}`);
 survie.xp = 5;

@@ -3,6 +3,7 @@ import {Competence} from './Competence';
 import {Named} from './Named';
 import {Caracteristique} from './Caracteristique';
 import {Selectable} from './Selectable';
+import {Specificite} from './Specificite';
 
 import {competences} from '../datas/competences';
 
@@ -28,34 +29,20 @@ export enum NatureValeur {
 }
 
 export class Nature implements Named, Selectable<any, any> {
+  private _typeSpeciality: Specificite;
   constructor(
     public name: string = null,
     public type: NatureType = null,
     public category: NatureCategory = null,
     public valeur: NatureValeur = null,
-  ) {
-
+    public speciality: Named | string = null
+  ){
+    this._typeSpeciality = new Specificite(name);
   }
 
   isPattern() {
-    return this.type !== null && this.category !== null && this.valeur !== null;
-  }
-
-  isSpecifiable() {
-    return false;
-  }
-
-  isSpecified() {
-    return true;
-  }
-
-  choices() : any {
-    return false;
-  }
-
-  setSpeciality(value) {
-    return false;
-  }
+    return this.type !== null && this.category !== null && this.valeur !== null && !this._typeSpeciality.isSpecified();
+   }
 
   include(other){
     if(this.name !== null && this.name !== other.name) {
@@ -70,87 +57,37 @@ export class Nature implements Named, Selectable<any, any> {
     if(this.valeur !== null && this.valeur !== other.valeur) {
       return false;
     }
+    if(this._typeSpeciality.isSpecifiable() && this._typeSpeciality.isSpecified() && this._typeSpeciality.name !== other._typeSpeciality.name){
+      return false;
+    }
     return true;
   }
 
-  exclude(other) {
+  exclude(other){
     return !this.include(other);
   }
 
-  clone() {
-    return new Nature(this.name, this.type, this.category, this.valeur);
-  }
-
-  toString() {
-    return this.name;//`${this.name} : ${NatureType[this.type]}, ${NatureCategory[this.category]}, ${NatureValeur[this.valeur]}`;
-  }
-}
-
-export class NatureSpecialite extends Nature {
-  private _typeSpeciality = "string";
-  constructor(
-    public name: string = null,
-    public type: NatureType = null,
-    public category: NatureCategory = null,
-    public valeur: NatureValeur = null,
-    public speciality: Named | string = null
-  ){
-    super(name, type, category, valeur);
-
-    let typeSpeciality = name.match(/.*\[(.*)\]/);
-    // specilité : Art, Compétence, Caractèristique
-    // autres : terrain, Pj, Dimension, PNJ
-    if(!typeSpeciality) {
-      throw new Error("Name mutch have [type]");
-    } else {
-      switch (typeSpeciality[1]) {
-        case "Art": this._typeSpeciality = "art"; break;
-        case "Compétence": this._typeSpeciality =  "competence"; break;
-        case "Caractèristique": this._typeSpeciality =  "caracteristique"; break;
-      };
-    }
-
-    console.log("this._typeSpeciality", this._typeSpeciality);
-
-  }
-
-  isPattern(){
-    return super.isPattern() || this.speciality === null;
-  }
-
   isSpecifiable() {
-    return true;
+    return this._typeSpeciality.isSpecifiable();
   }
 
   isSpecified() {
-    return this.speciality !== null;
+    return this._typeSpeciality.isSpecified();
   }
 
   choices(): any {
-    switch (this._typeSpeciality) {
-      case "art": return Art.liste;
-      case "competence": return competences;
-      case "caracteristique": return Caracteristique.liste;
-      default: return "";
-    };
+    return this._typeSpeciality.choices();
   }
 
   setSpeciality(value) {
-    this.speciality = value;
-    return true;
+    return this._typeSpeciality.setSpeciality(value);
   }
 
   clone() {
-    return new NatureSpecialite(this.name, this.type, this.category, this.valeur, this.speciality);
+    return new Nature(this.name, this.type, this.category, this.valeur, this.speciality);
   }
 
   toString() {
-    let name = this.name;
-    if(this.speciality !== null) {
-      name = name.replace(/\[.*\]/, this.speciality.toString());
-    } else {
-      name = name.replace(/\[/, '(').replace(/\]/, ')');
-    }
-    return name;//`${name} : ${NatureType[this.type]}, ${NatureCategory[this.category]}, ${NatureValeur[this.valeur]}`;
+    return this._typeSpeciality.toString();//`${name} : ${NatureType[this.type]}, ${NatureCategory[this.category]}, ${NatureValeur[this.valeur]}`;
   }
 }

@@ -1,4 +1,4 @@
-import { NatureType, NatureCategory, NatureValeur, Nature, NatureSpecialite} from '../types/Nature';
+import { NatureType, NatureCategory, NatureValeur, Nature} from '../types/Nature';
 import { Competence } from '../types/Competence';
 import { Art } from '../types/Art';
 
@@ -388,21 +388,12 @@ for(let ntype in data) {
         }
       } else {
         for(let name of data[ntype][ncat][nval]) {
-          if(name.match(/.*\[.*\]/)) {
-            liste.push(new NatureSpecialite(
-              name,
-              NatureType[<string>ntype],
-              NatureCategory[<string>ncat],
-              NatureValeur[<string>nval]
-            ));
-          } else {
-            liste.push(new Nature(
-              name,
-              NatureType[<string>ntype],
-              NatureCategory[<string>ncat],
-              NatureValeur[<string>nval]
-            ));
-          }
+          liste.push(new Nature(
+            name,
+            NatureType[<string>ntype],
+            NatureCategory[<string>ncat],
+            NatureValeur[<string>nval]
+          ));
         }
       }
     }
