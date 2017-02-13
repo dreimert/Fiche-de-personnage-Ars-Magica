@@ -93,19 +93,15 @@ export class AppComponent {
     this.personnage.vis.splice(this.personnage.vis.indexOf(v), 1);
   }
 
-  get natureSelected() : Nature {
-    return;
-  }
-
-  set natureSelected(nature) {
-    console.log("nature", nature);
-    // if(nature === null) {
-    //   return;
-    // } else if(nature.type === NatureType.Vertus) {
-    //   this.personnage.vertus.push(nature);
-    // } else {
-    //   this.personnage.vis.push(nature);
-    // }
+  addNature(nature : Nature) {
+    console.log("addNature :", nature);
+    if(!nature) {
+      console.log('nature is null');
+    } else if(nature.type === NatureType.Vertus) {
+      this.personnage.vertus.push(nature);
+    } else {
+      this.personnage.vis.push(nature);
+    }
   }
 
   natureColor(nature) {

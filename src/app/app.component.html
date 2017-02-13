@@ -39,6 +39,7 @@
     <md-chip [color]="natureColor(vis)" *ngFor="let vis of personnage.vis" (click)="deleteVis(vertus)">{{vis}}</md-chip>
   </md-chip-list>
   <select-pattern-specifiable [liste]="natures" [(selected)]="natureSelected"></select-pattern-specifiable>
+  <button md-mini-fab (click)="addNature(natureSelected)">Add</button>
   <!-- auto-complete -->
 </section>
 
