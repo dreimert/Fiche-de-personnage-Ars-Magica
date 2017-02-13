@@ -6,14 +6,7 @@
     {{ elem }}
   </md-option>
 </md-select>
-<md-select *ngIf="showSpecifySelect && specialityLvlListe !== ''" placeholder="Spécilité" [(ngModel)]="specialityLvl">
-  <md-option
-    *ngFor="let speciality of specialityLvlListe"
-    [value]="speciality"
-  >
-    {{ speciality }}
-  </md-option>
-</md-select>
-<md-input-container *ngIf="showSpecifySelect && specialityLvlListe === ''">
+<select-pattern-specifiable *ngIf="showSpecifySelect && specialityLvlListe" [liste]="specialityLvlListe" placeholder="Spécilité" [(selected)]="specialityLvl"></select-pattern-specifiable>
+<md-input-container *ngIf="showSpecifySelect && !specialityLvlListe">
   <input md-input placeholder="Spécilité" [(ngModel)]="specialityLvl"/>
 </md-input-container>

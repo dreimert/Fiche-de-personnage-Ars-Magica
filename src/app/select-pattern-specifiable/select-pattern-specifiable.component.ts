@@ -43,7 +43,7 @@ export class SelectPatternSpecifiableComponent implements OnInit {
   set firstLvl(value) {
     this._firstLvl = value;
     if(!value.isSpecified()) {
-      this.specialityLvlListe = value.choices();
+      this.specialityLvlListe = value.choices().liste;
       this.showSpecifySelect = true;
     } else {
       this.showSpecifySelect = false;
@@ -57,8 +57,7 @@ export class SelectPatternSpecifiableComponent implements OnInit {
 
   set specialityLvl(value) {
     this._specialityLvl = value;
-    let result = this._firstLvl.clone();
-    result.setSpeciality(value);
+    let result = this._firstLvl.specify(value);
     this.selectedChange.emit(result);
   }
 
