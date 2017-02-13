@@ -451,6 +451,9 @@ export class Nature implements Named, Specifiable<Nature, Nature | Art | Compete
   }
 
   choices() {
+    // if(this.type !== null && this.category !== null && this.valeur === null && this.name !== null) {
+    //   return new Choices<Nature | Art | Competence | Caracteristique>([NatureValeur.Majeure, NatureValeur.Mineure]);
+    // } else
     if(this.type === null || this.category === null || this.valeur === null || this.name === null) {
       return new Choices<Nature | Art | Competence | Caracteristique>(Nature.liste.filter(this.include, this));
     } else {
@@ -466,6 +469,8 @@ export class Nature implements Named, Specifiable<Nature, Nature | Art | Compete
   specify(value) {
     if(typeof value === "Nature") {
       return value;
+    // } else if(this.type !== null && this.category !== null && this.valeur === null && this.name !== null) {
+    //   return new Nature(this.type, this.category, value, this.name, this.speciality);
     } else {
       return new Nature(this.type, this.category, this.valeur, this.name, value);
     }
@@ -484,8 +489,14 @@ for(let ntype in data) {
           liste.push(new Nature(
             NatureType[<string>ntype],
             NatureCategory[<string>ncat],
-            null,
-            name,
+            NatureValeur.Majeure,
+            `${name} majeur`,
+          ));
+          liste.push(new Nature(
+            NatureType[<string>ntype],
+            NatureCategory[<string>ncat],
+            NatureValeur.Mineure,
+            `${name} mineur`,
           ));
         }
       } else {
@@ -501,6 +512,10 @@ for(let ntype in data) {
     }
   }
 }
+
+liste.sort((a, b) => {
+  return a.name.localeCompare(b.name);
+});
 
 
 liste.forEach(function(nature){

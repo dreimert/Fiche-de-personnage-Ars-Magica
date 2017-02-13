@@ -37,25 +37,25 @@ export class AppComponent {
     maison: "Bonisagus",
     maisonAvantage: [Nature.enum["Talent pour [Compétence]"].specify(Competence.enum["Théorie de la magie"])],
     vertus: [
-      Nature.enum["Le Don"],
-      Nature.enum["Mage hermétique"],
-      Nature.enum["Magie féerique"],
       Nature.enum["Magie de Diedne"],
       Nature.enum["Sang féerique saillant"],
+      Nature.enum["Magie féerique"],
       Nature.enum["Double vue"],
       Nature.enum["Verdeur"],
-      // Nature.enum["Affinité pour Rego"],
-      // Nature.enum["Talent pour Rego"],
-      // Nature.enum["Expertise magique mineur : Maintient de sorts"],
+      Nature.enum["Affinité pour [Art]"].specify(Art.Rego),
+      Nature.enum["Talent en [Art]"].specify(Art.Rego),
+      Nature.enum["Expertise magique mineure"], // : Maintient de sorts
+      Nature.enum["Le Don"],
+      Nature.enum["Mage hermétique"],
     ],
     vis: [
       Nature.enum["Sombre secret"],
-      // Nature.enum["Technique déficiente : Perdo"],
-      Nature.enum["Optimisme"],
+      Nature.enum["Technique déficiente"], //  : Perdo
+      Nature.enum["Optimisme majeur"],
       Nature.enum["Ami féerique"],
       Nature.enum["Visions" ],
       Nature.enum["Petite carrure"],
-      Nature.enum["Magie étrange"],
+      Nature.enum["Magie étrange"]
     ],
     caracterisques: [
       new Caracteristique("Intelligence", 3),
@@ -70,9 +70,7 @@ export class AppComponent {
     competences: Competence.liste
   };
 
-  constructor() {
-
-  }
+  constructor() {}
 
   get typeModel() {
     return this.personnage.type;
