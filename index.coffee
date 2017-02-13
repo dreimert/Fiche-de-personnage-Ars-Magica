@@ -102,7 +102,7 @@ vis = [
 
 # Achat de caracts
 
-# Petite enfance
+# Petite Petite enfance
 
 # Vie postérieure
 
@@ -185,7 +185,7 @@ mage =
     "Discrétion": 2                 # 15 | 30
     "Survie": 2                     # 15 | 45
     "Natation": 0
-    # Fin petite enfance
+    # Fin Petite enfance
     "Concentration": 2 + 1     # 15 | 30 # 15 | 15
     "Connaissance plantes": 2  # 15 | 45
     # Apprentissage à 8 ans

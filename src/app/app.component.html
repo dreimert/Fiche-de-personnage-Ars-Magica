@@ -50,6 +50,17 @@
   <h3>Compétences</h3>
   <competence-xp-row
     [competences]="personnage.competences"
-    [etapes]="['Enfance', 'Avant', 'Apprentissage', 'Après']"
+    [etapes]="['Gratuit', 'Petite enfance', 'Vie postérieure', 'Apprentissage', 'Après l\'apprentissage']"
+  ></competence-xp-row>
+
+  <select-pattern-specifiable [liste]="competences" [(selected)]="competenceSelected"></select-pattern-specifiable>
+  <button md-raised-button (click)="addCompetence(competenceSelected)">Ajouter</button>
+</section>
+
+<section *ngIf="personnage.type == types.names.Mage">
+  <h3>Ars</h3>
+  <competence-xp-row
+    [competences]="personnage.arts"
+    [etapes]="['Apprentissage', 'Après']"
   ></competence-xp-row>
 </section>

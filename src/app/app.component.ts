@@ -24,6 +24,7 @@ export class AppComponent {
   }
 
   natures = Nature.liste;
+  competences = Competence.liste;
 
   naturesMsg : string = null;
 
@@ -66,7 +67,48 @@ export class AppComponent {
       new Caracteristique("Dextérité", 0),
       new Caracteristique("Vivacité", -2),
     ],
-    competences: Competence.liste.map((comp) => comp.convertToXpliable())
+    // competences: Competence.liste.map((comp) => comp.convertToXpliable())
+    competences: [
+      Competence.enum["Double vue"].convertToXpliable().setLabel("Gratuit", 5).setLabel("Vie postérieure", 10),
+      Competence.enum["Connaissance de la Féerie"].convertToXpliable().setLabel("Vie postérieure", 5).setLabel("Apprentissage", 10),
+      Competence.enum["[Langue]"].specify("Français").convertToXpliable().setLabel("Petite enfance", 75),
+      Competence.enum["Attention"].convertToXpliable().setLabel("Petite enfance", 5),
+      Competence.enum["Charme"].convertToXpliable().setLabel("Petite enfance", 5),
+      Competence.enum["Connaissance des gens"].convertToXpliable().setLabel("Petite enfance", 5),
+      Competence.enum["Connaissance [domaine]"].specify("Forêt Féerique").convertToXpliable().setLabel("Petite enfance", 5),
+      Competence.enum["Discrétion"].convertToXpliable().setLabel("Petite enfance", 5),
+      Competence.enum["Survie"].convertToXpliable().setLabel("Petite enfance", 15),
+      Competence.enum["Natation"].convertToXpliable().setLabel("Petite enfance", 5),
+
+      Competence.enum["Concentration"].convertToXpliable().setLabel("Vie postérieure", 25).setLabel("Apprentissage", 5),
+      Competence.enum["Profession [type]"].specify("Garde forestier").convertToXpliable().setLabel("Vie postérieure", 5),
+
+      Competence.enum["Ars libéraux"].convertToXpliable().setLabel("Apprentissage", 5),
+      Competence.enum["Droit hermétique"].convertToXpliable().setLabel("Apprentissage", 5),
+      Competence.enum["[Langue ancienne]"].specify("Latin").convertToXpliable().setLabel("Apprentissage", 50),
+      Competence.enum["Théorie de la magie"].convertToXpliable().setLabel("Apprentissage", 30),
+      Competence.enum["Parma Magica"].convertToXpliable().setLabel("Apprentissage", 5),
+      Competence.enum["Pénétration"].convertToXpliable().setLabel("Apprentissage", 5),
+      Competence.enum["Finesse"].convertToXpliable().setLabel("Apprentissage", 5),
+    ],
+    arts: [//Art.liste.map(art => art.convertToXpliable())
+      Art.Creo.convertToXpliable().setLabel("Apprentissage", 3),
+      Art.Intelligo.convertToXpliable().setLabel("Apprentissage", 3),
+      Art.Muto.convertToXpliable().setLabel("Apprentissage", 3),
+      Art.Perdo.convertToXpliable().setLabel("Apprentissage", 1),
+      Art.Rego.convertToXpliable().setLabel("Apprentissage", 30),
+
+      Art.Animal.convertToXpliable().setLabel("Apprentissage", 3),
+      Art.Aquam.convertToXpliable().setLabel("Apprentissage", 3),
+      Art.Auram.convertToXpliable().setLabel("Apprentissage", 3),
+      Art.Corpus.convertToXpliable().setLabel("Apprentissage", 3),
+      Art.Herbam.convertToXpliable().setLabel("Apprentissage", 28),
+      Art.Ignem.convertToXpliable().setLabel("Apprentissage", 3),
+      Art.Imaginem.convertToXpliable().setLabel("Apprentissage", 3),
+      Art.Mentem.convertToXpliable().setLabel("Apprentissage", 3),
+      Art.Terram.convertToXpliable().setLabel("Apprentissage", 3),
+      Art.Vim.convertToXpliable().setLabel("Apprentissage", 28),
+    ]
   };
 
   constructor() {
@@ -90,15 +132,14 @@ export class AppComponent {
   }
 
   addNature(nature : Nature) {
-    console.log("addNature :", nature);
     if(!nature) {
-      console.log('nature is null');
+      console.info('nature is null');
     } else {
       let find = this.personnage.natures.find((n) => {
         return n.toString() === nature.toString();
       })
       if(find) {
-        console.log("Vous avez déjà cette nature !");
+        console.info("Vous avez déjà cette nature !");
       } else {
         this.personnage.natures.push(nature);
         this.personnage.natures.sort((a, b) => {
@@ -158,5 +199,21 @@ export class AppComponent {
       }
     }
 
+  }
+
+  addCompetence(competence : Competence) {
+    if(!competence) {
+      console.info('competence is null');
+    } else {
+      let find = this.personnage.competences.find((n) => {
+        return n.toString() === competence.toString();
+      })
+      if(find) {
+        console.info("Vous avez déjà cette competence !");
+      } else {
+        this.personnage.competences.push(competence.convertToXpliable());
+        this.personnage.competences = this.personnage.competences.slice();
+      }
+    }
   }
 }

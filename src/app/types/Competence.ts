@@ -151,7 +151,7 @@ export class Competence implements Named, ConvertToXpliable, Specifiable<Compete
 export class CompetenceXpliable extends Competence implements Xpliable {
   private _xp : XpliableImplemantation;
   constructor(public readonly competence: Competence) {
-    super(competence.type, competence.name);
+    super(competence.type, competence.name, competence.speciality);
     this._xp = new XpliableImplemantation(5);
   }
 
@@ -161,6 +161,7 @@ export class CompetenceXpliable extends Competence implements Xpliable {
 
   setLabel(name: string, xp : number) {
     this._xp.setLabel(name, xp);
+    return this;
   }
 
   removeLabel(name: string) : boolean {

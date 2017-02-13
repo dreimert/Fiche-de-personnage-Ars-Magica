@@ -133,6 +133,7 @@ export class ArtXpliable extends Art implements Xpliable {
 
   setLabel(name: string, xp : number) {
     this._xp.setLabel(name, xp);
+    return this;
   }
 
   removeLabel(name: string) : boolean {

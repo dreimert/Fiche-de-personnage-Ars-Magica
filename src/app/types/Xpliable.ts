@@ -8,7 +8,7 @@ export interface Xpliable {
   readonly lvl : number;
   readonly labels : XpliableLabel[];
   getLabel(name: string) : number;
-  setLabel(name: string, xp : number);
+  setLabel(name: string, xp : number) : Xpliable;
   removeLabel(name: string) : boolean;
 }
 
@@ -50,6 +50,7 @@ export class XpliableImplemantation implements Xpliable {
     }
 
     this.updateXpAndLvl();
+    return this;
   }
 
   removeLabel(name: string) {
@@ -68,7 +69,7 @@ export class XpliableImplemantation implements Xpliable {
     this._xp = this.labels.reduce(((acc, label) => acc + label.xp), 0);;
 
     this._lvl = 0;
-    let nextPalier = 5;
+    let nextPalier = this.multiplicateur;
 
     while(this._xp >= nextPalier) {
       this._lvl += 1;
