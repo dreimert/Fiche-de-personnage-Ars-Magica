@@ -25,6 +25,8 @@ export class AppComponent {
 
   natures = Nature.liste;
 
+  naturesMsg : string = null;
+
   // personnage = {
   //   maison: null,
   //   maisonAvantage: null,
@@ -67,7 +69,9 @@ export class AppComponent {
     competences: Competence.liste
   };
 
-  constructor() {}
+  constructor() {
+    this.calcNaturesMsg();
+  }
 
   get typeModel() {
     return this.personnage.type;
@@ -82,6 +86,7 @@ export class AppComponent {
 
   deleteNature(v) {
     this.personnage.natures.splice(this.personnage.natures.indexOf(v), 1);
+    this.calcNaturesMsg();
   }
 
   addNature(nature : Nature) {
@@ -100,7 +105,37 @@ export class AppComponent {
           let type = a.type - b.type;
           return type === 0 ? b.valeur - a.valeur : type;
         });
+        this.calcNaturesMsg();
       }
+    }
+  }
+
+  calcNaturesMsg() {
+    this.naturesMsg = null;
+    let somme = 0;
+    let max = 10;
+
+    if(this.personnage.type === PersonnageType.Mage && this.personnage.maisonAvantage) {
+      somme = -1;
+    } else if(this.personnage.type === PersonnageType.Servant) {
+      max = 3;
+    }
+
+    let sommes = this.personnage.natures.reduce((sommes, nature) => {
+      if(nature.type === NatureType.Vertus) {
+        sommes.vertus += nature.valeur;
+      } else {
+        sommes.vis += nature.valeur;
+      }
+      return sommes;
+    }, {vertus: somme, vis: 0});
+
+    if(sommes.vertus > max) {
+      this.naturesMsg = `Vous en pouvez pas avoir plus de ${max} points de Vertus ou de Vis. Vous avez ${sommes.vertus} points de Vertus et ${sommes.vis} points de Vis`;
+    } else if(sommes.vertus > sommes.vis) {
+      this.naturesMsg = `Vous en pouvez pas avoir plus de points de Vertus que de Vis. Vous avez ${sommes.vertus} points de Vertus et ${sommes.vis} points de Vis.`;
+    } else if(sommes.vertus < sommes.vis) {
+      this.naturesMsg = `Il vous reste ${sommes.vis - sommes.vertus} points de Vis à compenser.`;
     }
   }
 

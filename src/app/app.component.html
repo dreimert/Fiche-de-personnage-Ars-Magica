@@ -32,11 +32,12 @@
 
 <section>
   <h3>Vos vertus et vis</h3>
+  <span>{{naturesMsg}}</span>
   <md-chip-list>
     <md-chip [color]="natureColor(nature)" *ngFor="let nature of personnage.natures" (click)="deleteNature(nature)">{{nature}}</md-chip>
   </md-chip-list>
   <select-pattern-specifiable [liste]="natures" [(selected)]="natureSelected"></select-pattern-specifiable>
-  <button md-mini-fab (click)="addNature(natureSelected)">Add</button>
+  <button md-raised-button (click)="addNature(natureSelected)">Ajouter</button>
   <!-- auto-complete -->
 </section>
 
