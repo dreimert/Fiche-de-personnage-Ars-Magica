@@ -28,15 +28,14 @@ export class AppComponent {
   // personnage = {
   //   maison: null,
   //   maisonAvantage: null,
-  //   vertus: [],
-  //   vis: [],
+  //   natures: [],
   //   competences: [],
   // };
   personnage = {
     type: PersonnageType.Mage,
     maison: "Bonisagus",
     maisonAvantage: [Nature.enum["Talent pour [Compétence]"].specify(Competence.enum["Théorie de la magie"])],
-    vertus: [
+    natures: [
       Nature.enum["Magie de Diedne"],
       Nature.enum["Sang féerique saillant"],
       Nature.enum["Magie féerique"],
@@ -47,8 +46,6 @@ export class AppComponent {
       Nature.enum["Expertise magique mineure"], // : Maintient de sorts
       Nature.enum["Le Don"],
       Nature.enum["Mage hermétique"],
-    ],
-    vis: [
       Nature.enum["Sombre secret"],
       Nature.enum["Technique déficiente"], //  : Perdo
       Nature.enum["Optimisme majeur"],
@@ -77,28 +74,33 @@ export class AppComponent {
   }
 
   set typeModel(value) {
-    this.personnage.vertus = [];
-    this.personnage.vis = [];
+    this.personnage.natures = [];
     this.personnage.maisonAvantage = null;
     this.personnage.maison = null;
     this.personnage.type = value;
   }
 
-  deleteVertus(v) {
-    this.personnage.vertus.splice(this.personnage.vertus.indexOf(v), 1);
-  }
-  deleteVis(v) {
-    this.personnage.vis.splice(this.personnage.vis.indexOf(v), 1);
+  deleteNature(v) {
+    this.personnage.natures.splice(this.personnage.natures.indexOf(v), 1);
   }
 
   addNature(nature : Nature) {
     console.log("addNature :", nature);
     if(!nature) {
       console.log('nature is null');
-    } else if(nature.type === NatureType.Vertus) {
-      this.personnage.vertus.push(nature);
     } else {
-      this.personnage.vis.push(nature);
+      let find = this.personnage.natures.find((n) => {
+        return n.toString() === nature.toString();
+      })
+      if(find) {
+        console.log("Vous avez déjà cette nature !");
+      } else {
+        this.personnage.natures.push(nature);
+        this.personnage.natures.sort((a, b) => {
+          let type = a.type - b.type;
+          return type === 0 ? b.valeur - a.valeur : type;
+        });
+      }
     }
   }
 

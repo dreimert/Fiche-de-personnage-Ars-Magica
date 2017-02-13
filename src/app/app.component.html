@@ -33,10 +33,7 @@
 <section>
   <h3>Vos vertus et vis</h3>
   <md-chip-list>
-    <md-chip [color]="natureColor(vertus)" *ngFor="let vertus of personnage.vertus" (click)="deleteVertus(vertus)">{{vertus.toString()}}</md-chip>
-  </md-chip-list>
-  <md-chip-list>
-    <md-chip [color]="natureColor(vis)" *ngFor="let vis of personnage.vis" (click)="deleteVis(vertus)">{{vis}}</md-chip>
+    <md-chip [color]="natureColor(nature)" *ngFor="let nature of personnage.natures" (click)="deleteNature(nature)">{{nature}}</md-chip>
   </md-chip-list>
   <select-pattern-specifiable [liste]="natures" [(selected)]="natureSelected"></select-pattern-specifiable>
   <button md-mini-fab (click)="addNature(natureSelected)">Add</button>
