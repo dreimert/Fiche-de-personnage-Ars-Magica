@@ -8,7 +8,7 @@
 <select-pattern-specifiable *ngIf="maison && avantages[maison].length > 1" [liste]="avantages[maison]" [(selected)]="avantagesSelected"></select-pattern-specifiable>
 
 <!-- Un seul choix -->
-<span *ngIf="maison && avantages[maison].length === 1">{{avantages[maison][0].vertus.toString()}}</span>
+<span *ngIf="maison && avantages[maison].length === 1">{{avantages[maison][0].toString()}}</span>
 
 <!-- Choix complexe -->
 <!-- ExMiscellanea -->
@@ -19,12 +19,5 @@
 </span>
 <!-- Jerbiton -->
 <span *ngIf="maison && maison === 'Jerbiton'">
-  <md-select placeholder="Vertus mineure lié à l'hérudition, aux arts ou aux intéractions vulgaire" [(ngModel)]="avantagesSelected">
-    <md-option
-      *ngFor="let nature of listVm"
-      [value]="nature"
-    >
-      {{ nature.name }}
-    </md-option>
-  </md-select>
+  <select-pattern-specifiable [liste]="listVm" [(selected)]="avantagesSelected"></select-pattern-specifiable>
 </span>

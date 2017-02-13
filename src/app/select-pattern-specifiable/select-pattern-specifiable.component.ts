@@ -34,8 +34,11 @@ export class SelectPatternSpecifiableComponent implements OnInit {
   @Input()
   set selected(value) {
     this._selected = value;
-    if(value) {
+    if(value && value.include) {
       this._firstLvl = this.liste.find(value.include, value);
+    } else {
+      this._firstLvl = null;
+      this.showSpecifySelect = false;
     }
   }
 
@@ -44,10 +47,14 @@ export class SelectPatternSpecifiableComponent implements OnInit {
   }
 
   set firstLvl(value) {
+    let old = this._firstLvl;
     this._firstLvl = value;
     if(!value.isSpecified()) {
       this.specialityLvlListe = value.choices().liste;
       this.showSpecifySelect = true;
+      if(old) {
+        this._specialityLvl = null;
+      }
     } else {
       this.showSpecifySelect = false;
       this.selectedChange.emit(value);
