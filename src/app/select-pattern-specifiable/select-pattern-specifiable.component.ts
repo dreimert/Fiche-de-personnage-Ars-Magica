@@ -34,6 +34,9 @@ export class SelectPatternSpecifiableComponent implements OnInit {
   @Input()
   set selected(value) {
     this._selected = value;
+    if(value) {
+      this._firstLvl = this.liste.find(value.include, value);
+    }
   }
 
   get firstLvl() {

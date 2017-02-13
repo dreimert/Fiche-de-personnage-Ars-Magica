@@ -143,10 +143,6 @@ export class Competence implements Named, ConvertToXpliable, Specifiable<Compete
     return new CompetenceXpliable(this);
   }
 
-  clone() {
-    return new Competence(this.type, this.name, this.speciality);
-  }
-
   toString() {
     return this._typeSpeciality.toString();
   }

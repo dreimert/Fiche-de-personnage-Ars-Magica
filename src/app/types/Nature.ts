@@ -471,10 +471,6 @@ export class Nature implements Named, Specifiable<Nature, Nature | Art | Compete
     }
   }
 
-  clone() {
-    return new Nature(this.type, this.category, this.valeur, this.name, this.speciality);
-  }
-
   toString() {
     return this._typeSpeciality.toString();//`${name} : ${NatureType[this.type]}, ${NatureCategory[this.category]}, ${NatureValeur[this.valeur]}`;
   }

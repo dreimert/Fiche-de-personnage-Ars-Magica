@@ -2,25 +2,6 @@ import { NatureType, NatureCategory, NatureValeur, Nature} from '../types/Nature
 import { Competence } from '../types/Competence';
 import { Art } from '../types/Art';
 
-let talentPourTM = Nature.enum["Talent pour [Compétence]"].clone()
-console.log("Competence.enum['Théorie de la magie']", Competence.enum["Théorie de la magie"])
-talentPourTM.speciality = Competence.enum["Théorie de la magie"];
-
-let talentPourIntrigue = Nature.enum["Talent pour [Compétence]"].clone()
-talentPourIntrigue.speciality = Competence.enum["Intrigue"];
-
-let talentEnPerdo = Nature.enum["Talent en [Art]"].clone()
-talentEnPerdo.speciality = Art.Perdo;
-
-let talentEnIgnem = Nature.enum["Talent en [Art]"].clone()
-talentEnIgnem.speciality = Art.Ignem;
-
-let talentEnCreo = Nature.enum["Talent en [Art]"].clone()
-talentEnCreo.speciality = Art.Creo;
-
-let talentEnMuto = Nature.enum["Talent en [Art]"].clone()
-talentEnMuto.speciality = Art.Muto;
-
 export const exMiscellaneaNature = {
   mineur: new Nature(
     NatureType.Vertus,
@@ -56,53 +37,27 @@ export const jerbitonNature = {
 }
 
 export const maisonAvantages = {
-  "Bjornaer": [
-    {
-      vertus: Nature.enum["Animal de coeur"],
-      competence: "Animal de coeur",
-      niveau: 1
-    }
-  ],
+  "Bjornaer": [Nature.enum["Animal de coeur"]],
   "Bonisagus": [
-  {
-    vertus: talentPourTM
-  },{
-    vertus: talentPourIntrigue
-  }],
-  "Criamon": [
-  {
-    vertus: Nature.enum["Énigme"],
-    competence: "Sagesse énigmatique",
-    niveau: 1
-  }],
+    Nature.enum["Talent pour [Compétence]"].specify(Competence.enum["Théorie de la magie"]),
+    Nature.enum["Talent pour [Compétence]"].specify(Competence.enum["Intrigue"])
+  ],
+  "Criamon": [Nature.enum["Énigme"]],
   "ExMiscellanea": [],
   "Flambeau": [
-  {
-    vertus: talentEnPerdo
-  }, {
-    vertus: talentEnIgnem
-  }],
-  "Guernicus": [{
-    vertus: Nature.enum["Prestige hermétique"]
-  }],
+    Nature.enum["Talent en [Art]"].specify(Art.Perdo),
+    Nature.enum["Talent en [Art]"].specify(Art.Ignem)
+  ],
+  "Guernicus": [Nature.enum["Prestige hermétique"]],
   "Jerbiton": [],
   "Mercere": [
-  {
-    vertus: talentEnCreo
-  }, {
-    vertus: talentEnMuto
-  }],
-  "Merinita": [{
-    vertus: Nature.enum["Magie féerique"],
-    requis: "Un vis ou une vertus lié a la Féerie"
-  }],
-  "Tremere": [{
-    vertus: Nature.enum["Expertise magique mineure"]
-  }],
-  "Tytalus": [{
-    vertus: Nature.enum["Confiance en soi"]
-  }],
-  "Verditius": [{
-    vertus: Nature.enum["Magie de Verditius"]
-  }]
+    Nature.enum["Talent en [Art]"].specify(Art.Creo),
+    Nature.enum["Talent en [Art]"].specify(Art.Muto)
+  ],
+  "Merinita": [
+    Nature.enum["Magie féerique"] //requis: "Un vis ou une vertus lié a la Féerie"
+  ],
+  "Tremere": [Nature.enum["Expertise magique mineure"]],
+  "Tytalus": [Nature.enum["Confiance en soi"]],
+  "Verditius": [Nature.enum["Magie de Verditius"]]
 };

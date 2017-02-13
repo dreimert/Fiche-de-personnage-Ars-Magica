@@ -43,15 +43,17 @@ export class SelectMaisonComponent implements OnInit {
   }
 
   set maison(value) {
+    let old = this._maison;
     this._maison = value;
     this.maisonChange.emit(value);
 
     if(value === null) {
+      this.avantagesSelected = [];
       return;
-    }
-
-    if(avantages[this._maison].length === 1) {
+    } else if(avantages[this._maison].length === 1) {
       this.avantagesSelected = this.avantages[this.maison][0].vertus;
+    } else if(!old) {
+      return;
     } else {
       this.avantagesSelected = [];
     }
@@ -66,7 +68,6 @@ export class SelectMaisonComponent implements OnInit {
       this._avantagesSelected = [];
       this.avantagesChange.emit([]);
     } else {
-
       this._avantagesSelected[0] = value;
       this.avantagesChange.emit([value]);
     }

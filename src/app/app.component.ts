@@ -34,8 +34,8 @@ export class AppComponent {
   // };
   personnage = {
     type: PersonnageType.Mage,
-    maison: "Merinita",
-    maisonAvantage: null,
+    maison: "Bonisagus",
+    maisonAvantage: [Nature.enum["Talent pour [Compétence]"].specify(Competence.enum["Théorie de la magie"])],
     vertus: [
       Nature.enum["Le Don"],
       Nature.enum["Mage hermétique"],

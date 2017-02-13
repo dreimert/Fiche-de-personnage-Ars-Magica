@@ -27,7 +27,7 @@
 
 <section *ngIf="personnage.type == types.names.Mage">
   <h3>Votre maison</h3>
-  <select-maison [(maison)]="personnage.maison" [(avantages)]="natureSelected"></select-maison>
+  <select-maison [(maison)]="personnage.maison" [(avantages)]="personnage.maisonAvantage"></select-maison>
 </section>
 
 <section>

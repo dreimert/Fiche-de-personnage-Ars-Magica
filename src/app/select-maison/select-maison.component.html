@@ -5,14 +5,7 @@
 </md-select>
 
 <!-- Choix dans une liste -->
-<md-select *ngIf="maison && avantages[maison].length > 1" placeholder="Votre bonus" [(ngModel)]="avantagesSelected">
-  <md-option
-    *ngFor="let avantage of avantages[maison]"
-    [value]="avantage.vertus"
-  >
-    {{ avantage.vertus }}
-  </md-option>
-</md-select>
+<select-pattern-specifiable *ngIf="maison && avantages[maison].length > 1" [liste]="avantages[maison]" [(selected)]="avantagesSelected"></select-pattern-specifiable>
 
 <!-- Un seul choix -->
 <span *ngIf="maison && avantages[maison].length === 1">{{avantages[maison][0].vertus.toString()}}</span>
