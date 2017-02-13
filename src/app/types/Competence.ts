@@ -150,14 +150,22 @@ export class Competence implements Named, ConvertToXpliable, Specifiable<Compete
 
 export class CompetenceXpliable extends Competence implements Xpliable {
   private _xp : XpliableImplemantation;
-  constructor(public readonly competence: Competence, xp: number = 0) {
+  constructor(public readonly competence: Competence) {
     super(competence.type, competence.name);
-    this._xp = new XpliableImplemantation(1, xp);
+    this._xp = new XpliableImplemantation(5);
   }
 
-  set xp(xp: number) {
-    this._xp.xp = xp;
-  };
+  getLabel(name: string) {
+    return this._xp.getLabel(name);
+  }
+
+  setLabel(name: string, xp : number) {
+    this._xp.setLabel(name, xp);
+  }
+
+  removeLabel(name: string) : boolean {
+    return this._xp.removeLabel(name);
+  }
 
   get xp(): number {
     return this._xp.xp;
@@ -165,6 +173,10 @@ export class CompetenceXpliable extends Competence implements Xpliable {
 
   get lvl() : number {
     return this._xp.lvl;
+  }
+
+  get labels() {
+    return this._xp.labels;
   }
 }
 

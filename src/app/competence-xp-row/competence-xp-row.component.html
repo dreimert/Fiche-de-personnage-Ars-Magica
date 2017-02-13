@@ -18,8 +18,8 @@
       <td class="xp">
         {{competence.xp}}
       </td>
-      <td class="niveau">
-        {{competence.niveau}}
+      <td class="lvl">
+        {{competence.lvl}}
       </td>
     </tr>
   </tbody>
@@ -28,7 +28,7 @@
       <th>Total</th>
       <th *ngFor="let etape of etapes">{{ sumField(proxies, etape) }}</th>
       <th>{{ sumField(proxies, "xp") }}</th>
-      <th>{{ sumField(proxies, "niveau") }}</th>
+      <th>{{ sumField(proxies, "lvl") }}</th>
     </tr>
   </tfoot>
 </table>

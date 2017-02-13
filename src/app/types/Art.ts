@@ -122,14 +122,26 @@ export class Art implements Named, ConvertToXpliable, Specifiable<Art, Art> {
 
 export class ArtXpliable extends Art implements Xpliable {
   private _xp : XpliableImplemantation;
-  constructor(public readonly art: Art, xp: number = 0) {
+  constructor(public readonly art: Art) {
     super(art.type, art.name);
-    this._xp = new XpliableImplemantation(1, xp);
+    this._xp = new XpliableImplemantation(1);
   }
 
-  set xp(xp: number) {
-    this._xp.xp = xp;
-  };
+  getLabel(name: string) {
+    return this._xp.getLabel(name);
+  }
+
+  setLabel(name: string, xp : number) {
+    this._xp.setLabel(name, xp);
+  }
+
+  removeLabel(name: string) : boolean {
+    return this._xp.removeLabel(name);
+  }
+
+  get labels() {
+    return this._xp.labels;
+  }
 
   get xp(): number {
     return this._xp.xp;

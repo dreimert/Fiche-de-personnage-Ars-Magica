@@ -66,7 +66,7 @@ export class AppComponent {
       new Caracteristique("Dextérité", 0),
       new Caracteristique("Vivacité", -2),
     ],
-    competences: Competence.liste
+    competences: Competence.liste.map((comp) => comp.convertToXpliable())
   };
 
   constructor() {

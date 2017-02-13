@@ -1,14 +1,15 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+import {Xpliable} from '../types/Xpliable';
 import { Competence } from '../types/Competence';
 
-class XpHandler implements ProxyHandler<Competence> {
+class XpHandler implements ProxyHandler<Xpliable> {
   private store = {};
 
   get(target, name){
       return name in target?
           target[name] :
-          this.store[name] || 0;
+          target.getLabel(name) || 0;
   }
 
   set(target, name, value){
@@ -16,8 +17,7 @@ class XpHandler implements ProxyHandler<Competence> {
         target[name] = value;
       }
       else {
-        this.store[name] = value;
-        target.xp = Object.keys(this.store).reduce(((acc, key) => acc + this.store[key]), 0);
+        return target.setLabel(name, value);
       }
       return true;
   }
