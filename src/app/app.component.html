@@ -65,6 +65,13 @@
   <h3>Ars</h3>
   <competence-xp-row
     [competences]="personnage.arts"
-    [etapes]="['Apprentissage', 'Après']"
+    [etapes]="['Apprentissage', 'Après l\'apprentissage']"
   ></competence-xp-row>
 </section>
+
+<!-- <section *ngIf="personnage.type == types.names.Mage">
+  <h3>Sorts</h3>
+</section> -->
+
+<button class="full-width" md-raised-button (click)="save()">Sauvegarder</button>
+<button class="full-width" md-raised-button (click)="charger()">Charger</button>

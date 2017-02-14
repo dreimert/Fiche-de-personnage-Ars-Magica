@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { PersonnageType, Personnage, Mure } from './types/Personnage';
+import { PersonnageType, Personnage, Mure, parseJsonPersonnage } from './types/Personnage';
 import { Maison } from './types/Maison';
 import { NatureType, NatureCategory, NatureValeur, Nature} from './types/Nature';
 import { Caracteristique } from './types/Caracteristique';
@@ -140,5 +140,13 @@ export class AppComponent {
         this.personnage.competences = this.personnage.competences.slice();
       }
     }
+  }
+
+  save() {
+    localStorage.setItem("personnage", JSON.stringify(this.personnage));
+  }
+
+  charger() {
+    this.personnage = parseJsonPersonnage(localStorage.getItem("personnage"));
   }
 }

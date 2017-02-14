@@ -51,4 +51,12 @@ export class Caracteristique implements Named {
   toStrign() {
     return this.name;
   }
+
+  toJSON() {
+    return {
+      fromJSON: "Caracteristique",
+      name: this.name,
+      valeur: this._valeur
+    };
+  }
 }

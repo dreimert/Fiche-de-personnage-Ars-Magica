@@ -19,9 +19,10 @@ export interface ConvertToXpliable {
 export class XpliableImplemantation implements Xpliable {
   private _xp: number = 0
   private _lvl: number = 0;
-  public readonly labels : XpliableLabel[] = [];
 
-  constructor(readonly multiplicateur: number = 1) {}
+  constructor(readonly multiplicateur: number = 1, readonly labels: XpliableLabel[] = []) {
+    this.updateXpAndLvl();
+  }
 
   findLabel(name: string) {
     return this.labels.find((label) => label.name === name);

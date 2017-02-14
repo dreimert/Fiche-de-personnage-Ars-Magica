@@ -479,6 +479,17 @@ export class Nature implements Named, Specifiable<Nature, Nature | Art | Compete
   toString() {
     return this._typeSpeciality.toString();//`${name} : ${NatureType[this.type]}, ${NatureCategory[this.category]}, ${NatureValeur[this.valeur]}`;
   }
+
+  toJSON() {
+    return {
+      fromJSON: "Nature",
+      type: this.type,
+      category: this.category,
+      valeur: this.valeur,
+      name: this.name,
+      speciality: this.speciality
+    }
+  }
 }
 
 for(let ntype in data) {

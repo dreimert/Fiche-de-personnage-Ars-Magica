@@ -1,4 +1,4 @@
-import {Xpliable, XpliableImplemantation, ConvertToXpliable} from './Xpliable';
+import {Xpliable, XpliableImplemantation, ConvertToXpliable, XpliableLabel} from './Xpliable';
 import {Named} from './Named';
 import {Specifiable, Choices} from './Specifiable';
 import {Specificite} from './Specificite';
@@ -146,13 +146,22 @@ export class Competence implements Named, ConvertToXpliable, Specifiable<Compete
   toString() {
     return this._typeSpeciality.toString();
   }
+
+  toJSON(): any {
+    return {
+      fromJSON: "Competence",
+      name: this.name,
+      type: this.type,
+      speciality: this.speciality
+    };
+  }
 }
 
 export class CompetenceXpliable extends Competence implements Xpliable {
   private _xp : XpliableImplemantation;
-  constructor(public readonly competence: Competence) {
+  constructor(public readonly competence: Competence, labels: XpliableLabel[] = []) {
     super(competence.type, competence.name, competence.speciality);
-    this._xp = new XpliableImplemantation(5);
+    this._xp = new XpliableImplemantation(5, labels);
   }
 
   getLabel(name: string) {
@@ -178,6 +187,14 @@ export class CompetenceXpliable extends Competence implements Xpliable {
 
   get labels() {
     return this._xp.labels;
+  }
+
+  toJSON() {
+    return {
+      fromJSON: "CompetenceXpliable",
+      competence: this.competence,
+      labels: this._xp.labels
+    };
   }
 }
 

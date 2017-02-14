@@ -7,19 +7,19 @@ class XpHandler implements ProxyHandler<Xpliable> {
   private store = {};
 
   get(target, name){
-      return name in target?
-          target[name] :
-          target.getLabel(name) || 0;
+    return name in target?
+      target[name] :
+      target.getLabel(name) || 0;
   }
 
   set(target, name, value){
-      if(name in target){
-        target[name] = value;
-      }
-      else {
-        return target.setLabel(name, value);
-      }
-      return true;
+    if(name in target){
+      target[name] = value;
+    }
+    else {
+      return target.setLabel(name, value);
+    }
+    return true;
   }
 }
 
@@ -52,13 +52,7 @@ export class CompetenceXpRowComponent implements OnInit {
   @Input()
   set competences(competences: Competence[]){
     this.proxies = competences.map((competence) => {
-      let proxy = this.proxies.find((proxy) => proxy.name === competence.name);
-
-      if(proxy) {
-        return proxy;
-      } else {
-        return new Proxy(competence, new XpHandler());
-      }
+      return new Proxy(competence, new XpHandler());
     });
   }
 }

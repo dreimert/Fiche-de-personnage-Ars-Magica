@@ -1,4 +1,4 @@
-import {Xpliable, XpliableImplemantation, ConvertToXpliable} from './Xpliable';
+import {Xpliable, XpliableImplemantation, ConvertToXpliable, XpliableLabel} from './Xpliable';
 import {Specifiable, Choices} from './Specifiable';
 import {Named} from './Named';
 
@@ -118,13 +118,21 @@ export class Art implements Named, ConvertToXpliable, Specifiable<Art, Art> {
   toString() {
     return this.name;
   }
+
+  toJSON(): any {
+    return {
+      fromJSON: "Art",
+      type: this.type,
+      name: this.name
+    };
+  }
 }
 
 export class ArtXpliable extends Art implements Xpliable {
   private _xp : XpliableImplemantation;
-  constructor(public readonly art: Art) {
+  constructor(public readonly art: Art, labels: XpliableLabel[] = []) {
     super(art.type, art.name);
-    this._xp = new XpliableImplemantation(1);
+    this._xp = new XpliableImplemantation(1, labels);
   }
 
   getLabel(name: string) {
@@ -150,5 +158,13 @@ export class ArtXpliable extends Art implements Xpliable {
 
   get lvl() : number {
     return this._xp.lvl;
+  }
+
+  toJSON(): any {
+    return {
+      fromJSON: "ArtXpliable",
+      art: this.art,
+      labels: this._xp.labels
+    };
   }
 }
