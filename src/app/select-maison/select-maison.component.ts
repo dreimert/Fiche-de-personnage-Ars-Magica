@@ -20,6 +20,7 @@ export class SelectMaisonComponent implements OnInit {
   @Output() avantagesChange: EventEmitter<any> = new EventEmitter();
 
   public readonly maisons = enumToListe(Maison);
+  public readonly maisonsValue = Maison;
   public readonly avantages = avantages;
 
   public readonly listVhm = Nature.liste.filter(exMiscellaneaNature.mineur.include, exMiscellaneaNature.mineur);

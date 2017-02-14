@@ -1,6 +1,7 @@
 import { NatureType, NatureCategory, NatureValeur, Nature} from '../types/Nature';
 import { Competence } from '../types/Competence';
 import { Art } from '../types/Art';
+import { Maison} from '../types/Maison';
 
 export const exMiscellaneaNature = {
   mineur: new Nature(
@@ -37,27 +38,27 @@ export const jerbitonNature = {
 }
 
 export const maisonAvantages = {
-  "Bjornaer": [Nature.enum["Animal de coeur"]],
-  "Bonisagus": [
+  [Maison.Bjornaer]: [Nature.enum["Animal de coeur"]],
+  [Maison.Bonisagus]: [
     Nature.enum["Talent pour [Compétence]"].specify(Competence.enum["Théorie de la magie"]),
     Nature.enum["Talent pour [Compétence]"].specify(Competence.enum["Intrigue"])
   ],
-  "Criamon": [Nature.enum["Énigme"]],
-  "ExMiscellanea": [],
-  "Flambeau": [
+  [Maison.Criamon]: [Nature.enum["Énigme"]],
+  [Maison.ExMiscellanea]: [],
+  [Maison.Flambeau]: [
     Nature.enum["Talent en [Art]"].specify(Art.Perdo),
     Nature.enum["Talent en [Art]"].specify(Art.Ignem)
   ],
-  "Guernicus": [Nature.enum["Prestige hermétique"]],
-  "Jerbiton": [],
-  "Mercere": [
+  [Maison.Guernicus]: [Nature.enum["Prestige hermétique"]],
+  [Maison.Jerbiton]: [],
+  [Maison.Mercere]: [
     Nature.enum["Talent en [Art]"].specify(Art.Creo),
     Nature.enum["Talent en [Art]"].specify(Art.Muto)
   ],
-  "Merinita": [
+  [Maison.Merinita]: [
     Nature.enum["Magie féerique"] //requis: "Un vis ou une vertus lié a la Féerie"
   ],
-  "Tremere": [Nature.enum["Expertise magique mineure"]],
-  "Tytalus": [Nature.enum["Confiance en soi"]],
-  "Verditius": [Nature.enum["Magie de Verditius"]]
+  [Maison.Tremere]: [Nature.enum["Expertise magique mineure"]],
+  [Maison.Tytalus]: [Nature.enum["Confiance en soi"]],
+  [Maison.Verditius]: [Nature.enum["Magie de Verditius"]]
 };

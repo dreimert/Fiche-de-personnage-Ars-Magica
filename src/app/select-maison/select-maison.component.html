@@ -1,5 +1,5 @@
 <md-select placeholder="Votre maison"  [(ngModel)]="maison">
-  <md-option *ngFor="let maison of maisons" [value]="maison">
+  <md-option *ngFor="let maison of maisons" [value]="maisonsValue[maison]">
     {{ maison }}
   </md-option>
 </md-select>
@@ -12,12 +12,12 @@
 
 <!-- Choix complexe -->
 <!-- ExMiscellanea -->
-<span *ngIf="maison && maison === 'ExMiscellanea'">
+<span *ngIf="maison && maison === maisonsValue['ExMiscellanea']">
   <select-pattern-specifiable [liste]="listVhm" [(selected)]="avantagesSelected"></select-pattern-specifiable>
   <select-pattern-specifiable [liste]="listVnhm" [(selected)]="exMajeur"></select-pattern-specifiable>
   <select-pattern-specifiable [liste]="listVihm" [(selected)]="exVis"></select-pattern-specifiable>
 </span>
 <!-- Jerbiton -->
-<span *ngIf="maison && maison === 'Jerbiton'">
+<span *ngIf="maison && maison === maisonsValue['Jerbiton']">
   <select-pattern-specifiable [liste]="listVm" [(selected)]="avantagesSelected"></select-pattern-specifiable>
 </span>
