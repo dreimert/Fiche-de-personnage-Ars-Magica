@@ -12,9 +12,13 @@
 </md-card> -->
 
 <section>
-  <h3>Votre concept</h3>
+  <h3>Nom</h3>
   <md-input-container class="full-width">
-    <input md-input placeholder="Concept du personnage" [(ngModel)]="personnage.concept">
+    <input md-input placeholder="Nom du personnage" [(ngModel)]="personnage.name"/>
+  </md-input-container>
+  <h3>Concept</h3>
+  <md-input-container class="full-width">
+    <textarea md-input placeholder="Concept du personnage" [(ngModel)]="personnage.concept"></textarea>
   </md-input-container>
 </section>
 
