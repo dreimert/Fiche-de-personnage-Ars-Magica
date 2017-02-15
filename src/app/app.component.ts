@@ -149,4 +149,38 @@ export class AppComponent {
   charger() {
     this.personnage = parseJsonPersonnage(localStorage.getItem("personnage"));
   }
+
+  export() {
+    // let uriContent = "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.personnage));
+    // window.open(uriContent, 'personnage.json');
+    let blob = new Blob([JSON.stringify(this.personnage, null, 2)], {type : 'application/json'});
+    let url = URL.createObjectURL(blob);
+    // Create link.
+    let a = document.createElement( "a" );
+    // Set link on DOM.
+    document.body.appendChild( a );
+    // // Set link's visibility.
+    // a.style = "display: none";
+    // Set href on link.
+    a.href = url;
+    // Set file name on link.
+    a.download = this.personnage.name || "personnage.json";
+    // Trigger click of link.
+    a.click();
+    // Clear.
+    window.URL.revokeObjectURL( url );
+  }
+
+  importer(event) {
+    console.log("event.srcElement.files", event.target.files[0]);
+    var reader = new FileReader();
+
+    reader.onload = (e : any) => {
+      this.personnage = parseJsonPersonnage(e.target.result);
+    }
+
+    reader.readAsText(event.target.files[0])
+
+    //reader.readAsDataURL(event.target.files[0]);
+  }
 }

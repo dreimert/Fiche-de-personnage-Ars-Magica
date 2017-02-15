@@ -20,6 +20,9 @@ export enum NatureCategory {
   Spéciale
 }
 
+// Utiliser des masques pour les enums : 1 << 1
+// Permet d'avoir plusieurs type / Category / Valeur en même temps
+// Mais il faut modifier le compte des cout des valeurs
 export enum NatureValeur {
   Majeure = 3,
   Mineure = 1,

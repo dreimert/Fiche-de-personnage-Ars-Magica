@@ -29,3 +29,7 @@ md-radio-button {
 .md-green-lite {
   color: rgba(31, 216, 31, 0.83);;
 }
+
+.hide {
+  display: none;
+}

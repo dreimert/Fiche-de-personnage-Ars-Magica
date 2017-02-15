@@ -75,3 +75,6 @@
 
 <button class="full-width" md-raised-button (click)="save()">Sauvegarder</button>
 <button class="full-width" md-raised-button (click)="charger()">Charger</button>
+<button class="full-width" md-raised-button (click)="export()">Exporter</button>
+<input class="hide" id="input-file-id" type="file" (change)="importer($event)" #file/>
+<button class="full-width" md-raised-button (click)="file.click()">Importer</button>
