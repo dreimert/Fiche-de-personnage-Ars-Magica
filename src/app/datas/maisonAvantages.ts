@@ -1,7 +1,7 @@
-import { NatureType, NatureCategory, NatureValeur, Nature} from '../types/Nature';
+import { Nature} from '../types/Nature';
 import { Competence } from '../types/Competence';
 import { Art } from '../types/Art';
-import { Maison} from '../types/Maison';
+import { NatureType, NatureCategory, NatureValeur, Maison } from '../types/Enum';
 
 export const exMiscellaneaNature = {
   mineur: new Nature(

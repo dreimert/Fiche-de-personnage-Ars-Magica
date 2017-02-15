@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Maison } from '../types/Maison';
+import { Maison } from '../types/Enum';
 import { Nature } from '../types/Nature';
 
 import { maisonAvantages as avantages, exMiscellaneaNature, jerbitonNature } from '../datas/maisonAvantages';

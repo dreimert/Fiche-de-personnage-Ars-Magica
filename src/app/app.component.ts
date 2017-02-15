@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 import { PersonnageType, Personnage, Mure, parseJsonPersonnage } from './types/Personnage';
-import { Maison } from './types/Maison';
-import { NatureType, NatureCategory, NatureValeur, Nature} from './types/Nature';
+import { Nature} from './types/Nature';
 import { Caracteristique } from './types/Caracteristique';
 import { Xpliable } from './types/Xpliable';
 import { Competence } from './types/Competence';
 import { Art } from './types/Art';
+import { NatureType, NatureCategory, NatureValeur, Maison } from './types/Enum';
 
 import { enumToListe } from './utiles/enumToListe';
 
@@ -180,7 +180,6 @@ export class AppComponent {
     }
 
     reader.readAsText(event.target.files[0])
-
     //reader.readAsDataURL(event.target.files[0]);
   }
 }

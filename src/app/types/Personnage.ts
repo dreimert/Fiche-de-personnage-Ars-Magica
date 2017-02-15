@@ -1,8 +1,8 @@
-import { NatureType, NatureCategory, NatureValeur, Nature} from './Nature';
+import { Nature } from './Nature';
 import { Caracteristique } from './Caracteristique';
-import { Maison } from './Maison';
 import { Art, ArtXpliable } from './Art';
 import { Competence, CompetenceXpliable } from './Competence';
+import { Maison } from './Enum';
 
 export enum PersonnageType {
     Mage,

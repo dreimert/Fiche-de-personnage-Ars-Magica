@@ -1,32 +1,7 @@
 import {Xpliable, XpliableImplemantation, ConvertToXpliable, XpliableLabel} from './Xpliable';
 import {Specifiable, Choices} from './Specifiable';
 import {Named} from './Named';
-
-export enum Technique {
-  Creo,
-  Intelligo,
-  Muto,
-  Perdo,
-  Rego,
-}
-
-export enum Forme {
-  Animal,
-  Aquam,
-  Auram,
-  Corpus,
-  Herbam,
-  Ignem,
-  Imaginem,
-  Mentem,
-  Terram,
-  Vim,
-}
-
-export enum ArtType {
-  Technique,
-  Forme
-}
+import {Technique, Forme, ArtType} from './Enum';
 
 export class Art implements Named, ConvertToXpliable, Specifiable<Art, Art> {
   public static readonly Creo: Art = new Art(ArtType.Technique, "Creo");
