@@ -103,17 +103,20 @@ export let Mure : Personnage = {
   // competences: Competence.liste.map((comp) => comp.convertToXpliable())
   competences: [
     Competence.enum["Double vue"].convertToXpliable().setLabel("Gratuit", 5).setLabel("Vie postérieure", 10),
-    Competence.enum["Connaissance de la Féerie"].convertToXpliable().setLabel("Vie postérieure", 5).setLabel("Apprentissage", 10),
+    Competence.enum["Connaissance de la Féerie"].convertToXpliable().setLabel("Vie postérieure", 15),
     Competence.enum["[Langue]"].specify("Français").convertToXpliable().setLabel("Petite enfance", 75),
     Competence.enum["Attention"].convertToXpliable().setLabel("Petite enfance", 5),
     Competence.enum["Charme"].convertToXpliable().setLabel("Petite enfance", 5),
     Competence.enum["Connaissance des gens"].convertToXpliable().setLabel("Petite enfance", 5),
-    Competence.enum["Connaissance [domaine]"].specify("Forêt Féerique").convertToXpliable().setLabel("Petite enfance", 5),
+    Competence.enum["Connaissance [domaine]"].specify("Forêt des pins blancs").convertToXpliable().setLabel("Petite enfance", 5),
     Competence.enum["Discrétion"].convertToXpliable().setLabel("Petite enfance", 5),
     Competence.enum["Survie"].convertToXpliable().setLabel("Petite enfance", 15),
     Competence.enum["Natation"].convertToXpliable().setLabel("Petite enfance", 5),
 
-    Competence.enum["Concentration"].convertToXpliable().setLabel("Vie postérieure", 25).setLabel("Apprentissage", 5),
+    Competence.enum["Étiquette"].convertToXpliable().setLabel("Vie postérieure", 5),
+    Competence.enum["Intrigue"].convertToXpliable().setLabel("Vie postérieure", 5),
+    Competence.enum["Chasse"].convertToXpliable().setLabel("Vie postérieure", 5),
+    Competence.enum["Concentration"].convertToXpliable().setLabel("Vie postérieure", 15).setLabel("Apprentissage", 15),
     Competence.enum["Profession [type]"].specify("Garde forestier").convertToXpliable().setLabel("Vie postérieure", 5),
 
     Competence.enum["Ars libéraux"].convertToXpliable().setLabel("Apprentissage", 5),
