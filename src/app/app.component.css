@@ -14,19 +14,19 @@ md-radio-button {
   margin-left: 8px;
 }
 
-.md-red {
+.mat-red {
   color: red;
 }
 
-.md-red-lite {
+.mat-red-lite {
   color: #fd7676;
 }
 
-.md-green {
+.mat-green {
   color: green;
 }
 
-.md-green-lite {
+.mat-green-lite {
   color: rgba(31, 216, 31, 0.83);;
 }
 
