@@ -142,6 +142,37 @@ export class AppComponent {
     }
   }
 
+  sort = {
+    nbBase: 1,
+    portee: 0,
+    duree: 0,
+    cible: 0,
+    modificateurs: 0,
+  }
+
+  calcLvlSort() {
+    let lvl = this.sort.nbBase;
+
+    let sortModif = function() {
+      return lvl >= 5 ? 5 : 1;
+    }
+
+    let addValeur = (valeurName: string) => {
+      let valeur = this.sort[valeurName];
+      while(valeur > 0) {
+        lvl += sortModif();
+        valeur--;
+      }
+    }
+
+    addValeur("portee");
+    addValeur("duree");
+    addValeur("cible");
+    addValeur("modificateurs");
+
+    return lvl;
+  }
+
   save() {
     localStorage.setItem("personnage", JSON.stringify(this.personnage));
   }

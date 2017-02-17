@@ -69,9 +69,45 @@
   ></competence-xp-row>
 </section>
 
-<!-- <section *ngIf="personnage.type == types.names.Mage">
+<section>
+  <h3>Notes</h3>
+  <md-input-container class="full-width">
+    <textarea mdInput placeholder="Notes" [(ngModel)]="personnage.notes" rows="10"></textarea>
+  </md-input-container>
+</section>
+
+<section *ngIf="personnage.type == types.names.Mage">
   <h3>Sorts</h3>
-</section> -->
+  <md-input-container class="full-width">
+    <input mdInput type="number" min="1" placeholder="niveau de base" [(ngModel)]="sort.nbBase"/>
+  </md-input-container>
+  <md-select placeholder="Portée" [(ngModel)]="sort.portee">
+    <md-option [value]="0" selectd>Personnel</md-option>
+    <md-option [value]="1">Touché / Contact Visuel</md-option>
+    <md-option [value]="2">Voix</md-option>
+    <md-option [value]="3">Regard</md-option>
+    <md-option [value]="4">Lien Mystique</md-option>
+  </md-select>
+  <md-select placeholder="Durée" [(ngModel)]="sort.duree">
+    <md-option [value]="0" selectd>Moment</md-option>
+    <md-option [value]="1">Diametre / Concentration</md-option>
+    <md-option [value]="2">Jour / Anneau</md-option>
+    <md-option [value]="3">Lune</md-option>
+    <md-option [value]="4">Année</md-option>
+  </md-select>
+  <md-select placeholder="Cible" [(ngModel)]="sort.cible">
+    <md-option [value]="0" selectd>Individu / Cercle</md-option>
+    <md-option [value]="1">Partie</md-option>
+    <md-option [value]="2">Groupe / pièce</md-option>
+    <md-option [value]="3">Batiment</md-option>
+    <md-option [value]="4">Région</md-option>
+  </md-select>
+  <md-input-container>
+    <input mdInput type="number" min="0" placeholder="Modificateur" [(ngModel)]="sort.modificateurs"/>
+  </md-input-container>
+
+  <h4>Niveau du sort : {{calcLvlSort()}}</h4>
+</section>
 
 <button class="full-width" md-raised-button (click)="save()">Sauvegarder</button>
 <button class="full-width" md-raised-button (click)="charger()">Charger</button>
