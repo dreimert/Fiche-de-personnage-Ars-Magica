@@ -3,6 +3,7 @@ import { Caracteristique } from './Caracteristique';
 import { Art, ArtXpliable } from './Art';
 import { Competence, CompetenceXpliable } from './Competence';
 import { Maison } from './Maison';
+import { parse } from './Jsonable';
 
 export enum PersonnageType {
     Mage,
@@ -26,40 +27,8 @@ export function parseJsonPersonnage(json : string): Personnage {
   return JSON.parse(json, (key, value) => {
     if(value === null) {
       return value;
-    }
-    switch(value.fromJSON) {
-      case "Nature": {
-        return new Nature(value.type, value.category, value.valeur, value.name, value.speciality);
-      }
-      case "Caracteristique": {
-        return new Caracteristique(value.name, value.valeur);
-      }
-      case "Competence": {
-        return new Competence(
-          value.type,
-          value.name,
-          value.speciality
-        );
-      }
-      case "CompetenceXpliable": {
-        return new CompetenceXpliable(
-          value.competence,
-          value.labels
-        );
-      }
-      case "Art": {
-        return new Art(
-          value.type,
-          value.name
-        );
-      }
-      case "ArtXpliable": {
-        return new ArtXpliable(
-          value.art,
-          value.labels
-        );
-      }
-      default: return value;
+    } else {
+      return parse(value);
     }
   });
 }

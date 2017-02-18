@@ -3,13 +3,14 @@ import {Named} from './Named';
 import {Specifiable, Choices} from './Specifiable';
 import {Specificite} from './Specificite';
 import {CompetenceType} from './Enum';
+import {Jsonable, registerJsonable} from './Jsonable';
 
 import {competences} from '../datas/competences';
 
 let liste = [];
 let dictionnaire = {};
 
-export class Competence implements Named, ConvertToXpliable, Specifiable<Competence, Competence> {
+export class Competence implements Named, ConvertToXpliable, Specifiable<Competence, Competence>, Jsonable {
   public static readonly liste : Competence[] = liste;
   public static readonly enum = dictionnaire;
 
@@ -79,7 +80,17 @@ export class Competence implements Named, ConvertToXpliable, Specifiable<Compete
       speciality: this.speciality
     };
   }
+
+  public static fromJSON(source: any) {
+    return new Competence(
+      source.type,
+      source.name,
+      source.speciality
+    );
+  }
 }
+
+registerJsonable("Competence", Competence);
 
 export class CompetenceXpliable extends Competence implements Xpliable {
   private _xp : XpliableImplemantation;
@@ -120,7 +131,16 @@ export class CompetenceXpliable extends Competence implements Xpliable {
       labels: this._xp.labels
     };
   }
+
+  public static fromJSON(source) {
+    return new CompetenceXpliable(
+      source.competence,
+      source.labels
+    );
+  }
 }
+
+registerJsonable("CompetenceXpliable", CompetenceXpliable);
 
 for(let ctype in competences) {
   for(let name of competences[ctype]) {

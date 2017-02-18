@@ -2,8 +2,9 @@ import {Xpliable, XpliableImplemantation, ConvertToXpliable, XpliableLabel} from
 import {Specifiable, Choices} from './Specifiable';
 import {Named} from './Named';
 import {Technique, Forme, ArtType} from './Enum';
+import {Jsonable, registerJsonable} from './Jsonable';
 
-export class Art implements Named, ConvertToXpliable, Specifiable<Art, Art> {
+export class Art implements Named, ConvertToXpliable, Specifiable<Art, Art>, Jsonable {
   public static readonly Creo: Art = new Art(ArtType.Technique, "Creo");
   public static readonly Intelligo: Art = new Art(ArtType.Technique, "Intelligo");
   public static readonly Muto: Art = new Art(ArtType.Technique, "Muto");
@@ -101,7 +102,16 @@ export class Art implements Named, ConvertToXpliable, Specifiable<Art, Art> {
       name: this.name
     };
   }
+
+  public static fromJSON(source) {
+    return new Art(
+      source.type,
+      source.name
+    );
+  }
 }
+
+registerJsonable("Art", Art);
 
 export class ArtXpliable extends Art implements Xpliable {
   private _xp : XpliableImplemantation;
@@ -142,4 +152,13 @@ export class ArtXpliable extends Art implements Xpliable {
       labels: this._xp.labels
     };
   }
+
+  public static fromJSON(source) {
+    return new ArtXpliable(
+      source.art,
+      source.labels
+    );
+  }
 }
+
+registerJsonable("ArtXpliable", ArtXpliable);

@@ -5,13 +5,14 @@ import {Caracteristique} from './Caracteristique';
 import {Specifiable, Choices} from './Specifiable';
 import {Specificite} from './Specificite';
 import {NatureType, NatureCategory, NatureValeur} from './Enum';
+import {Jsonable, registerJsonable} from './Jsonable';
 
 import { natures } from '../datas/natures';
 
 let liste = [];
 const dictionnaire = {};
 
-export class Nature implements Named, Specifiable<Nature, Nature | Art | Competence | Caracteristique> {
+export class Nature implements Named, Specifiable<Nature, Nature | Art | Competence | Caracteristique>, Jsonable {
   public static readonly liste : Nature[] = liste;
   public static readonly enum = dictionnaire;
 
@@ -101,7 +102,13 @@ export class Nature implements Named, Specifiable<Nature, Nature | Art | Compete
       speciality: this.speciality
     }
   }
+
+  public static fromJSON(source) {
+    return new Nature(source.type, source.category, source.valeur, source.name, source.speciality);
+  }
 }
+
+registerJsonable("Nature", Nature);
 
 for(let ntype in natures) {
   for(let ncat in natures[ntype]) {

@@ -1,7 +1,8 @@
 import { Named } from './Named';
+import {Jsonable, registerJsonable} from './Jsonable';
 
 // Même pattern que Art, Competence et Nature ?
-export class Caracteristique implements Named {
+export class Caracteristique implements Named, Jsonable {
   public static readonly Intelligence: Caracteristique = new Caracteristique("Intelligence");
   public static readonly Perception: Caracteristique = new Caracteristique("Perception");
   public static readonly Force: Caracteristique = new Caracteristique("Force");
@@ -59,4 +60,10 @@ export class Caracteristique implements Named {
       valeur: this._valeur
     };
   }
+
+  public static fromJSON(source) {
+    return new Caracteristique(source.name, source.valeur);
+  }
 }
+
+registerJsonable("Caracteristique", Caracteristique);

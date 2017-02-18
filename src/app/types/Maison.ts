@@ -3,8 +3,9 @@ import {Named} from './Named';
 import {Nature} from './Nature';
 import {MaisonName} from './Enum';
 import {maisonAvantages} from '../datas/maisonAvantages';
+import {Jsonable, registerJsonable} from './Jsonable';
 
-export class Maison implements Named, Specifiable<Maison, Nature[]> {
+export class Maison implements Named, Specifiable<Maison, Nature[]>, Jsonable {
   public static readonly Bjornaer: Maison = new Maison(MaisonName.Bjornaer);
   public static readonly Bonisagus: Maison = new Maison(MaisonName.Bonisagus);
   public static readonly Criamon: Maison = new Maison(MaisonName.Criamon);
@@ -84,4 +85,10 @@ export class Maison implements Named, Specifiable<Maison, Nature[]> {
       avantage: this.avantage
     };
   }
+
+  public static fromJSON(source) {
+    return new Maison(source.maison, source.avantage);
+  }
 }
+
+registerJsonable("Maison", Maison);
