@@ -2,6 +2,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { MaterialModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
+import 'hammerjs';
 
 import { CompetenceXpRowComponent } from './competence-xp-row.component';
 
@@ -11,7 +14,11 @@ describe('CompetenceXpRowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CompetenceXpRowComponent ]
+      declarations: [ CompetenceXpRowComponent ],
+      imports: [
+        MaterialModule.forRoot(),
+        FormsModule
+      ]
     })
     .compileComponents();
   }));

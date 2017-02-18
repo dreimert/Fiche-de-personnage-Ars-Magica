@@ -19,6 +19,7 @@ export class CaracteristiquesComponent implements OnInit {
   }
 
   sumField(tab, field) {
+    if(!tab) return
     return tab.reduce(function(sum, el){
       return sum + el[field];
     }, 0);
