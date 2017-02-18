@@ -1,7 +1,7 @@
 import {Pattern} from './Pattern';
 
 export class Choices<U> {
-  constructor(readonly liste: U[] = null) {}
+  constructor(readonly liste: U[] = null, readonly multi = false) {}
 
   isFree() : boolean {
     return this.liste === null;

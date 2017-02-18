@@ -24,8 +24,7 @@ export enum ArtType {
   Forme
 }
 
-// TODO: Faire des maisons un Specifiable
-export enum Maison {
+export enum MaisonName {
   Bjornaer,
   Bonisagus,
   Criamon,

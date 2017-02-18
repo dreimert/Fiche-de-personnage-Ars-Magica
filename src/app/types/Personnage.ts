@@ -2,7 +2,7 @@ import { Nature } from './Nature';
 import { Caracteristique } from './Caracteristique';
 import { Art, ArtXpliable } from './Art';
 import { Competence, CompetenceXpliable } from './Competence';
-import { Maison } from './Enum';
+import { Maison } from './Maison';
 
 export enum PersonnageType {
     Mage,
@@ -15,7 +15,6 @@ export class Personnage {
   concept: string;
   type: PersonnageType;
   maison: Maison;
-  maisonAvantage: Nature[];
   natures: Nature[];
   caracterisques: Caracteristique[];
   competences: CompetenceXpliable[];
@@ -69,8 +68,7 @@ export let Mure : Personnage = {
   name: "Mûre",
   concept: "Demi-fée à l'apparence de 15 ans spécialisé dans la manipulation des plantes et de la magie",
   type: PersonnageType.Mage,
-  maison: Maison.Bonisagus,
-  maisonAvantage: [Nature.enum["Talent pour [Compétence]"].specify(Competence.enum["Théorie de la magie"])],
+  maison: Maison.Merinita,
   natures: [
     Nature.enum["Magie de Diedne"],
     Nature.enum["Sang féerique saillant"],

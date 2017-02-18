@@ -2,6 +2,29 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import {Specifiable} from '../types/Specifiable';
 
+class SpecificityHandler implements ProxyHandler<SelectPatternSpecifiableComponent> {
+  specificities = [];
+
+  get(target, name){
+    let i = Number(name);
+    return (i < 0 || i >= target.specialityLvlListe.length)?
+      undefined :
+      this.specificities[name];
+  }
+
+  set(target, name, value){
+    let i = Number(name);
+    if(i < 0 || i >= target.specialityLvlListe.length) {
+      return false;
+    } else {
+      this.specificities[name] = value;
+      if(this.specificities.length === target.specialityLvlListe.length && this.specificities.reduce((acc, specificity) => acc && specificity)) {
+        target.specialityLvl = this.specificities;
+      }
+      return true;
+    }
+  }
+}
 
 @Component({
   selector: 'select-pattern-specifiable',
@@ -17,14 +40,17 @@ export class SelectPatternSpecifiableComponent implements OnInit {
 
   private _selected : Specifiable<any, any>;
   private _firstLvl : Specifiable<any, any>;
-  private _specialityLvl : Specifiable<any, any>;
+  private _specialityLvl : Specifiable<any, any>[];
   public specialityLvlListe : any[];
 
   public showSpecifySelect = false;
 
-  constructor() { }
+  constructor() {
+    // console.log("constructor");
+  }
 
   ngOnInit() {
+    // console.log("ngOnInit");
   }
 
   get selected() {
@@ -33,9 +59,10 @@ export class SelectPatternSpecifiableComponent implements OnInit {
 
   @Input()
   set selected(value) {
+    // console.log("selected");
     this._selected = value;
     if(value && value.include) {
-      this._firstLvl = this.liste.find(value.include, value);
+      this.firstLvl = this.liste.find((elem) => elem.include(value)); // C'est la value de la liste qui doit inclide value
     } else {
       this._firstLvl = null;
       this.showSpecifySelect = false;
@@ -50,11 +77,44 @@ export class SelectPatternSpecifiableComponent implements OnInit {
     let old = this._firstLvl;
     this._firstLvl = value;
     if(!value.isSpecified()) {
-      this.specialityLvlListe = value.choices().liste;
-      this.showSpecifySelect = true;
+      let choices = value.choices();
       if(old) {
-        this._specialityLvl = null;
+        this._specialityLvl = new Proxy(this, new SpecificityHandler());
+      } else {
+        this._specialityLvl = new Proxy(this, new SpecificityHandler());
       }
+      if(choices.multi) {
+        this.specialityLvlListe = choices.liste;
+        if(choices.liste.length === 1 && choices.liste[0].length === 1){
+          this._specialityLvl[0] = choices.liste[0][0]
+        }
+      } else {
+        this.specialityLvlListe = [choices.liste];
+        if(choices.liste.length === 1){
+          this._specialityLvl[0] = choices.liste[0]
+        }
+      }
+      this.showSpecifySelect = true;
+
+    } else if(value.isSpecifiable()) {
+      let choices = value.choices();
+      if(old) {
+        this._specialityLvl = new Proxy(this, new SpecificityHandler());
+      } else {
+        this._specialityLvl = new Proxy(this, new SpecificityHandler());
+      }
+      if(choices.multi) {
+        this.specialityLvlListe = choices.liste;
+        if(choices.liste.length === 1 && choices.liste[0].length === 1){
+          this._specialityLvl[0] = choices.liste[0][0]
+        }
+      } else {
+        this.specialityLvlListe = [choices.liste];
+        if(choices.liste.length === 1){
+          this._specialityLvl[0] = choices.liste[0]
+        }
+      }
+      this.showSpecifySelect = true;
     } else {
       this.showSpecifySelect = false;
       this.selectedChange.emit(value);

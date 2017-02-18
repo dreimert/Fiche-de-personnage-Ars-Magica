@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 import { PersonnageType, Personnage, Mure, parseJsonPersonnage } from './types/Personnage';
 import { Nature} from './types/Nature';
 import { Caracteristique } from './types/Caracteristique';
-import { Xpliable } from './types/Xpliable';
 import { Competence } from './types/Competence';
 import { Art } from './types/Art';
-import { NatureType, NatureCategory, NatureValeur, Maison } from './types/Enum';
+import { NatureType, NatureValeur } from './types/Enum';
+import { Maison } from './types/Maison';
 
 import { enumToListe } from './utiles/enumToListe';
 
@@ -23,6 +23,7 @@ export class AppComponent {
     names: PersonnageType
   }
 
+  maisons = Maison.liste;
   natures = Nature.liste;
   competences = Competence.liste;
 
@@ -30,7 +31,6 @@ export class AppComponent {
 
   // personnage = {
   //   maison: null,
-  //   maisonAvantage: null,
   //   natures: [],
   //   competences: [],
   // };
@@ -46,9 +46,18 @@ export class AppComponent {
 
   set typeModel(value) {
     this.personnage.natures = [];
-    this.personnage.maisonAvantage = null;
     this.personnage.maison = null;
     this.personnage.type = value;
+  }
+
+  private _test = null;
+  get test() {
+    return this._test;
+  }
+
+  set test(value) {
+    console.log("test", value);
+    this._test = value;
   }
 
   deleteNature(v) {
@@ -81,7 +90,7 @@ export class AppComponent {
     let somme = 0;
     let max = 10;
 
-    if(this.personnage.type === PersonnageType.Mage && this.personnage.maisonAvantage) {
+    if(this.personnage.type === PersonnageType.Mage && this.personnage.maison.isSpecified()) {
       somme = -1;
     } else if(this.personnage.type === PersonnageType.Servant) {
       max = 3;

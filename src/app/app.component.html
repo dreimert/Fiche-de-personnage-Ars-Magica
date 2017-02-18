@@ -31,7 +31,7 @@
 
 <section *ngIf="personnage.type == types.names.Mage">
   <h3>Votre maison</h3>
-  <select-maison [(maison)]="personnage.maison" [(avantages)]="personnage.maisonAvantage"></select-maison>
+  <select-pattern-specifiable [liste]="maisons" [(selected)]="personnage.maison"></select-pattern-specifiable>
 </section>
 
 <section>
