@@ -1,0 +1,17 @@
+<md-input-container class="full-width">
+  <input mdInput type="number" min="1" placeholder="niveau de base" [(ngModel)]="nbBase"/>
+</md-input-container>
+<md-select placeholder="Portée" [(ngModel)]="portee">
+  <md-option *ngFor="let p of portees; let isFirst = first" [value]="p">{{p.name}}</md-option>
+</md-select>
+<md-select placeholder="Durée" [(ngModel)]="duree">
+  <md-option *ngFor="let d of durees; let isFirst = first" [value]="d">{{d.name}}</md-option>
+</md-select>
+<md-select placeholder="Cible" [(ngModel)]="cible">
+  <md-option *ngFor="let c of cibles; let isFirst = first" [value]="c">{{c.name}}</md-option>
+</md-select>
+<md-input-container>
+  <input mdInput type="number" min="0" placeholder="Modificateur" [(ngModel)]="modificateur"/>
+</md-input-container>
+
+<h4>Niveau du sort : {{calcLvlSort()}}</h4>

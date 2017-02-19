@@ -9,6 +9,7 @@ import 'hammerjs';
 import { SelectPatternSpecifiableComponent } from './select-pattern-specifiable/select-pattern-specifiable.component';
 import { CompetenceXpRowComponent } from './competence-xp-row/competence-xp-row.component';
 import { CaracteristiquesComponent } from './caracteristiques/caracteristiques.component';
+import { BuildSortComponent } from './build-sort/build-sort.component';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -18,6 +19,7 @@ describe('AppComponent', () => {
         SelectPatternSpecifiableComponent,
         CompetenceXpRowComponent,
         CaracteristiquesComponent,
+        BuildSortComponent,
       ],
       imports: [
         MaterialModule.forRoot(),

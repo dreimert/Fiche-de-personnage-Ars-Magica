@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { CompetenceXpRowComponent } from './competence-xp-row/competence-xp-row.component';
 import { CaracteristiquesComponent } from './caracteristiques/caracteristiques.component';
 import { SelectPatternSpecifiableComponent } from './select-pattern-specifiable/select-pattern-specifiable.component';
+import { BuildSortComponent } from './build-sort/build-sort.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompetenceXpRowComponent,
     CaracteristiquesComponent,
-    SelectPatternSpecifiableComponent
+    SelectPatternSpecifiableComponent,
+    BuildSortComponent
   ],
   imports: [
     MaterialModule.forRoot(),

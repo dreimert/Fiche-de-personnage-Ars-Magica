@@ -71,3 +71,40 @@ export enum NatureValeur {
   Mineure = 1,
   Gratuite = 0
 }
+
+export enum SortPortee {
+  Personnel,
+  Toucher,
+  Regard,
+  Voix,
+  Vue,
+  "Lien mystique"
+}
+
+export enum SortDuree {
+  Momentane,
+  Concentration,
+  Diametre,
+  Soleil,
+  Anneau,
+  Lune,
+  Annee
+}
+
+export enum SortCible {
+  Individu,
+  Cercle,
+  Partie,
+  Groupe,
+  Piece,
+  Structure,
+  Zone
+}
+
+export enum SortSens {
+  Gout,
+  Toucher,
+  Odorat,
+  Ouie,
+  Vue
+}

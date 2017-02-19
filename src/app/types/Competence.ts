@@ -72,7 +72,7 @@ export class Competence implements Named, ConvertToXpliable, Specifiable<Compete
     return this._typeSpeciality.toString();
   }
 
-  toJSON(): any {
+  toJSON() {
     return {
       fromJSON: "Competence",
       name: this.name,
