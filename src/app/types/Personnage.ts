@@ -3,6 +3,7 @@ import { Caracteristique } from './Caracteristique';
 import { Art, ArtXpliable } from './Art';
 import { Competence, CompetenceXpliable } from './Competence';
 import { Maison } from './Maison';
+import { Sort } from './Sort';
 import { parse } from './Jsonable';
 
 export enum PersonnageType {
@@ -20,6 +21,7 @@ export class Personnage {
   caracterisques: Caracteristique[];
   competences: CompetenceXpliable[];
   arts: ArtXpliable[];
+  sorts: Sort[];
   notes: string;
 }
 
@@ -112,6 +114,7 @@ export let Mure : Personnage = {
     Art.Terram.convertToXpliable().setLabel("Apprentissage", 3),
     Art.Vim.convertToXpliable().setLabel("Apprentissage", 28),
   ],
+  sorts: [],
   notes: `
     Mûre est la fille de Maureen la gérisseuse / sorcière du village des pins blanc et de Tan Ket Tyr prince de la forêt des pins blancs. Elle est le fruit d'un pacte de non-agression / protection passé entre la Féerie et le village. Dès sa naisssance, sa mère l'emmène aux diffèrentes rituels pour honorer le pacte et invitations dans la cours Féerique que les fées font.
 

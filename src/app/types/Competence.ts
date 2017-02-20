@@ -72,7 +72,7 @@ export class Competence implements Named, ConvertToXpliable, Specifiable<Compete
     return this._typeSpeciality.toString();
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       fromJSON: "Competence",
       name: this.name,
@@ -103,7 +103,7 @@ export class CompetenceXpliable extends Competence implements Xpliable {
     return this._xp.getLabel(name);
   }
 
-  setLabel(name: string, xp : number) {
+  setLabel(name: string, xp : number) : this {
     this._xp.setLabel(name, xp);
     return this;
   }

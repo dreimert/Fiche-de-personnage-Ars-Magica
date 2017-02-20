@@ -10,7 +10,7 @@ export interface Modificateur {
   readonly modificateur;
 }
 
-export class Portee implements Named, Modificateur {
+export class Portee implements Named, Modificateur, Jsonable {
   public static readonly Personnel = new Portee("Personnel", 0);
   public static readonly Toucher = new Portee("Toucher", 1);
   public static readonly Regard = new Portee("Regard", 1);
@@ -28,9 +28,27 @@ export class Portee implements Named, Modificateur {
   ]
 
   constructor(readonly name: string, readonly modificateur: number) {}
+
+  toString() {
+    return `+${this.modificateur} ${this.name}`;
+  }
+
+  toJSON() {
+    return {
+      fromJSON: "Portee",
+      name: this.name,
+      modificateur: this.modificateur
+    }
+  }
+
+  public static fromJSON(source) {
+    return new Portee(source.name, source.modificateur);
+  }
 }
 
-export class Duree implements Named, Modificateur {
+registerJsonable("Portee", Portee);
+
+export class Duree implements Named, Modificateur, Jsonable {
   public static readonly Momentane = new Duree("Momentané", 0);
   public static readonly Concentration = new Duree("Concentration", 1);
   public static readonly Diametre = new Duree("Diamètre", 1);
@@ -50,9 +68,27 @@ export class Duree implements Named, Modificateur {
   ]
 
   constructor(readonly name: string, readonly modificateur: number) {}
+
+  toString() {
+    return `+${this.modificateur} ${this.name}`;
+  }
+
+  toJSON() {
+    return {
+      fromJSON: "Duree",
+      name: this.name,
+      modificateur: this.modificateur
+    }
+  }
+
+  public static fromJSON(source) {
+    return new Duree(source.name, source.modificateur);
+  }
 }
 
-export class Cible implements Named, Modificateur {
+registerJsonable("Duree", Duree);
+
+export class Cible implements Named, Modificateur, Jsonable {
   public static readonly Individu = new Cible("Individu", 0);
   public static readonly Cercle = new Cible("Cercle", 0);
   public static readonly Partie = new Cible("Partie", 1);
@@ -72,7 +108,25 @@ export class Cible implements Named, Modificateur {
   ]
 
   constructor(readonly name: string, readonly modificateur: number) {}
+
+  toString() {
+    return `+${this.modificateur} ${this.name}`;
+  }
+
+  toJSON() {
+    return {
+      fromJSON: "Cible",
+      name: this.name,
+      modificateur: this.modificateur
+    }
+  }
+
+  public static fromJSON(source) {
+    return new Cible(source.name, source.modificateur);
+  }
 }
+
+registerJsonable("Cible", Cible);
 
 export class Sort implements Named, ConvertToXpliable, Jsonable {
 
@@ -81,8 +135,8 @@ export class Sort implements Named, ConvertToXpliable, Jsonable {
 
   constructor(
     readonly name: string,
-    readonly technique: Technique,
-    readonly forme: Forme,
+    readonly technique: Art,
+    readonly forme: Art,
     readonly base: number,
     readonly portee: Portee,
     readonly duree: Duree,
@@ -164,6 +218,8 @@ export class Sort implements Named, ConvertToXpliable, Jsonable {
   }
 }
 
+registerJsonable("Sort", Sort);
+
 export class SortXpliable extends Sort implements Xpliable {
   private _xp : XpliableImplemantation;
   constructor(public readonly sort: Sort, labels: XpliableLabel[] = []) {
@@ -222,3 +278,5 @@ export class SortXpliable extends Sort implements Xpliable {
     );
   }
 }
+
+registerJsonable("SortXpliable", SortXpliable);
