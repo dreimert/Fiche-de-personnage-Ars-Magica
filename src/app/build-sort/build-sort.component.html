@@ -1,17 +1,39 @@
+<div class="row">
+  <md-input-container class="full-width">
+    <input mdInput type="text" placeholder="Nom" [(ngModel)]="proxy.name"/>
+  </md-input-container>
+  <b class="niveau">Niveau : {{proxy._sort?.niveau || 1}}</b>
+</div>
+<div class="row">
+  <md-select class="full-width" placeholder="Technique" [(ngModel)]="proxy.technique">
+    <md-option *ngFor="let t of techniques" [value]="t">{{t.name}}</md-option>
+  </md-select>
+  <md-select class="full-width" placeholder="Forme" [(ngModel)]="proxy.forme">
+    <md-option *ngFor="let f of formes" [value]="f">{{f.name}}</md-option>
+  </md-select>
+  <!-- <md-select class="full-width" placeholder="Compléments" multiple [(ngModel)]="proxy.complements">
+    <md-option *ngFor="let a of arts" [value]="a">{{a.name}}</md-option>
+  </md-select> -->
+</div>
+<div class="row">
+  <md-input-container>
+    <input mdInput type="number" min="1" placeholder="Base" [(ngModel)]="proxy.base"/>
+  </md-input-container>
+  <md-select class="full-width" placeholder="Portée" [(ngModel)]="proxy.portee">
+    <md-option *ngFor="let p of portees" [value]="p">{{p.name}}</md-option>
+  </md-select>
+  <md-select class="full-width" placeholder="Durée" [(ngModel)]="proxy.duree">
+    <md-option *ngFor="let d of durees" [value]="d">{{d.name}}</md-option>
+  </md-select>
+  <md-select class="full-width" placeholder="Cible" [(ngModel)]="proxy.cible">
+    <md-option *ngFor="let c of cibles" [value]="c">{{c.name}}</md-option>
+  </md-select>
+  <md-input-container>
+    <input mdInput type="number" min="0" placeholder="Modificateur" [(ngModel)]="proxy.modificateur"/>
+  </md-input-container>
+</div>
 <md-input-container class="full-width">
-  <input mdInput type="number" min="1" placeholder="niveau de base" [(ngModel)]="nbBase"/>
-</md-input-container>
-<md-select placeholder="Portée" [(ngModel)]="portee">
-  <md-option *ngFor="let p of portees; let isFirst = first" [value]="p">{{p.name}}</md-option>
-</md-select>
-<md-select placeholder="Durée" [(ngModel)]="duree">
-  <md-option *ngFor="let d of durees; let isFirst = first" [value]="d">{{d.name}}</md-option>
-</md-select>
-<md-select placeholder="Cible" [(ngModel)]="cible">
-  <md-option *ngFor="let c of cibles; let isFirst = first" [value]="c">{{c.name}}</md-option>
-</md-select>
-<md-input-container>
-  <input mdInput type="number" min="0" placeholder="Modificateur" [(ngModel)]="modificateur"/>
+  <textarea mdInput placeholder="Description" [(ngModel)]="proxy.description" rows="3"></textarea>
 </md-input-container>
 
-<h4>Niveau du sort : {{calcLvlSort()}}</h4>
+<h4>Niveau du sort : {{proxy._sort?.niveau || 1}}</h4>

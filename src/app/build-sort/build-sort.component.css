@@ -1,0 +1,27 @@
+.full-width {
+  width: 100%;
+}
+
+input[type="number"] {
+  width: 70px;
+  min-width: 70px;
+}
+
+md-select {
+  min-width: 120px;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+}
+
+.row md-input-container, .row md-select {
+  padding: 0 2px;
+  padding-top: 16px;
+}
+
+.niveau {
+  white-space: nowrap;
+  padding-left: 8px;
+}

@@ -7,6 +7,7 @@ import { Competence } from './types/Competence';
 import { Art } from './types/Art';
 import { NatureType, NatureValeur } from './types/Enum';
 import { Maison } from './types/Maison';
+import { Sort } from './types/Sort';
 
 import { enumToListe } from './utiles/enumToListe';
 
@@ -135,7 +136,7 @@ export class AppComponent {
 
   }
 
-  addCompetence(competence : Competence) {
+  addCompetence(competence: Competence) {
     if(!competence) {
       console.info('competence is null');
     } else {
@@ -148,6 +149,12 @@ export class AppComponent {
         this.personnage.competences.push(competence.convertToXpliable());
         this.personnage.competences = this.personnage.competences.slice();
       }
+    }
+  }
+
+  addSort(sort: Sort) {
+    if(sort) {
+      this.personnage.sorts.push(sort);
     }
   }
 

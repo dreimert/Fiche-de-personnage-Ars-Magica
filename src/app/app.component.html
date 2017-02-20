@@ -69,16 +69,18 @@
   ></competence-xp-row>
 </section>
 
+<section *ngIf="personnage.type == types.names.Mage">
+  <h3>Sorts</h3>
+  <div *ngFor="let sort of personnage.sorts"> {{sort.niveau}} - {{sort.name}} - {{sort.technique}} {{sort.forme}} - {{sort.portee}}, {{sort.duree}}, {{sort.cible}}</div>
+  <build-sort [(sort)]="sort"></build-sort>
+  <button class="full-width" md-raised-button (click)="addSort(sort)">Ajouter</button>
+</section>
+
 <section>
   <h3>Notes</h3>
   <md-input-container class="full-width">
     <textarea mdInput placeholder="Notes" [(ngModel)]="personnage.notes" rows="10"></textarea>
   </md-input-container>
-</section>
-
-<section *ngIf="personnage.type == types.names.Mage">
-  <h3>Sorts</h3>
-  <build-sort></build-sort>
 </section>
 
 <button class="full-width" md-raised-button (click)="save()">Sauvegarder</button>
