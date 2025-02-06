@@ -34,7 +34,7 @@ export class Maison implements Named, Specifiable<Maison, Nature[]>, Jsonable {
     Maison.Verditius,
   ];
 
-  constructor(readonly maison: MaisonName, readonly avantage: Nature[] = null) { }
+  constructor(readonly maison: MaisonName, readonly avantage: Nature[] | null = null) { }
 
   isPattern() : boolean {
     return this.avantage === null;
@@ -71,7 +71,7 @@ export class Maison implements Named, Specifiable<Maison, Nature[]>, Jsonable {
   }
 
   get name() {
-    return MaisonName[this.maison];
+    return this.maison;
   }
 
   toString() {
@@ -86,7 +86,7 @@ export class Maison implements Named, Specifiable<Maison, Nature[]>, Jsonable {
     };
   }
 
-  public static fromJSON(source) {
+  public static fromJSON(source: any) {
     return new Maison(source.maison, source.avantage);
   }
 }

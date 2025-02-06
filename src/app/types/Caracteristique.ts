@@ -61,7 +61,7 @@ export class Caracteristique implements Named, Jsonable {
     };
   }
 
-  public static fromJSON(source) {
+  public static fromJSON(source: any) {
     return new Caracteristique(source.name, source.valeur);
   }
 }

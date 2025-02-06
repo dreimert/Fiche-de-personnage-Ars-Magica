@@ -1,11 +1,18 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Portee, Duree, Cible, Sort } from '../types/Sort';
 import { ArtType } from '../types/Enum';
 import { Art } from '../types/Art';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 class SortHandler implements ProxyHandler<BuildSortComponent> {
-  set(target, name, value){
+  set(target: BuildSortComponent, name: keyof typeof BuildSortComponent, value: any){
     if(name in target){
       target[name] = value;
       target.generate();
@@ -19,27 +26,31 @@ class SortHandler implements ProxyHandler<BuildSortComponent> {
 }
 
 @Component({
-    selector: 'build-sort',
+  selector: 'build-sort',
+  imports: [
+    FormsModule,
+    MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatRadioModule,
+  ],
   templateUrl: './build-sort.component.html',
   styleUrls: ['./build-sort.component.css']
 })
-export class BuildSortComponent implements OnInit {
+export class BuildSortComponent {
 
   @Output() sortChange: EventEmitter<Sort> = new EventEmitter();
 
-  public name: string;
-  public technique: Art;
-  public forme: Art;
-  public base: number;
-  public portee: Portee;
-  public duree: Duree;
-  public cible: Cible;
-  public modificateur: number;
-  public description: string;
-  public complements: Art[];
+  public name!: string;
+  public technique?: Art;
+  public forme?: Art;
+  public base?: number;
+  public portee?: Portee;
+  public duree?: Duree;
+  public cible?: Cible;
+  public modificateur?: number;
+  public description?: string;
+  public complements?: Art[];
 
   public proxy;
-  public _sort: Sort = null;
+  public _sort: Sort | null = null;
 
   readonly techniques = Art.liste.filter(art => art.type === ArtType.Technique);
   readonly formes = Art.liste.filter(art => art.type === ArtType.Forme);
@@ -48,14 +59,10 @@ export class BuildSortComponent implements OnInit {
   readonly durees = Duree.liste;
   readonly cibles = Cible.liste;
 
-
   constructor() {
     this.reset();
     this.proxy = new Proxy(this, new SortHandler());
     this.generate();
-  }
-
-  ngOnInit() {
   }
 
   @Input()

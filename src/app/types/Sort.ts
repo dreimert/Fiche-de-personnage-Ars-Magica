@@ -7,7 +7,7 @@ import {Art} from './Art';
 import { enumToListe } from '../utiles/enumToListe';
 
 export interface Modificateur {
-  readonly modificateur;
+  readonly modificateur: number;
 }
 
 export class Portee implements Named, Modificateur, Jsonable {
@@ -41,7 +41,7 @@ export class Portee implements Named, Modificateur, Jsonable {
     }
   }
 
-  public static fromJSON(source) {
+  public static fromJSON (source: any) {
     return new Portee(source.name, source.modificateur);
   }
 }
@@ -81,7 +81,7 @@ export class Duree implements Named, Modificateur, Jsonable {
     }
   }
 
-  public static fromJSON(source) {
+  public static fromJSON (source: any) {
     return new Duree(source.name, source.modificateur);
   }
 }
@@ -121,7 +121,7 @@ export class Cible implements Named, Modificateur, Jsonable {
     }
   }
 
-  public static fromJSON(source) {
+  public static fromJSON (source: any) {
     return new Cible(source.name, source.modificateur);
   }
 }
@@ -135,12 +135,12 @@ export class Sort implements Named, ConvertToXpliable, Jsonable {
 
   constructor(
     readonly name: string,
-    readonly technique: Art,
-    readonly forme: Art,
-    readonly base: number,
-    readonly portee: Portee,
-    readonly duree: Duree,
-    readonly cible: Cible,
+    readonly technique?: Art,
+    readonly forme?: Art,
+    readonly base: number = 0,
+    readonly portee?: Portee,
+    readonly duree?: Duree,
+    readonly cible?: Cible,
     readonly modificateur: number = 0,
     readonly description: string = "",
     readonly complements: Array<Art> = []
@@ -152,7 +152,7 @@ export class Sort implements Named, ConvertToXpliable, Jsonable {
     this._niveau = this.calcNiveau();
   }
 
-  calcNiveau() {
+  calcNiveau () {
     let lvl = this.base;
 
     let sortModif = function() {
@@ -166,9 +166,9 @@ export class Sort implements Named, ConvertToXpliable, Jsonable {
       }
     }
 
-    addValeur(this.portee.modificateur);
-    addValeur(this.duree.modificateur);
-    addValeur(this.cible.modificateur);
+    addValeur(this.portee?.modificateur || 0);
+    addValeur(this.duree?.modificateur || 0);
+    addValeur(this.cible?.modificateur || 0);
     addValeur(this.modificateur);
 
     return lvl;
@@ -202,7 +202,7 @@ export class Sort implements Named, ConvertToXpliable, Jsonable {
     };
   }
 
-  public static fromJSON(source) {
+  public static fromJSON(source: any) {
     return new Sort(
       source.name,
       source.technique,
@@ -263,7 +263,7 @@ export class SortXpliable extends Sort implements Xpliable {
     return this._xp.lvl;
   }
 
-  toJSON(): any {
+  override toJSON (): any {
     return {
       fromJSON: "SortXpliable",
       sort: this.sort,
@@ -271,7 +271,7 @@ export class SortXpliable extends Sort implements Xpliable {
     };
   }
 
-  public static fromJSON(source) {
+  public static override fromJSON (source: any) {
     return new SortXpliable(
       source.sort,
       source.labels

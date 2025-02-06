@@ -1,3 +1,3 @@
 export interface Named {
-  readonly name : string;
+  readonly name : string | null;
 }

@@ -1,32 +1,40 @@
 <table>
   <thead>
-  <tr>
-    <th>Nom</th>
-    <th *ngFor="let etape of etapes">{{etape}}</th>
-    <th>Total</th>
-    <th>Niveau</th>
-  </tr>
+    <tr>
+      <th>Nom</th>
+      @for (etape of etapes; track etape) {
+        <th>{{etape}}</th>
+      }
+      <th>Total</th>
+      <th>Niveau</th>
+    </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let competence of proxies">
-      <td>{{competence}}</td>
-      <td *ngFor="let etape of etapes">
-        <md-input-container>
-          <input mdInput type="number" min="0" [(ngModel)]="competence[etape]"/>
-        </md-input-container>
-      </td>
-      <td class="xp">
-        {{competence.xp}}
-      </td>
-      <td class="lvl">
-        {{competence.lvl}}
-      </td>
-    </tr>
+    @for (competence of proxies; track competence) {
+      <tr>
+        <td>{{competence}}</td>
+        @for (etape of etapes; track etape) {
+          <td>
+            <mat-form-field>
+              <input matInput type="number" min="0" [(ngModel)]="competence[etape]"/>
+            </mat-form-field>
+          </td>
+        }
+        <td class="xp">
+          {{competence.xp}}
+        </td>
+        <td class="lvl">
+          {{competence.lvl}}
+        </td>
+      </tr>
+    }
   </tbody>
   <tfoot>
     <tr>
       <th>Total</th>
-      <th *ngFor="let etape of etapes">{{ sumField(proxies, etape) }}</th>
+      @for (etape of etapes; track etape) {
+        <th>{{ sumField(proxies, etape) }}</th>
+      }
       <th>{{ sumField(proxies, "xp") }}</th>
       <th>{{ sumField(proxies, "lvl") }}</th>
     </tr>

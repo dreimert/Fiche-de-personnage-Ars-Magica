@@ -1,0 +1,35 @@
+.full-width {
+  width: 100%;
+}
+
+section {
+  margin: 8px;
+}
+
+mat-select {
+  margin-top: 16px;
+}
+
+mat-radio-button {
+  margin-left: 8px;
+}
+
+.mat-red {
+  color: red;
+}
+
+.mat-red-lite {
+  color: #fd7676;
+}
+
+.mat-green {
+  color: green;
+}
+
+.mat-green-lite {
+  color: rgba(31, 216, 31, 0.83);;
+}
+
+.hide {
+  display: none;
+}

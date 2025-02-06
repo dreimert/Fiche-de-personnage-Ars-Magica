@@ -1,3 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+build-sort .mat-input-underline {
+  margin-top: 5px;
+}
+
 .full-width {
   width: 100%;
 }
@@ -6,11 +15,11 @@ section {
   margin: 8px;
 }
 
-md-select {
+mat-select {
   margin-top: 16px;
 }
 
-md-radio-button {
+mat-radio-button {
   margin-left: 8px;
 }
 

@@ -1,7 +1,11 @@
 import {CompetenceType} from '../types/Enum';
 
-export const competences = {
-  [CompetenceType[CompetenceType.Générale]]: [
+type CompetencesMap = {
+  [key in CompetenceType]?: string[];
+}
+
+export const competences: CompetencesMap = {
+  [CompetenceType.Générale]: [
     "Artisanat [types]",
     "Athlétisme",
     "Attention",
@@ -30,7 +34,7 @@ export const competences = {
     "Survie",
     "Tromperie",
   ],
-  [CompetenceType[CompetenceType.Académique]]: [
+  [CompetenceType.Académique]: [
     "Ars libéraux",
     "Droit civil et canon",
     "Droit commun",
@@ -39,7 +43,7 @@ export const competences = {
     "Philosophies",
     "Théologie"
   ],
-  [CompetenceType[CompetenceType.Mystique]]: [
+  [CompetenceType.Mystique]: [
     "Connaissance de l'occulte",
     "Connaissance de la Féerie",
     "Connaissance de la magie",
@@ -50,13 +54,13 @@ export const competences = {
     "Pénétration",
     "Théorie de la magie"
   ],
-  [CompetenceType[CompetenceType.Martiale]]: [
+  [CompetenceType.Martiale]: [
     "Archerie",
     "Armes à deux mains",
     "Armes à une main",
     "Armes de jet"
   ],
-  [CompetenceType[CompetenceType.Surnaturelle]]: [
+  [CompetenceType.Surnaturelle]: [
     "Changeforme",
     "Double vue",
     "Empathie avec les animaux",

@@ -1,28 +1,29 @@
 <table>
   <thead>
-  <tr>
-    <th>Nom</th>
-    <th>Valeur</th>
-    <th>Coût</th>
-  </tr>
+    <tr>
+      <th>Nom</th>
+      <th>Valeur</th>
+      <th>Coût</th>
+    </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let caracterisque of caracterisques">
-      <td>{{caracterisque.name}}</td>
-      <td class="valeur">
-        <md-slider
+    @for (caracterisque of caracterisques; track caracterisque) {
+      <tr>
+        <td>{{caracterisque.name}}</td>
+        <td class="valeur">
+          <mat-slider
             [max]="3"
             [min]="-3"
             [step]="1"
-            [thumb-label]="true"
-            [tick-interval]="1"
-            [(ngModel)]="caracterisque.valeur"
-        >
-        </md-slider>
-        <span>{{caracterisque.valeur}}</span>
-      </td>
-      <td class="cout"><span>{{caracterisque.cout}}</span></td>
-    </tr>
+            [discrete]="true"
+            [showTickMarks]="true">
+          <input matSliderThumb [(ngModel)]="caracterisque.valeur" #slider>
+        </mat-slider>
+          <span>{{caracterisque.valeur}}</span>
+        </td>
+        <td class="cout"><span>{{caracterisque.cout}}</span></td>
+      </tr>
+    }
   </tbody>
   <tfoot>
     <tr>

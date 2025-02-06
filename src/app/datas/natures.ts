@@ -1,14 +1,22 @@
 import {NatureType, NatureCategory, NatureValeur} from '../types/Enum';
 
-export const natures = {
-  [NatureType[NatureType.Vertus]]: {
-    [NatureCategory[NatureCategory.Spéciale]]: {
-      [NatureValeur[NatureValeur.Gratuite]]: [
+type NatureMap = {
+  [K in NatureType]?: {
+    [K2 in NatureCategory]?: {
+      [K3 in NatureValeur | 'majeurOuMineur']?: string[]
+    }
+  }
+};
+
+export const natures: NatureMap = {
+  [NatureType.Vertus]: {
+    [NatureCategory.Spéciale]: {
+      [NatureValeur.Gratuite]: [
         "Le Don"
       ]
     },
-    [NatureCategory[NatureCategory.Hermétique]]: {
-      [NatureValeur[NatureValeur.Majeure]]: [
+    [NatureCategory.Hermétique]: {
+      [NatureValeur.Majeure]: [
         "Don de Velours",
         "Expertise magique majeure",
         "Magie de Diedne",
@@ -20,7 +28,7 @@ export const natures = {
         "Révélations secondaires",
         "Sang mythique",
       ],
-      [NatureValeur[NatureValeur.Mineure]]: [
+      [NatureValeur.Mineure]: [
         "Affinité pour [Art]",
         "Animal de coeur",
         "Bonus aux études",
@@ -52,15 +60,21 @@ export const natures = {
         "Talent en [Art]",
       ]
     },
-    [NatureCategory[NatureCategory.Surnaturelle]]: {
-      [NatureValeur[NatureValeur.Majeure]]: [
+    [NatureCategory.Personnalité]: {
+
+    },
+    [NatureCategory.Histoire]: {
+
+    },
+    [NatureCategory.Surnaturelle]: {
+      [NatureValeur.Majeure]: [
         "Changeforme",
         "Hypnotisme",
         "Immunité majeure",
         "Imposition des mains majeure",
         "Sang féerique saillant",
       ],
-      [NatureValeur[NatureValeur.Mineure]]: [
+      [NatureValeur.Mineure]: [
         "Changepeau",
         "Double vue",
         "Empathie avec les animaux",
@@ -74,13 +88,13 @@ export const natures = {
         "Sourcier",
       ]
     },
-    [NatureCategory[NatureCategory.StatutSocial]]: {
-      [NatureValeur[NatureValeur.Majeure]]: [
+    [NatureCategory.StatutSocial]: {
+      [NatureValeur.Majeure]: [
         "Magister in Artibus",
         "Noble propriétaire terrien",
         "Toque Rouge",
       ],
-      [NatureValeur[NatureValeur.Mineure]]: [
+      [NatureValeur.Mineure]: [
         "Apprenti raté",
         "Capitaine mercenaire",
         "Chevalier",
@@ -91,7 +105,7 @@ export const natures = {
         "Prêtre",
         "Sage",
       ],
-      [NatureValeur[NatureValeur.Gratuite]]: [
+      [NatureValeur.Gratuite]: [
         "Artisant",
         "Mage hermétique",
         "Marchand",
@@ -100,8 +114,8 @@ export const natures = {
         "Vagabond",
       ]
     },
-    [NatureCategory[NatureCategory.Générale]]: {
-      [NatureValeur[NatureValeur.Majeure]]: [
+    [NatureCategory.Générale]: {
+      [NatureValeur.Majeure]: [
         "Ange gardien",
         "Connaissance du [terrain]",
         "Fantôme protecteur",
@@ -110,7 +124,7 @@ export const natures = {
         "Richesse",
         "Sang de géant",
       ],
-      [NatureValeur[NatureValeur.Mineure]]: [
+      [NatureValeur.Mineure]: [
         "Affinité pour [Compétence]",
         "Amour véritable [Pj]",
         "Aptitude magique latente",
@@ -163,9 +177,12 @@ export const natures = {
       ]
     },
   },
-  [NatureType[NatureType.Vis]]: {
-    [NatureCategory[NatureCategory.Hermétique]]: {
-      [NatureValeur[NatureValeur.Majeure]]: [
+  [NatureType.Vis]: {
+    [NatureCategory.Spéciale]: {
+
+    },
+    [NatureCategory.Hermétique]: {
+      [NatureValeur.Majeure]: [
         "Condition nécessaire",
         "Dépendance à la magie",
         "Don tapageur",
@@ -184,7 +201,7 @@ export const natures = {
         "Rituel de longévité difficile",
         "Technique déficiente",
       ],
-      [NatureValeur[NatureValeur.Mineure]]: [
+      [NatureValeur.Mineure]: [
         "Arts incompatibles",
         "Circonstances délétères",
         "Créativité asséchée",
@@ -217,7 +234,7 @@ export const natures = {
         "Vulnérable au pouvoir infernal"
       ]
     },
-    [NatureCategory[NatureCategory.Personnalité]]: {
+    [NatureCategory.Personnalité]: {
       majeurOuMineur: [
         "Ambition",
         "Arrogance",
@@ -235,7 +252,7 @@ export const natures = {
         "Optimisme",
         "Piété",
       ],
-      [NatureValeur[NatureValeur.Mineure]]: [
+      [NatureValeur.Mineure]: [
         "Amour perdu",
         "Chasteté",
         "Commérage",
@@ -270,8 +287,8 @@ export const natures = {
         "Voeu"
       ]
     },
-    [NatureCategory[NatureCategory.Histoire]]: {
-      [NatureValeur[NatureValeur.Majeure]]: [
+    [NatureCategory.Histoire]: {
+      [NatureValeur.Majeure]: [
         "Amour véritable [PNJ]",
         "Brebis galeuse",
         "Ennemis",
@@ -290,7 +307,7 @@ export const natures = {
         "Subalternes difficiles",
         "Voeux monastiques",
       ],
-      [NatureValeur[NatureValeur.Mineure]]: [
+      [NatureValeur.Mineure]: [
         "Ami féerique",
         "Chantage",
         "Compagnon animal",
@@ -301,31 +318,31 @@ export const natures = {
         "Visions",
       ]
     },
-    [NatureCategory[NatureCategory.Surnaturelle]]: {
-      [NatureValeur[NatureValeur.Majeure]]: [
+    [NatureCategory.Surnaturelle]: {
+      [NatureValeur.Majeure]: [
         "Grande malédiction",
         "Lycanthrope",
         "Vieillissement accéléré",
       ],
-      [NatureValeur[NatureValeur.Mineure]]: [
+      [NatureValeur.Mineure]: [
         "Haine des animaux",
         "Petite malédiction",
         "Visions",
       ]
     },
-    [NatureCategory[NatureCategory.StatutSocial]]: {
-      [NatureValeur[NatureValeur.Majeure]]: [
+    [NatureCategory.StatutSocial]: {
+      [NatureValeur.Majeure]: [
         "Étranger",
         "Hors-la-loi",
       ],
-      [NatureValeur[NatureValeur.Mineure]]: [
+      [NatureValeur.Mineure]: [
         "Chef hors-la-loi",
         "Criminel marqué",
         "Marginal",
       ]
     },
-    [NatureCategory[NatureCategory.Générale]]: {
-      [NatureValeur[NatureValeur.Majeure]]: [
+    [NatureCategory.Générale]: {
+      [NatureValeur.Majeure]: [
         "Asthénie",
         "Cécité",
         "Halo magique",
@@ -337,7 +354,7 @@ export const natures = {
         "Privé de mains",
         "Surdité",
       ],
-      [NatureValeur[NatureValeur.Mineure]]: [
+      [NatureValeur.Mineure]: [
         "Arthrite",
         "Caractèrisques inférieures",
         "Compétences inhibées",

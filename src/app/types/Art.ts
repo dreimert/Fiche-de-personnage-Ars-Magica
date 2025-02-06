@@ -5,22 +5,22 @@ import {Technique, Forme, ArtType} from './Enum';
 import {Jsonable, registerJsonable} from './Jsonable';
 
 export class Art implements Named, ConvertToXpliable, Specifiable<Art, Art>, Jsonable {
-  public static readonly Creo: Art = new Art(ArtType.Technique, "Creo");
-  public static readonly Intelligo: Art = new Art(ArtType.Technique, "Intelligo");
-  public static readonly Muto: Art = new Art(ArtType.Technique, "Muto");
-  public static readonly Perdo: Art = new Art(ArtType.Technique, "Perdo");
-  public static readonly Rego: Art = new Art(ArtType.Technique, "Rego");
+  public static readonly Creo: Art = new Art(ArtType.Technique, Technique.Creo);
+  public static readonly Intelligo: Art = new Art(ArtType.Technique, Technique.Intelligo);
+  public static readonly Muto: Art = new Art(ArtType.Technique, Technique.Muto);
+  public static readonly Perdo: Art = new Art(ArtType.Technique, Technique.Perdo);
+  public static readonly Rego: Art = new Art(ArtType.Technique, Technique.Rego);
 
-  public static readonly Animal: Art = new Art(ArtType.Forme, "Animal");
-  public static readonly Aquam: Art = new Art(ArtType.Forme, "Aquam");
-  public static readonly Auram: Art = new Art(ArtType.Forme, "Auram");
-  public static readonly Corpus: Art = new Art(ArtType.Forme, "Corpus");
-  public static readonly Herbam: Art = new Art(ArtType.Forme, "Herbam");
-  public static readonly Ignem: Art = new Art(ArtType.Forme, "Ignem");
-  public static readonly Imaginem: Art = new Art(ArtType.Forme, "Imaginem");
-  public static readonly Mentem: Art = new Art(ArtType.Forme, "Mentem");
-  public static readonly Terram: Art = new Art(ArtType.Forme, "Terram");
-  public static readonly Vim: Art = new Art(ArtType.Forme, "Vim");
+  public static readonly Animal: Art = new Art(ArtType.Forme, Forme.Animal);
+  public static readonly Aquam: Art = new Art(ArtType.Forme, Forme.Aquam);
+  public static readonly Auram: Art = new Art(ArtType.Forme, Forme.Auram);
+  public static readonly Corpus: Art = new Art(ArtType.Forme, Forme.Corpus);
+  public static readonly Herbam: Art = new Art(ArtType.Forme, Forme.Herbam);
+  public static readonly Ignem: Art = new Art(ArtType.Forme, Forme.Ignem);
+  public static readonly Imaginem: Art = new Art(ArtType.Forme, Forme.Imaginem);
+  public static readonly Mentem: Art = new Art(ArtType.Forme, Forme.Mentem);
+  public static readonly Terram: Art = new Art(ArtType.Forme, Forme.Terram);
+  public static readonly Vim: Art = new Art(ArtType.Forme, Forme.Vim);
 
   public static readonly liste: Art[] = [
     Art.Creo,
@@ -103,7 +103,7 @@ export class Art implements Named, ConvertToXpliable, Specifiable<Art, Art>, Jso
     };
   }
 
-  public static fromJSON(source) {
+  public static fromJSON(source: any) {
     return new Art(
       source.type,
       source.name
@@ -145,7 +145,7 @@ export class ArtXpliable extends Art implements Xpliable {
     return this._xp.lvl;
   }
 
-  toJSON(): any {
+  override toJSON(): any {
     return {
       fromJSON: "ArtXpliable",
       art: this.art,
@@ -153,7 +153,7 @@ export class ArtXpliable extends Art implements Xpliable {
     };
   }
 
-  public static fromJSON(source) {
+  public static override fromJSON(source: any) {
     return new ArtXpliable(
       source.art,
       source.labels

@@ -7,7 +7,7 @@ input[type="number"] {
   min-width: 70px;
 }
 
-md-select {
+mat-select {
   min-width: 120px;
 }
 
@@ -16,7 +16,7 @@ md-select {
   align-items: baseline;
 }
 
-.row md-input-container, .row md-select {
+.row mat-form-field, .row mat-select {
   padding: 0 2px;
   padding-top: 16px;
 }

@@ -5,9 +5,9 @@ import {Caracteristique} from './Caracteristique';
 import {Specifiable, Choices} from './Specifiable';
 
 export class Specificite {
-  private _typeSpeciality: string = null;
+  private _typeSpeciality: string | null = null;
 
-  constructor(public readonly name: string, public readonly speciality: Named | string = null) {
+  constructor(public readonly name: string | null, public readonly speciality: Named | string | null = null) {
     if(name) {
       let typeSpeciality = name.match(/.*\[(.*)\]/);
       // specilité : Art, Compétence, Caractèristique
@@ -42,9 +42,9 @@ export class Specificite {
 
   toString() {
     if(this.speciality !== null) {
-      return this.name.replace(/\[.*\]/, this.speciality.toString());
+      return this.name!.replace(/\[.*\]/, this.speciality.toString());
     } else {
-      return this.name.replace(/\[/, '(').replace(/\]/, ')');
+      return this.name!.replace(/\[/, '(').replace(/\]/, ')');
     }
   }
 }
