@@ -7,22 +7,22 @@ import { Sort } from './Sort';
 import { parse } from './Jsonable';
 
 export enum PersonnageType {
-    Mage,
-    Compagnon,
-    Servant
+  Mage = "Mage",
+  Compagnon = "Compagnon",
+  Servant = "Servant",
 }
 
 export class Personnage {
-  name: string;
-  concept: string;
-  type: PersonnageType;
-  maison: Maison;
-  natures: Nature[];
-  caracterisques: Caracteristique[];
-  competences: CompetenceXpliable[];
-  arts: ArtXpliable[];
-  sorts: Sort[];
-  notes: string;
+  name?: string;
+  concept?: string;
+  type?: PersonnageType;
+  maison?: Maison;
+  natures?: Nature[];
+  caracterisques: Caracteristique[] = [];
+  competences: CompetenceXpliable[] = [];
+  arts: ArtXpliable[] = [];
+  sorts: Sort[] = [];
+  notes?: string;
 }
 
 export function parseJsonPersonnage(json : string): Personnage {

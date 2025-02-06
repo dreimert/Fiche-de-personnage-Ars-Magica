@@ -1,12 +1,12 @@
 export interface Jsonable {
-  toJSON() : Object;
+  toJSON(): any;
 }
 
 export interface FromJSON {
-  fromJSON(source: any) : any;
+  fromJSON(source: string): any;
 }
 
-let froms = {};
+let froms: {[key: string]: any} = {};
 
 export function registerJsonable(name: string, from: FromJSON) {
   froms[name] = from;

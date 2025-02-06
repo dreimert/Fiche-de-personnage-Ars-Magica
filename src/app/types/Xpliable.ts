@@ -4,12 +4,12 @@ export interface XpliableLabel {
 }
 
 export interface Xpliable {
-  readonly xp : number;
-  readonly lvl : number;
-  readonly labels : XpliableLabel[];
-  getLabel(name: string) : number;
-  setLabel(name: string, xp : number) : Xpliable;
-  removeLabel(name: string) : boolean;
+  readonly xp: number;
+  readonly lvl: number;
+  readonly labels: XpliableLabel[];
+  getLabel(name: string): number | undefined;
+  setLabel(name: string, xp: number): Xpliable;
+  removeLabel(name: string): boolean;
 }
 
 export interface ConvertToXpliable {

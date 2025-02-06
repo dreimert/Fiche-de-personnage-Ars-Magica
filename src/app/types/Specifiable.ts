@@ -1,10 +1,10 @@
 import {Pattern} from './Pattern';
 
 export class Choices<U> {
-  constructor(readonly liste: U[] = null, readonly multi = false) {}
+  constructor(readonly liste?: U[], readonly multi = false) {}
 
   isFree() : boolean {
-    return this.liste === null;
+    return this.liste === undefined;
   }
 }
 

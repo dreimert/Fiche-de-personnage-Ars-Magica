@@ -1,50 +1,29 @@
-/* tslint:disable:no-unused-variable */
-
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { MaterialModule } from '@angular/material';
-import { FormsModule } from '@angular/forms';
-import 'hammerjs';
-
-import { SelectPatternSpecifiableComponent } from './select-pattern-specifiable/select-pattern-specifiable.component';
-import { CompetenceXpRowComponent } from './competence-xp-row/competence-xp-row.component';
-import { CaracteristiquesComponent } from './caracteristiques/caracteristiques.component';
-import { BuildSortComponent } from './build-sort/build-sort.component';
 
 describe('AppComponent', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent,
-        SelectPatternSpecifiableComponent,
-        CompetenceXpRowComponent,
-        CaracteristiquesComponent,
-        BuildSortComponent,
-      ],
-      imports: [
-        MaterialModule.forRoot(),
-        FormsModule
-      ]
-    });
-    TestBed.compileComponents();
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AppComponent],
+    }).compileComponents();
   });
 
-  it('should create the app', async(() => {
+  it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  }));
+  });
 
-  it(`should have as title 'Création de personnage'`, async(() => {
+  it(`should have the 'ars' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Création de personnage');
-  }));
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('ars');
+  });
 
-  it('should render title in a h1 tag', async(() => {
+  it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h3').textContent).toContain('Nom');
-  }));
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, ars');
+  });
 });

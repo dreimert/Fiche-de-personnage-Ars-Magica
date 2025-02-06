@@ -7,16 +7,16 @@ import {Jsonable, registerJsonable} from './Jsonable';
 
 import {competences} from '../datas/competences';
 
-let liste = [];
-let dictionnaire = {};
+let liste: Competence[] = [];
+let dictionnaire: {[key: string]: Competence} = {};
 
 export class Competence implements Named, ConvertToXpliable, Specifiable<Competence, Competence>, Jsonable {
-  public static readonly liste : Competence[] = liste;
+  public static readonly liste  = liste;
   public static readonly enum = dictionnaire;
 
   private _typeSpeciality: Specificite;
 
-  constructor(readonly type: CompetenceType, readonly name: string = null, readonly speciality: string = null) {
+  constructor(readonly type: CompetenceType, readonly name: string | null = null, readonly speciality: string | null = null) {
     this._typeSpeciality = new Specificite(name, speciality);
   }
 
@@ -56,7 +56,7 @@ export class Competence implements Named, ConvertToXpliable, Specifiable<Compete
     }
   }
 
-  specify(value) {
+  specify (value: string | Competence) {
     if(typeof value === "string") {
       return new Competence(this.type, this.name, value);
     } else {
@@ -64,12 +64,12 @@ export class Competence implements Named, ConvertToXpliable, Specifiable<Compete
     }
   }
 
-  convertToXpliable() {
+  convertToXpliable () {
     return new CompetenceXpliable(this);
   }
 
-  toString() {
-    return this._typeSpeciality.toString();
+  toString () {
+    return this._typeSpeciality?.toString() || "Oups";
   }
 
   toJSON(): any {
@@ -99,32 +99,32 @@ export class CompetenceXpliable extends Competence implements Xpliable {
     this._xp = new XpliableImplemantation(5, labels);
   }
 
-  getLabel(name: string) {
+  getLabel (name: string) {
     return this._xp.getLabel(name);
   }
 
-  setLabel(name: string, xp : number) : this {
+  setLabel (name: string, xp : number) : this {
     this._xp.setLabel(name, xp);
     return this;
   }
 
-  removeLabel(name: string) : boolean {
+  removeLabel (name: string) : boolean {
     return this._xp.removeLabel(name);
   }
 
-  get xp(): number {
+  get xp (): number {
     return this._xp.xp;
   }
 
-  get lvl() : number {
+  get lvl () : number {
     return this._xp.lvl;
   }
 
-  get labels() {
+  get labels () {
     return this._xp.labels;
   }
 
-  toJSON() {
+  override toJSON () {
     return {
       fromJSON: "CompetenceXpliable",
       competence: this.competence,
@@ -132,7 +132,7 @@ export class CompetenceXpliable extends Competence implements Xpliable {
     };
   }
 
-  public static fromJSON(source) {
+  public static override fromJSON (source: any) {
     return new CompetenceXpliable(
       source.competence,
       source.labels
@@ -143,14 +143,14 @@ export class CompetenceXpliable extends Competence implements Xpliable {
 registerJsonable("CompetenceXpliable", CompetenceXpliable);
 
 for(let ctype in competences) {
-  for(let name of competences[ctype]) {
+  for(let name of competences[ctype as CompetenceType]!) {
     liste.push(new Competence(
-      CompetenceType[<string>ctype],
+      ctype as CompetenceType,
       name
     ));
   }
 }
 
 liste.forEach(function(competence){
-  dictionnaire[competence.name] = competence;
+  dictionnaire[competence.name!] = competence;
 });

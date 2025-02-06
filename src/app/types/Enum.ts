@@ -1,66 +1,66 @@
 export enum Technique {
-  Creo,
-  Intelligo,
-  Muto,
-  Perdo,
-  Rego,
+  Creo = "Creo",
+  Intelligo = "Intelligo",
+  Muto = "Muto",
+  Perdo = "Perdo",
+  Rego = "Rego",
 }
 
 export enum Forme {
-  Animal,
-  Aquam,
-  Auram,
-  Corpus,
-  Herbam,
-  Ignem,
-  Imaginem,
-  Mentem,
-  Terram,
-  Vim,
+  Animal = "Animal",
+  Aquam = "Aquam",
+  Auram = "Auram",
+  Corpus = "Corpus",
+  Herbam = "Herbam",
+  Ignem = "Ignem",
+  Imaginem = "Imaginem",
+  Mentem = "Mentem",
+  Terram = "Terram",
+  Vim = "Vim",
 }
 
 export enum ArtType {
-  Technique,
-  Forme
+  Technique = "Technique",
+  Forme = "Forme",
 }
 
 export enum MaisonName {
-  Bjornaer,
-  Bonisagus,
-  Criamon,
-  ExMiscellanea,
-  Flambeau,
-  Guernicus,
-  Jerbiton,
-  Mercere,
-  Merinita,
-  Tremere,
-  Tytalus,
-  Verditius
+  Bjornaer = "Bjornaer",
+  Bonisagus = "Bonisagus",
+  Criamon = "Criamon",
+  ExMiscellanea = "Ex Miscellanea",
+  Flambeau = "Flambeau",
+  Guernicus = "Guernicus",
+  Jerbiton = "Jerbiton",
+  Mercere = "Mercere",
+  Merinita = "Merinita",
+  Tremere = "Tremere",
+  Tytalus = "Tytalus",
+  Verditius = "Verditius",
 };
 
 export enum CompetenceType {
-  Générale,
-  Académique,
-  Mystique,
-  Martiale,
-  Surnaturelle,
-  Sort
+  Générale = "Générale",
+  Académique = "Académique",
+  Mystique = "Mystique",
+  Martiale = "Martiale",
+  Surnaturelle = "Surnaturelle",
+  Sort = "Sort",
 }
 
 export enum NatureType {
-  Vertus,
-  Vis
+  Vertus = "Vertus",
+  Vis = "Vis",
 }
 
 export enum NatureCategory {
-  Hermétique,
-  Surnaturelle,
-  StatutSocial,
-  Générale,
-  Personnalité,
-  Histoire,
-  Spéciale
+  Hermétique = "Hermétique",
+  Surnaturelle = "Surnaturelle",
+  StatutSocial = "Statut social",
+  Générale = "Générale",
+  Personnalité = "Personnalité",
+  Histoire = "Histoire",
+  Spéciale = "Spéciale",
 }
 
 // Utiliser des masques pour les enums : 1 << 1
@@ -73,38 +73,38 @@ export enum NatureValeur {
 }
 
 export enum SortPortee {
-  Personnel,
-  Toucher,
-  Regard,
-  Voix,
-  Vue,
-  "Lien mystique"
+  Personnel = "Personnel",
+  Toucher = "Toucher",
+  Regard = "Regard",
+  Voix = "Voix",
+  Vue = "Vue",
+  LienMystique = "Lien mystique",
 }
 
 export enum SortDuree {
-  Momentane,
-  Concentration,
-  Diametre,
-  Soleil,
-  Anneau,
-  Lune,
-  Annee
+  Momentane = "Momentané",
+  Concentration = "Concentration",
+  Diametre = "Diamètre",
+  Soleil = "Soleil",
+  Anneau = "Anneau",
+  Lune = "Lune",
+  Annee = "Année",
 }
 
 export enum SortCible {
-  Individu,
-  Cercle,
-  Partie,
-  Groupe,
-  Piece,
-  Structure,
-  Zone
+  Individu = "Individu",
+  Cercle = "Cercle",
+  Partie = "Partie",
+  Groupe = "Groupe",
+  Piece = "Pièce",
+  Structure = "Structure",
+  Zone = "Zone",
 }
 
 export enum SortSens {
-  Gout,
-  Toucher,
-  Odorat,
-  Ouie,
-  Vue
+  Gout = "Goût",
+  Toucher = "Toucher",
+  Odorat = "Odorat",
+  Ouie = "Ouïe",
+  Vue = "Vue",
 }

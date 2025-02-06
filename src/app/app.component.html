@@ -1,52 +1,47 @@
-
-<!-- <md-input-container>
-  <label>Concept</label>
-  <md-input placeholder="First name" value="Toto"></md-input>
-<md-input-container>
-<br/> -->
-<!-- <md-card>
-  <button md-button>FLAT</button>
-  <button md-raised-button md-tooltip="This is a tooltip!">RAISED</button>
-  <button md-raised-button color="primary">PRIMARY RAISED</button>
-  <button md-raised-button color="accent">ACCENT RAISED</button>
-</md-card> -->
-
 <section>
   <h3>Nom</h3>
-  <md-input-container class="full-width">
-    <input mdInput placeholder="Nom du personnage" [(ngModel)]="personnage.name"/>
-  </md-input-container>
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Nom du personnage</mat-label>
+    <input matInput placeholder="Nom du personnage" [(ngModel)]="personnage.name"/>
+  </mat-form-field>
   <h3>Concept</h3>
-  <md-input-container class="full-width">
-    <textarea mdInput placeholder="Concept du personnage" [(ngModel)]="personnage.concept"></textarea>
-  </md-input-container>
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Concept du personnage</mat-label>
+    <textarea matInput placeholder="Concept du personnage" [(ngModel)]="personnage.concept"></textarea>
+  </mat-form-field>
 </section>
 
 <section>
   <h3>Type de personnage</h3>
-  <md-radio-group [(ngModel)]="typeModel">
-    <md-radio-button *ngFor="let type of types.liste; let i = index" value="{{i}}">{{type}}</md-radio-button>
-  </md-radio-group>
+  <label id="type-radio-group-label">Type de personnage :</label>
+  <mat-radio-group name="type" aria-labelledby="type-radio-group-label" [(ngModel)]="typeModel">
+    @for (type of types.liste; track type) {
+      <mat-radio-button [value]="$index">{{type}}</mat-radio-button>
+    }
+  </mat-radio-group>
 </section>
 
-<section *ngIf="personnage.type == types.names.Mage">
+@if (personnage.type == types.names.Mage) {
+<section>
   <h3>Votre maison</h3>
   <select-pattern-specifiable [liste]="maisons" [(selected)]="personnage.maison"></select-pattern-specifiable>
 </section>
+}
 
 <section>
   <h3>Vos vertus et vis</h3>
   <span>{{naturesMsg}}</span>
-  <md-chip-list>
-    <md-chip [color]="natureColor(nature)" *ngFor="let nature of personnage.natures" (click)="deleteNature(nature)">{{nature}}</md-chip>
-  </md-chip-list>
+  <mat-chip-set>
+    @for (nature of personnage.natures; track nature) {
+      <mat-chip [color]="natureColor(nature)" (click)="deleteNature(nature)">{{nature}}</mat-chip>
+    }
+  </mat-chip-set>
   <select-pattern-specifiable [liste]="natures" [(selected)]="natureSelected"></select-pattern-specifiable>
-  <button md-raised-button (click)="addNature(natureSelected)">Ajouter</button>
-  <!-- auto-complete -->
+  <button mat-raised-button (click)="addNature(natureSelected!)">Ajouter</button>
 </section>
 
 <section>
-  <h3>Caractèristiques</h3>
+  <h3>Caractéristiques</h3>
   <caracteristiques [caracterisques]="personnage.caracterisques"></caracteristiques>
 </section>
 
@@ -54,37 +49,43 @@
   <h3>Compétences</h3>
   <competence-xp-row
     [competences]="personnage.competences"
-    [etapes]="['Gratuit', 'Petite enfance', 'Vie postérieure', 'Apprentissage', 'Après l\'apprentissage']"
+    [etapes]="$any(['Gratuit', 'Petite enfance', 'Vie postérieure', 'Apprentissage', 'Après l\'apprentissage'])"
   ></competence-xp-row>
 
   <select-pattern-specifiable [liste]="competences" [(selected)]="competenceSelected"></select-pattern-specifiable>
-  <button md-raised-button (click)="addCompetence(competenceSelected)">Ajouter</button>
+  <button mat-raised-button (click)="addCompetence(competenceSelected!)">Ajouter</button>
 </section>
 
-<section *ngIf="personnage.type == types.names.Mage">
-  <h3>Ars</h3>
-  <competence-xp-row
-    [competences]="personnage.arts"
-    [etapes]="['Apprentissage', 'Après l\'apprentissage']"
-  ></competence-xp-row>
-</section>
+@if (personnage.type == types.names.Mage) {
+  <section>
+    <h3>Ars</h3>
+    <competence-xp-row
+      [competences]="personnage.arts"
+      [etapes]="$any(['Apprentissage', 'Après l\'apprentissage'])"
+    ></competence-xp-row>
+  </section>
+}
 
-<section *ngIf="personnage.type == types.names.Mage">
-  <h3>Sorts</h3>
-  <div *ngFor="let sort of personnage.sorts"> {{sort.niveau}} - {{sort.name}} - {{sort.technique}} {{sort.forme}} - {{sort.portee}}, {{sort.duree}}, {{sort.cible}}</div>
-  <build-sort [(sort)]="sort"></build-sort>
-  <button class="full-width" md-raised-button (click)="addSort(sort)">Ajouter</button>
-</section>
+@if (personnage.type == types.names.Mage) {
+  <section>
+    <h3>Sorts</h3>
+    @for (sort of personnage.sorts; track sort) {
+      <div> {{sort.niveau}} - {{sort.name}} - {{sort.technique}} {{sort.forme}} - {{sort.portee}}, {{sort.duree}}, {{sort.cible}}</div>
+    }
+    <build-sort [(sort)]="sort"></build-sort>
+    <button class="full-width" mat-raised-button (click)="addSort(sort!)">Ajouter</button>
+  </section>
+}
 
 <section>
   <h3>Notes</h3>
-  <md-input-container class="full-width">
-    <textarea mdInput placeholder="Notes" [(ngModel)]="personnage.notes" rows="10"></textarea>
-  </md-input-container>
+  <mat-form-field class="full-width">
+    <textarea matInput placeholder="Notes" [(ngModel)]="personnage.notes" rows="10"></textarea>
+  </mat-form-field>
 </section>
 
-<button class="full-width" md-raised-button (click)="save()">Sauvegarder</button>
-<button class="full-width" md-raised-button (click)="charger()">Charger</button>
-<button class="full-width" md-raised-button (click)="export()">Exporter</button>
+<button class="full-width" mat-raised-button (click)="save()">Sauvegarder</button>
+<button class="full-width" mat-raised-button (click)="charger()">Charger</button>
+<button class="full-width" mat-raised-button (click)="export()">Exporter</button>
 <input class="hide" id="input-file-id" type="file" (change)="importer($event)" #file/>
-<button class="full-width" md-raised-button (click)="file.click()">Importer</button>
+<button class="full-width" mat-raised-button (click)="file.click()">Importer</button>

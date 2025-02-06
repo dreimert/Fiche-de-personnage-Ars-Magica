@@ -12,13 +12,13 @@ export const exMiscellaneaNature = {
   majeur: {
     est: new Nature(
       NatureType.Vertus,
-      null, // non-hermétique
+      undefined, // non-hermétique
       NatureValeur.Majeure
     ),
     nestpas: new Nature(
-      null,
+      undefined,
       NatureCategory.Hermétique,
-      null
+      undefined
     ),
   },
   vis: new Nature(
@@ -30,7 +30,7 @@ export const exMiscellaneaNature = {
 
 export const jerbitonNature = new Nature(
   NatureType.Vertus,
-  null,
+  undefined,
   NatureValeur.Mineure
 );
 
