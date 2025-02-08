@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th>Nom</th>
-      @for (etape of etapes; track etape) {
+      @for (etape of etapes(); track etape) {
         <th>{{etape}}</th>
       }
       <th>Total</th>
@@ -13,7 +13,7 @@
     @for (competence of proxies; track competence) {
       <tr>
         <td>{{competence}}</td>
-        @for (etape of etapes; track etape) {
+        @for (etape of etapes(); track etape) {
           <td>
             <mat-form-field>
               <input matInput type="number" min="0" [(ngModel)]="competence[etape]"/>
@@ -32,7 +32,7 @@
   <tfoot>
     <tr>
       <th>Total</th>
-      @for (etape of etapes; track etape) {
+      @for (etape of etapes(); track etape) {
         <th>{{ sumField(proxies, etape) }}</th>
       }
       <th>{{ sumField(proxies, "xp") }}</th>

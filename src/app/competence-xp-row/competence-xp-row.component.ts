@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, input } from '@angular/core';
 
 import {Xpliable} from '../types/Xpliable';
 import { Competence } from '../types/Competence';
@@ -37,27 +37,22 @@ class XpHandler implements ProxyHandler<Xpliable> {
   templateUrl: './competence-xp-row.component.html',
   styleUrls: ['./competence-xp-row.component.css']
 })
-export class CompetenceXpRowComponent implements OnInit {
+export class CompetenceXpRowComponent {
 
-  private _competences: Competence[] = [];
   @Output() competencesChange: EventEmitter<Competence[] | Art[]> = new EventEmitter();
 
-  @Input()
-  public etapes: (keyof Xpliable)[] = [];
+  public readonly etapes = input<(keyof Xpliable)[]>([]);
 
   public proxies: Xpliable[] = [];
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   sumField(tab: any[], field: string) {
     return tab.reduce(function(sum, el){
-      return sum + el[field];
+      return sum + (el[field] || 0);
     }, 0);
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input() set competences(competences: Competence[] | Art[]) {
     // @ts-ignore
     this.proxies = competences.map((competence) => {

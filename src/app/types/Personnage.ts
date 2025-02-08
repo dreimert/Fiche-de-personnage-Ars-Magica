@@ -115,13 +115,13 @@ export let Mure : Personnage = {
     Art.Vim.convertToXpliable().setLabel("Apprentissage", 28),
   ],
   sorts: [],
-  notes: `
-    Mûre est la fille de Maureen la gérisseuse / sorcière du village des pins blanc et de Tan Ket Tyr prince de la forêt des pins blancs. Elle est le fruit d'un pacte de non-agression / protection passé entre la Féerie et le village. Dès sa naisssance, sa mère l'emmène aux diffèrentes rituels pour honorer le pacte et invitations dans la cours Féerique que les fées font.
+  notes: `\
+Mûre est la fille de Maureen la gérisseuse / sorcière du village des pins blanc et de Tan Ket Tyr prince de la forêt des pins blancs. Elle est le fruit d'un pacte de non-agression / protection passé entre la Féerie et le village. Dès sa naisssance, sa mère l'emmène aux diffèrentes rituels pour honorer le pacte et invitations dans la cours Féerique que les fées font.
 
-    Peu apprécié par les autres enfants, elle passe beaucoup de temps dans la forêt et rencontre de nombreuses fées, des agents de son père la surveillant ou des fées intriguées par cette humaine qui les comprends.
+Peu apprécié par les autres enfants, elle passe beaucoup de temps dans la forêt et rencontre de nombreuses fées, des agents de son père la surveillant ou des fées intriguées par cette humaine qui les comprends.
 
-    Un jour, une bande de brigants attaque le village et endommage la forêt. En accord avec le pacte et aussi par vengeance, les fées massacrent les brigants. Mais il y a eu un survivant qui raconta son histoire attirant l'attention de l'Ordre d'Hermes. Les mages découvrirent Mûre, donnairent un simple avertissement aux fées et partir avec elle pour la former.
+Un jour, une bande de brigants attaque le village et endommage la forêt. En accord avec le pacte et aussi par vengeance, les fées massacrent les brigants. Mais il y a eu un survivant qui raconta son histoire attirant l'attention de l'Ordre d'Hermes. Les mages découvrirent Mûre, donnairent un simple avertissement aux fées et partir avec elle pour la former.
 
-    Elle fut formé par un Merinita, seul capable d'ouvrir ses pouvoirs malgré sa nature féerique. Durant toute la formation, son père pris réculièrement des nouvelles et passa même plusieurs fois.
-  `
+Elle fut formé par un Merinita, seul capable d'ouvrir ses pouvoirs malgré sa nature féerique. Durant toute la formation, son père pris réculièrement des nouvelles et passa même plusieurs fois.\
+`
 };

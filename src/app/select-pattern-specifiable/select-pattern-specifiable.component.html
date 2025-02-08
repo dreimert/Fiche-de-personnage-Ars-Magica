@@ -1,29 +1,28 @@
-<mat-select placeholder="Choisissez un élément" [(ngModel)]="firstLvl">
-  @for (elem of liste; track elem) {
-    <mat-option
-      [value]="elem"
-      >
-      {{ elem }}
-    </mat-option>
-  }
-</mat-select>
-@if (showSpecifySelect) {
-  <span >
-    @for (speciality of specialityLvlListe; track speciality; let i = $index) {
-      <span>
-        @if (speciality) {
-          <select-pattern-specifiable
-            [liste]="speciality"
-            placeholder="Spécilité"
-            [(selected)]="specialityLvl![i]"
-          ></select-pattern-specifiable>
-        }
-        @if (!speciality) {
-          <mat-form-field>
-            <input matInput placeholder="Spécilité" [(ngModel)]="specialityLvl![i]"/>
-          </mat-form-field>
-        }
-      </span>
+<mat-form-field class="full-width" appearance="fill">
+  <mat-label>{{label()}}</mat-label>
+  <mat-select placeholder="Choisissez un élément" [(ngModel)]="firstLvl">
+    @for (elem of liste(); track $index+elem.toString()) {
+      <mat-option [value]="elem">{{ elem }}</mat-option>
     }
-  </span>
+  </mat-select>
+</mat-form-field>
+
+@if (showSpecifySelect) {
+  @for (speciality of specialityLvlListe; track speciality) {
+    @if (speciality) {
+      <select-pattern-specifiable
+        [label]="subLabel()"
+        [liste]="speciality"
+        placeholder="Spécilité"
+        [(selected)]="specialityLvl![$index]"
+      ></select-pattern-specifiable>
+    }
+
+    @if (!speciality) {
+      <mat-form-field>
+        <mat-label>{{subLabel()}}</mat-label>
+        <input matInput placeholder="Spécilité" [(ngModel)]="specialityLvl![$index]"/>
+      </mat-form-field>
+    }
+  }
 }

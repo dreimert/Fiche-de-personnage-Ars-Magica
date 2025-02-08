@@ -50,16 +50,16 @@ export class Art implements Named, ConvertToXpliable, Specifiable<Art, Art>, Jso
     // Un art nommé sans type est impossible
     // Un art sans nom mais avec type permet de choisir entre Technique et Forme
     // Un art sans nom ni type est au choix
-    return this.name === null;
+    return !this.name;
   }
 
   include(other: Art) : boolean {
-    if(this.name !== null && this.name !== other.name) {
+    if(this.name && this.name !== other.name) {
+      return false;
+    } else if(this.type && this.type !== other.type) {
       return false;
     }
-    if(this.type !== null && this.type !== other.type) {
-      return false;
-    }
+
     return true;
   }
 
@@ -115,8 +115,10 @@ registerJsonable("Art", Art);
 
 export class ArtXpliable extends Art implements Xpliable {
   private _xp : XpliableImplemantation;
+
   constructor(public readonly art: Art, labels: XpliableLabel[] = []) {
     super(art.type, art.name);
+
     this._xp = new XpliableImplemantation(1, labels);
   }
 

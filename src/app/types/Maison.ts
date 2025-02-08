@@ -37,16 +37,16 @@ export class Maison implements Named, Specifiable<Maison, Nature[]>, Jsonable {
   constructor(readonly maison: MaisonName, readonly avantage: Nature[] | null = null) { }
 
   isPattern() : boolean {
-    return this.avantage === null;
+    return !this.avantage;
   }
 
   include(other: Maison) : boolean {
     if(this.maison !== other.maison) {
       return false;
-    }
-    if(this.avantage !== null && this.avantage !== other.avantage) {
+    } else if(!this.avantage && this.avantage !== other.avantage) {
       return false;
     }
+
     return true;
   }
 

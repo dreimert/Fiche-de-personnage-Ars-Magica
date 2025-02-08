@@ -15,9 +15,9 @@ section {
   margin: 8px;
 }
 
-mat-select {
-  margin-top: 16px;
-}
+// mat-select {
+//   margin-top: 16px;
+// }
 
 mat-radio-button {
   margin-left: 8px;
@@ -41,4 +41,13 @@ mat-radio-button {
 
 .hide {
   display: none;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+}
+
+table .mat-mdc-form-field-infix {
+  width: 75px;
 }

@@ -17,13 +17,14 @@ export class Nature implements Named, Specifiable<Nature, Nature | Art | Compete
   public static readonly enum = dictionnaire;
 
   private _typeSpeciality: Specificite;
+
   constructor(
     public readonly type: NatureType | null = null,
     public readonly category: NatureCategory | null = null,
     public readonly valeur: NatureValeur | null = null,
     public readonly name: string | null = null,
     public readonly speciality: Named | string | null = null
-  ){
+  ) {
     this._typeSpeciality = new Specificite(name!, speciality!); // TODO: i have use hack !
   }
 
@@ -31,20 +32,16 @@ export class Nature implements Named, Specifiable<Nature, Nature | Art | Compete
     return this.type === null || this.category === null || this.valeur === null || !this._typeSpeciality.isSpecified();
   }
 
-  include (other: Nature){
-    if(this.type !== null && this.type !== other.type) {
+  include (other: Nature) {
+    if(this.type && this.type !== other.type) {
       return false;
-    }
-    if(this.category !== null && this.category !== other.category) {
+    } else if(this.category && this.category !== other.category) {
       return false;
-    }
-    if(this.valeur !== null && this.valeur !== other.valeur) {
+    } else if(this.valeur && this.valeur !== other.valeur) {
       return false;
-    }
-    if(this.name !== null && this.name !== other.name) {
+    } else if(this.name && this.name !== other.name) {
       return false;
-    }
-    if(this._typeSpeciality.isSpecifiable() && this._typeSpeciality.isSpecified() && this._typeSpeciality.name !== other._typeSpeciality.name){
+    } else if(this._typeSpeciality.isSpecifiable() && this._typeSpeciality.isSpecified() && this._typeSpeciality.name !== other._typeSpeciality.name){
       return false;
     }
     return true;

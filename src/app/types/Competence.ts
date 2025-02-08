@@ -21,7 +21,7 @@ export class Competence implements Named, ConvertToXpliable, Specifiable<Compete
   }
 
   isPattern() : boolean {
-    return this.type === null || !this._typeSpeciality.isSpecified();
+    return !this.type || !this._typeSpeciality.isSpecified();
   }
 
   include(other: Competence) : boolean {

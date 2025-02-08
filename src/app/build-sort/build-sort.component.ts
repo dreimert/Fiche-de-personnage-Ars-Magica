@@ -65,6 +65,8 @@ export class BuildSortComponent {
     this.generate();
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   set sort(sort: Sort) {
     if(!sort) {

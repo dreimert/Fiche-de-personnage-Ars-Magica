@@ -7,7 +7,7 @@
     </tr>
   </thead>
   <tbody>
-    @for (caracterisque of caracterisques; track caracterisque) {
+    @for (caracterisque of caracterisques(); track caracterisque) {
       <tr>
         <td>{{caracterisque.name}}</td>
         <td class="valeur">
@@ -28,8 +28,8 @@
   <tfoot>
     <tr>
       <th>Total</th>
-      <th>{{ sumField(caracterisques, "valeur") }}</th>
-      <th>{{ sumField(caracterisques, "cout") }}</th>
+      <th>{{ sumField(caracterisques(), "valeur") }}</th>
+      <th>{{ sumField(caracterisques(), "cout") }}</th>
     </tr>
   </tfoot>
 </table>

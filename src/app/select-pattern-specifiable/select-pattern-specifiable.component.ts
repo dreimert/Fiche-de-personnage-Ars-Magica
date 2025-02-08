@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, input } from '@angular/core';
 
 import {Specifiable} from '../types/Specifiable';
 import { FormsModule } from '@angular/forms';
@@ -42,7 +42,9 @@ class SpecificityHandler implements ProxyHandler<SelectPatternSpecifiableCompone
 })
 export class SelectPatternSpecifiableComponent implements OnInit {
 
-  @Input() public liste : Specifiable<any, any>[] = [];
+  public readonly label = input("");
+  public readonly subLabel = input("");
+  public readonly liste = input<Specifiable<any, any>[]>([]);
 
   @Output() selectedChange: EventEmitter<Specifiable<any, any>> = new EventEmitter();
 
@@ -52,6 +54,8 @@ export class SelectPatternSpecifiableComponent implements OnInit {
   public specialityLvlListe?: any[];
 
   public showSpecifySelect = false;
+
+  id = Math.random().toString(36).substring(7);
 
   constructor() {
     // console.log("constructor");
@@ -65,11 +69,13 @@ export class SelectPatternSpecifiableComponent implements OnInit {
     return this._selected;
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input() set selected(value) {
     // console.log("selected");
     this._selected = value;
     if(value) {
-      this.firstLvl = this.liste.find((elem) => elem.include(value)); // C'est la value de la liste qui doit inclide value
+      this.firstLvl = this.liste().find((elem) => elem.include(value)); // C'est la value de la liste qui doit inclide value
     } else {
       this._firstLvl = undefined;
       this.showSpecifySelect = false;
@@ -83,17 +89,23 @@ export class SelectPatternSpecifiableComponent implements OnInit {
   set firstLvl(value) {
     let old = this._firstLvl;
     this._firstLvl = value;
-    if(!value?.isSpecified()) {
-      let choices = value?.choices();
-      if(old) {
-        // @ts-ignore
-        this._specialityLvl = new Proxy(this, new SpecificityHandler());
-      } else {
-        // @ts-ignore
-        this._specialityLvl = new Proxy(this, new SpecificityHandler());
-      }
+
+    if (!value) {
+      this.showSpecifySelect = false;
+    } else if(!value.isSpecified()) {
+      console.log("isSpecified", this.id, value);
+
+      let choices = value.choices();
+
+      console.log(choices);
+
+
+      // @ts-ignore
+      this._specialityLvl = new Proxy(this, new SpecificityHandler());
+
       if(choices?.multi) {
         this.specialityLvlListe = choices.liste;
+
         if(choices.liste?.length === 1 && choices.liste[0].length === 1){
           this._specialityLvl![0] = choices.liste[0][0]
         }
@@ -106,14 +118,14 @@ export class SelectPatternSpecifiableComponent implements OnInit {
       this.showSpecifySelect = true;
 
     } else if(value.isSpecifiable()) {
+      console.log("isSpecifiable", value);
       let choices = value.choices();
-      if(old) {
-        // @ts-ignore
-        this._specialityLvl = new Proxy(this, new SpecificityHandler());
-      } else {
-        // @ts-ignore
-        this._specialityLvl = new Proxy(this, new SpecificityHandler());
-      }
+      console.log(choices);
+
+
+      // @ts-ignore
+      this._specialityLvl = new Proxy(this, new SpecificityHandler());
+
       if(choices.multi) {
         this.specialityLvlListe = choices.liste;
         if(choices.liste?.length === 1 && choices.liste[0].length === 1){
@@ -128,8 +140,9 @@ export class SelectPatternSpecifiableComponent implements OnInit {
       this.showSpecifySelect = true;
     } else {
       this.showSpecifySelect = false;
-      this.selectedChange.emit(value);
     }
+
+    this.selectedChange.emit(value);
   }
 
   get specialityLvl() {

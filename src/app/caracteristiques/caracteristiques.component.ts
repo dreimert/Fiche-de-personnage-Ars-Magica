@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, input } from '@angular/core';
 import { Caracteristique } from '../types/Caracteristique';
 import { FormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
@@ -12,15 +12,11 @@ import { MatSliderModule } from '@angular/material/slider';
   templateUrl: './caracteristiques.component.html',
   styleUrls: ['./caracteristiques.component.css']
 })
-export class CaracteristiquesComponent implements OnInit {
+export class CaracteristiquesComponent {
 
-  @Input() public caracterisques: Caracteristique[] = [];
+  public readonly caracterisques = input<Caracteristique[]>([]);
 
   @Output() caracterisquesChange: EventEmitter<Caracteristique[]> = new EventEmitter();
-
-  constructor() { }
-
-  ngOnInit() {}
 
   sumField (tab: any[], field: string) {
     if(!tab) return
@@ -28,14 +24,4 @@ export class CaracteristiquesComponent implements OnInit {
       return sum + el[field];
     }, 0);
   }
-
-  // get caracterisques() {
-  //   return this._caracterisques;
-  // }
-  //
-  //
-  // set caracterisques(value) {
-  //   this._caracterisques = value;
-  // }
-
 }

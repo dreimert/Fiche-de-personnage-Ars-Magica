@@ -1,25 +1,16 @@
-.full-width {
-  width: 100%;
-}
-
-input[type="number"] {
+/* input[type="number"] {
   width: 70px;
   min-width: 70px;
-}
+} */
 
-mat-select {
+/* mat-select {
   min-width: 120px;
-}
+} */
 
-.row {
-  display: flex;
-  align-items: baseline;
-}
-
-.row mat-form-field, .row mat-select {
+/* .row mat-form-field, .row mat-select {
   padding: 0 2px;
   padding-top: 16px;
-}
+} */
 
 .niveau {
   white-space: nowrap;
