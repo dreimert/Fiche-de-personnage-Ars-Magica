@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, input } from '@angular/core';
+import { Component, Output, EventEmitter, input, ChangeDetectionStrategy } from '@angular/core';
 import { Caracteristique } from '../types/Caracteristique';
 import { FormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
@@ -10,6 +10,7 @@ import { MatSliderModule } from '@angular/material/slider';
     MatSliderModule,
   ],
   templateUrl: './caracteristiques.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./caracteristiques.component.css']
 })
 export class CaracteristiquesComponent {

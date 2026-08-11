@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, input, ChangeDetectionStrategy } from '@angular/core';
 
 import {Specifiable} from '../types/Specifiable';
 import { FormsModule } from '@angular/forms';
@@ -38,6 +38,7 @@ class SpecificityHandler implements ProxyHandler<SelectPatternSpecifiableCompone
     MatFormFieldModule, MatSelectModule,
   ],
   templateUrl: './select-pattern-specifiable.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./select-pattern-specifiable.component.css']
 })
 export class SelectPatternSpecifiableComponent implements OnInit {

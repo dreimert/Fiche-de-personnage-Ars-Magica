@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, input, ChangeDetectionStrategy } from '@angular/core';
 
 import {Xpliable} from '../types/Xpliable';
 import { Competence } from '../types/Competence';
@@ -35,6 +35,7 @@ class XpHandler implements ProxyHandler<Xpliable> {
     MatFormFieldModule, MatInputModule,
   ],
   templateUrl: './competence-xp-row.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./competence-xp-row.component.css']
 })
 export class CompetenceXpRowComponent {

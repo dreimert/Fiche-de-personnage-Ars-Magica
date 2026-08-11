@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 
 import { MatButtonModule } from '@angular/material/button'
@@ -29,6 +29,7 @@ import { BuildSortComponent } from './build-sort/build-sort.component'
     BuildSortComponent, CaracteristiquesComponent, CompetenceXpRowComponent, SelectPatternSpecifiableComponent,
   ],
   templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
