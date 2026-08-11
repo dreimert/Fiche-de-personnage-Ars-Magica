@@ -29,6 +29,6 @@ describe('SelectPatternSpecifiableComponent', () => {
   });
 
   it('should not show the speciality select until something is selected', () => {
-    expect(component.showSpecifySelect).toBeFalse();
+    expect(component.showSpecifySelect).toBe(false);
   });
 });
